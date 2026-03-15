@@ -1,19 +1,20 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import ModuleCard from "@/components/ModuleCard";
 import { useAuthStore } from "@/store/auth";
 import { useProgressStore } from "@/store/progress";
 import allModules from "@/data/modules";
-import { Sparkles, TrendingUp } from "lucide-react";
+import { Sparkles, TrendingUp, Bell, Mail } from "lucide-react";
 
 export default function DashboardPage() {
   const { user, isAuthenticated } = useAuthStore();
   const getCompletionPercent = useProgressStore((s) => s.getCompletionPercent);
   const progress = useProgressStore((s) => s.progress);
   const router = useRouter();
+  const [reminderEnabled, setReminderEnabled] = useState(false);
 
   useEffect(() => {
     if (!isAuthenticated) {
@@ -91,6 +92,38 @@ export default function DashboardPage() {
             </span>
             <span className="text-muted text-sm ml-1">Module</span>
           </div>
+        </div>
+
+        {/* Email reminder card */}
+        <div className="bg-card rounded-xl border border-border p-5 mb-8">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <div className="w-9 h-9 rounded-lg bg-gold-500/20 flex items-center justify-center">
+                <Mail className="w-4 h-4 text-gold-400" />
+              </div>
+              <div>
+                <h3 className="text-sm font-medium text-foreground">E-Mail-Erinnerungen</h3>
+                <p className="text-xs text-muted">Erhalte eine Erinnerung, wenn du 3 Tage nicht gelernt hast.</p>
+              </div>
+            </div>
+            <button
+              onClick={() => setReminderEnabled(!reminderEnabled)}
+              className={`relative w-11 h-6 rounded-full transition-colors ${
+                reminderEnabled ? "bg-gold-500" : "bg-navy-600"
+              }`}
+            >
+              <span
+                className={`absolute top-0.5 left-0.5 w-5 h-5 rounded-full bg-white transition-transform ${
+                  reminderEnabled ? "translate-x-5" : ""
+                }`}
+              />
+            </button>
+          </div>
+          {reminderEnabled && (
+            <p className="text-xs text-emerald-400 mt-3 flex items-center gap-1">
+              <Bell className="w-3 h-3" /> Erinnerungen aktiviert (kommt bald per E-Mail!)
+            </p>
+          )}
         </div>
 
         {/* Module grid */}

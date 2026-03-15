@@ -3,7 +3,8 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { BookOpen, Mail, Lock, User, ArrowRight } from "lucide-react";
+import { Mail, Lock, User, ArrowRight } from "lucide-react";
+import Image from "next/image";
 import { useAuthStore } from "@/store/auth";
 import { useProgressStore } from "@/store/progress";
 
@@ -45,10 +46,7 @@ export default function RegisterPage() {
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <Link href="/" className="inline-flex items-center gap-2 mb-6">
-            <BookOpen className="w-8 h-8 text-gold-500" />
-            <span className="text-xl font-semibold text-foreground">
-              Auf Deutsch Gesagt
-            </span>
+            <Image src="/ADG! Logo_transparent.png" alt="Auf Deutsch gesagt!" width={200} height={60} />
           </Link>
           <h1 className="text-2xl font-bold text-foreground mb-2">
             Konto erstellen

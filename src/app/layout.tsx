@@ -13,9 +13,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Auf Deutsch Gesagt – Deutsch lernen mit Geschichten",
+  title: "Auf Deutsch gesagt! – Deutsch lernen mit Geschichten",
   description:
     "Lerne authentisches Deutsch durch fesselnde Geschichten, Redewendungen und praxisnahe Übungen. 12 Module. Ein Verb-Universum. Dein Fortschritt.",
+  icons: {
+    icon: "/ADG!_Icon_transparent.png",
+    apple: "/ADG!_Icon_transparent.png",
+  },
 };
 
 export default function RootLayout({

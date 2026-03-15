@@ -182,8 +182,17 @@ export const useProgressStore = create<ProgressStore>()(
 
       getCompletionPercent: (): number => {
         const modules = get().progress.modules;
-        const completed = Object.values(modules).filter((m) => m.completed).length;
-        return Math.round((completed / 12) * 100);
+        const totalCheckpoints = 12 * 6; // 12 modules × 6 checkpoints each
+        let done = 0;
+        for (const mod of Object.values(modules)) {
+          if (mod.sections.story) done++;
+          if (mod.sections.vocabulary) done++;
+          if (mod.sections.exercises.lesen) done++;
+          if (mod.sections.exercises.hoeren) done++;
+          if (mod.sections.exercises.sprechen) done++;
+          if (mod.sections.exercises.schreiben) done++;
+        }
+        return Math.round((done / totalCheckpoints) * 100);
       },
 
       getModuleCompletionPercent: (moduleId: number): number => {

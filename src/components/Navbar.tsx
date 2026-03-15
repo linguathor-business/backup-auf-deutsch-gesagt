@@ -4,12 +4,12 @@ import Link from "next/link";
 import { useAuthStore } from "@/store/auth";
 import { useProgressStore } from "@/store/progress";
 import {
-  BookOpen,
   LogOut,
   BarChart3,
   Menu,
   X,
 } from "lucide-react";
+import Image from "next/image";
 import { useState } from "react";
 
 export default function Navbar() {
@@ -22,9 +22,15 @@ export default function Navbar() {
       <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
         {/* Logo */}
         <Link href={isAuthenticated ? "/dashboard" : "/"} className="flex items-center gap-2 group">
-          <BookOpen className="w-6 h-6 text-gold-500 group-hover:text-gold-400 transition-colors" />
+          <Image
+            src="/ADG!_Icon_transparent.png"
+            alt="Auf Deutsch gesagt!"
+            width={32}
+            height={32}
+            className="group-hover:scale-105 transition-transform"
+          />
           <span className="font-semibold text-lg text-foreground">
-            Auf Deutsch Gesagt
+            Auf Deutsch gesagt!
           </span>
         </Link>
 

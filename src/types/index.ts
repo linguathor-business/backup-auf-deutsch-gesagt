@@ -14,6 +14,7 @@ export interface SentenceTimestamp {
 export interface VocabItem {
   german: string;
   english: string;
+  definition?: string; // German-language definition
   example?: string;
   audioFile?: string;
   partOfSpeech?: string;
@@ -99,6 +100,7 @@ export interface CourseModule {
     paragraphs: string[];
     audioFile?: string;
     sentences: SentenceTimestamp[];
+    headerImage?: string;
   };
   coreVerbs: VocabItem[];
   idioms: VocabItem[];

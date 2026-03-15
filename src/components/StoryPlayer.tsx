@@ -3,6 +3,7 @@
 import { useState, useRef, useCallback, useEffect } from "react";
 import { Play, Pause, RotateCcw, Volume2 } from "lucide-react";
 import { CourseModule } from "@/types";
+import { speakGerman, stopSpeaking } from "@/lib/tts";
 
 interface StoryPlayerProps {
   module: CourseModule;
@@ -95,6 +96,9 @@ export default function StoryPlayer({ module, onComplete }: StoryPlayerProps) {
       if (audioRef.current) {
         audioRef.current.currentTime = s.start;
       }
+      // Also speak the sentence via TTS
+      stopSpeaking();
+      speakGerman(s.text);
     },
     [sentences]
   );
@@ -112,6 +116,22 @@ export default function StoryPlayer({ module, onComplete }: StoryPlayerProps) {
 
   return (
     <div className="bg-card rounded-xl border border-border p-6">
+      {/* Story header image */}
+      {module.story.headerImage && (
+        <div className="mb-4 rounded-lg overflow-hidden h-48 bg-navy-700">
+          <img
+            src={module.story.headerImage}
+            alt={module.title}
+            className="w-full h-full object-cover"
+          />
+        </div>
+      )}
+      {!module.story.headerImage && (
+        <div className="mb-4 rounded-lg overflow-hidden h-32 bg-gradient-to-r from-navy-700 via-navy-600 to-navy-700 flex items-center justify-center">
+          <span className="text-4xl">📖</span>
+        </div>
+      )}
+
       <div className="flex items-center justify-between mb-4">
         <h3 className="text-lg font-semibold text-foreground">Geschichte</h3>
         {hasFinished && (

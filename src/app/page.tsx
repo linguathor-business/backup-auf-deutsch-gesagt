@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import {
   BookOpen,
   Headphones,
@@ -70,6 +71,14 @@ export default function LandingPage() {
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-gold-500/5 via-transparent to-transparent" />
         <div className="max-w-5xl mx-auto px-4 pt-20 pb-16 text-center relative z-10">
+          <Image
+            src="/ADG! Logo_transparent.png"
+            alt="Auf Deutsch gesagt!"
+            width={320}
+            height={96}
+            className="mx-auto mb-6"
+            priority
+          />
           <div className="inline-flex items-center gap-2 bg-gold-500/10 border border-gold-500/20 rounded-full px-4 py-1.5 text-sm text-gold-400 mb-6">
             <Sparkles className="w-4 h-4" />
             12 Module · Geschichten · Verben · Redewendungen
@@ -210,8 +219,8 @@ export default function LandingPage() {
       <footer className="border-t border-border py-8">
         <div className="max-w-5xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2 text-muted text-sm">
-            <BookOpen className="w-4 h-4 text-gold-500" />
-            <span>Auf Deutsch Gesagt · Robin Meinert</span>
+            <Image src="/ADG!_Icon_transparent.png" alt="" width={20} height={20} />
+            <span>Auf Deutsch gesagt! · Robin Meinert</span>
           </div>
           <div className="flex items-center gap-6 text-sm text-muted">
             <a href="https://aufdeutschgesagt.de/" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">

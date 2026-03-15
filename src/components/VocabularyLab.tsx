@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Volume2, ChevronDown, ChevronUp } from "lucide-react";
 import { VocabItem } from "@/types";
+import { speakGerman } from "@/lib/tts";
 
 interface VocabularyLabProps {
   coreVerbs: VocabItem[];
@@ -30,6 +31,11 @@ export default function VocabularyLab({ coreVerbs, idioms, onComplete }: Vocabul
     }
   };
 
+  const handleSpeak = (e: React.MouseEvent, text: string) => {
+    e.stopPropagation();
+    speakGerman(text);
+  };
+
   return (
     <div className="space-y-6">
       {/* Core Verbs */}
@@ -48,11 +54,16 @@ export default function VocabularyLab({ coreVerbs, idioms, onComplete }: Vocabul
                 className="w-full flex items-center justify-between p-3 hover:bg-navy-700/50 transition-colors"
               >
                 <div className="flex items-center gap-3">
-                  <Volume2 className="w-4 h-4 text-gold-500 shrink-0" />
+                  <button
+                    onClick={(e) => handleSpeak(e, verb.german)}
+                    className="text-gold-500 hover:text-gold-400 transition-colors shrink-0"
+                    title="Anhören"
+                  >
+                    <Volume2 className="w-4 h-4" />
+                  </button>
                   <span className="font-medium text-foreground text-left">{verb.german}</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="text-sm text-muted hidden sm:inline">{verb.english}</span>
                   {expandedVerb === idx ? (
                     <ChevronUp className="w-4 h-4 text-muted" />
                   ) : (
@@ -60,13 +71,22 @@ export default function VocabularyLab({ coreVerbs, idioms, onComplete }: Vocabul
                   )}
                 </div>
               </button>
-              {expandedVerb === idx && verb.example && (
+              {expandedVerb === idx && (
                 <div className="px-3 pb-3 border-t border-border/30">
-                  <p className="text-sm text-muted mt-2">
-                    <span className="text-gold-400">Beispiel:</span>{" "}
-                    <span className="italic">{verb.example}</span>
-                  </p>
-                  <p className="text-sm text-sky-400 mt-1">{verb.english}</p>
+                  {verb.definition && (
+                    <p className="text-sm text-foreground/80 mt-2">
+                      <span className="text-gold-400 font-medium">Definition:</span>{" "}
+                      {verb.definition}
+                    </p>
+                  )}
+                  {verb.example && (
+                    <p className="text-sm text-muted mt-2">
+                      <span className="text-gold-400">Beispiel:</span>{" "}
+                      <span className="italic cursor-pointer hover:text-gold-400 transition-colors" onClick={() => speakGerman(verb.example!)}>
+                        {verb.example}
+                      </span>
+                    </p>
+                  )}
                 </div>
               )}
             </div>
@@ -91,11 +111,16 @@ export default function VocabularyLab({ coreVerbs, idioms, onComplete }: Vocabul
                   className="w-full flex items-center justify-between p-3 hover:bg-navy-700/50 transition-colors"
                 >
                   <div className="flex items-center gap-3">
-                    <span className="text-gold-500 text-sm">💡</span>
+                    <button
+                      onClick={(e) => handleSpeak(e, idiom.german)}
+                      className="text-gold-500 hover:text-gold-400 transition-colors shrink-0"
+                      title="Anhören"
+                    >
+                      <Volume2 className="w-4 h-4" />
+                    </button>
                     <span className="font-medium text-foreground text-left">{idiom.german}</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <span className="text-sm text-muted hidden sm:inline">{idiom.english}</span>
                     {expandedIdiom === idx ? (
                       <ChevronUp className="w-4 h-4 text-muted" />
                     ) : (
@@ -103,13 +128,22 @@ export default function VocabularyLab({ coreVerbs, idioms, onComplete }: Vocabul
                     )}
                   </div>
                 </button>
-                {expandedIdiom === idx && idiom.example && (
+                {expandedIdiom === idx && (
                   <div className="px-3 pb-3 border-t border-border/30">
-                    <p className="text-sm text-muted mt-2">
-                      <span className="text-gold-400">Beispiel:</span>{" "}
-                      <span className="italic">{idiom.example}</span>
-                    </p>
-                    <p className="text-sm text-sky-400 mt-1">{idiom.english}</p>
+                    {idiom.definition && (
+                      <p className="text-sm text-foreground/80 mt-2">
+                        <span className="text-gold-400 font-medium">Definition:</span>{" "}
+                        {idiom.definition}
+                      </p>
+                    )}
+                    {idiom.example && (
+                      <p className="text-sm text-muted mt-2">
+                        <span className="text-gold-400">Beispiel:</span>{" "}
+                        <span className="italic cursor-pointer hover:text-gold-400 transition-colors" onClick={() => speakGerman(idiom.example!)}>
+                          {idiom.example}
+                        </span>
+                      </p>
+                    )}
                   </div>
                 )}
               </div>
