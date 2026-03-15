@@ -29,12 +29,11 @@ export default function ModulePage() {
   const router = useRouter();
   const { isAuthenticated } = useAuthStore();
   const {
+    progress,
     markStoryRead,
     markVocabularyDone,
     markExerciseDone,
     markModuleComplete,
-    getModuleProgress,
-    getModuleCompletionPercent,
     setCurrentModule,
     toggleStoryDone,
     toggleVocabularyDone,
@@ -75,8 +74,26 @@ export default function ModulePage() {
     );
   }
 
-  const modProgress = getModuleProgress(courseModule.id);
-  const completionPct = getModuleCompletionPercent(courseModule.id);
+  const modProgress = progress.modules[courseModule.id] ?? {
+    moduleId: courseModule.id,
+    started: false,
+    completed: false,
+    sections: {
+      story: false,
+      vocabulary: false,
+      exercises: { lesen: false, hoeren: false, sprechen: false, schreiben: false },
+    },
+    exerciseAnswers: {},
+  };
+  const completionDone = [
+    modProgress.sections.story,
+    modProgress.sections.vocabulary,
+    modProgress.sections.exercises.lesen,
+    modProgress.sections.exercises.hoeren,
+    modProgress.sections.exercises.sprechen,
+    modProgress.sections.exercises.schreiben,
+  ].filter(Boolean).length;
+  const completionPct = Math.round((completionDone / 6) * 100);
 
   const sections: { key: SectionKey; label: string; icon: typeof BookOpen; done: boolean }[] = [
     { key: "story", label: "Geschichte", icon: BookOpen, done: modProgress.sections.story },
