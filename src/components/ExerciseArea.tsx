@@ -6,10 +6,7 @@ import {
   X,
   RotateCcw,
   ChevronRight,
-  BookOpen,
-  Headphones,
   Mic,
-  PenTool,
   Volume2,
   Star,
   MicOff,
@@ -21,13 +18,6 @@ interface ExerciseAreaProps {
   exercises: Exercise[];
   onSkillComplete?: (skill: string) => void;
 }
-
-const skillTabs = [
-  { key: "lesen", label: "Lesen", icon: BookOpen },
-  { key: "hoeren", label: "Hören", icon: Headphones },
-  { key: "sprechen", label: "Sprechen", icon: Mic },
-  { key: "schreiben", label: "Schreiben", icon: PenTool },
-] as const;
 
 // Motivating messages shown on success
 const successMessages = [
@@ -56,48 +46,17 @@ function SuccessCelebration({ message }: { message: string }) {
 }
 
 export default function ExerciseArea({ exercises, onSkillComplete }: ExerciseAreaProps) {
-  const [activeSkill, setActiveSkill] = useState<string>("lesen");
-
-  const filteredExercises = exercises.filter((e) => e.skill === activeSkill);
-
   return (
     <div className="bg-card rounded-xl border border-border p-6">
       <h3 className="text-lg font-semibold text-foreground mb-4">Übungen</h3>
 
-      {/* Skill tabs */}
-      <div className="flex gap-2 mb-6 overflow-x-auto pb-2">
-        {skillTabs.map(({ key, label, icon: Icon }) => {
-          const count = exercises.filter((e) => e.skill === key).length;
-          return (
-            <button
-              key={key}
-              onClick={() => setActiveSkill(key)}
-              className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all whitespace-nowrap ${
-                activeSkill === key
-                  ? "bg-gold-500/20 text-gold-400 border border-gold-500/30"
-                  : "bg-navy-800/50 text-muted hover:text-foreground border border-transparent"
-              }`}
-            >
-              <Icon className="w-4 h-4" />
-              {label}
-              {count > 0 && (
-                <span className="text-xs bg-navy-700 px-1.5 py-0.5 rounded">
-                  {count}
-                </span>
-              )}
-            </button>
-          );
-        })}
-      </div>
-
-      {/* Exercises */}
       <div className="space-y-6">
-        {filteredExercises.length === 0 ? (
+        {exercises.length === 0 ? (
           <p className="text-muted text-sm italic">
-            Keine Übungen in dieser Kategorie noch verfügbar.
+            Keine Übungen verfügbar.
           </p>
         ) : (
-          filteredExercises.map((exercise) => (
+          exercises.map((exercise) => (
             <ExerciseRenderer
               key={exercise.id}
               exercise={exercise}
@@ -130,6 +89,12 @@ function ExerciseRenderer({
       return <WritingExercise exercise={exercise} onComplete={onComplete} />;
     case "speaking":
       return <SpeakingExercise exercise={exercise} onComplete={onComplete} />;
+    case "verb-grouping":
+      return <VerbGroupingExercise exercise={exercise} onComplete={onComplete} />;
+    case "sentence-completion":
+      return <SentenceCompletionExercise exercise={exercise} onComplete={onComplete} />;
+    case "error-correction":
+      return <ErrorCorrectionExercise exercise={exercise} onComplete={onComplete} />;
     default:
       return null;
   }
@@ -352,6 +317,21 @@ function GapFillExercise({
   return (
     <div className="space-y-4">
       <p className="text-sm text-muted font-medium">{exercise.instruction}</p>
+      {exercise.wordBank && exercise.wordBank.length > 0 && (
+        <div className="bg-navy-800/30 rounded-lg p-3 border border-border/50">
+          <p className="text-xs text-muted mb-2">Wortkasten:</p>
+          <div className="flex flex-wrap gap-2">
+            {exercise.wordBank.map((word, i) => (
+              <span
+                key={i}
+                className="px-2 py-1 rounded-md border border-gold-500/30 text-sm text-gold-400 bg-gold-500/5"
+              >
+                {word}
+              </span>
+            ))}
+          </div>
+        </div>
+      )}
       {exercise.skill === "hoeren" && (
         <p className="text-xs text-sky-400 italic">
           Tipp: Klicke auf 🔊 um den Satz anzuhören und überprüfe deine Antwort anhand der Aufnahme.
@@ -919,6 +899,378 @@ function SpeakingExercise({
           </p>
         </div>
       )}
+    </div>
+  );
+}
+
+// --- Verb Grouping ---
+function VerbGroupingExercise({
+  exercise,
+  onComplete,
+}: {
+  exercise: Extract<Exercise, { type: "verb-grouping" }>;
+  onComplete?: () => void;
+}) {
+  const [shuffledVerbs] = useState(() => {
+    const verbs = exercise.categories.flatMap((c) => c.items);
+    for (let i = verbs.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [verbs[i], verbs[j]] = [verbs[j], verbs[i]];
+    }
+    return verbs;
+  });
+
+  const [placed, setPlaced] = useState<Record<string, string>>({});
+  const [selected, setSelected] = useState<string | null>(null);
+  const [checked, setChecked] = useState(false);
+  const [successMsg, setSuccessMsg] = useState<string | null>(null);
+
+  const pool = shuffledVerbs.filter((v) => !placed[v]);
+  const allPlaced = shuffledVerbs.every((v) => placed[v]);
+
+  const handleVerbClick = (verb: string) => {
+    if (checked) return;
+    setSelected((prev) => (prev === verb ? null : verb));
+  };
+
+  const handleCategoryClick = (catName: string) => {
+    if (checked || selected === null) return;
+    setPlaced((prev) => ({ ...prev, [selected]: catName }));
+    setSelected(null);
+  };
+
+  const handleCheck = () => {
+    setChecked(true);
+    const allCorrect = exercise.categories.every((cat) =>
+      cat.items.every((item) => placed[item] === cat.name)
+    );
+    if (allCorrect) {
+      setSuccessMsg(getRandomSuccess());
+      onComplete?.();
+    }
+  };
+
+  const handleReset = () => {
+    setPlaced({});
+    setSelected(null);
+    setChecked(false);
+    setSuccessMsg(null);
+  };
+
+  const isVerbCorrect = (verb: string, catName: string) =>
+    exercise.categories.find((c) => c.items.includes(verb))?.name === catName;
+
+  return (
+    <div className="space-y-4">
+      <p className="text-sm text-muted font-medium">{exercise.instruction}</p>
+
+      {/* Pool */}
+      <div className="bg-navy-800/30 rounded-lg p-3 border border-border/50">
+        <p className="text-xs text-muted mb-2">
+          {selected
+            ? `„${selected}" ausgewählt – wähle jetzt eine Kategorie:`
+            : "Klicke ein Verb an, dann wähle eine Kategorie:"}
+        </p>
+        <div className="flex flex-wrap gap-2">
+          {pool.map((verb) => (
+            <button
+              key={verb}
+              onClick={() => handleVerbClick(verb)}
+              disabled={checked}
+              className={`px-3 py-1.5 rounded-lg text-sm border transition-all ${
+                selected === verb
+                  ? "border-gold-500 bg-gold-500/20 text-gold-400 ring-1 ring-gold-500"
+                  : "border-border bg-navy-800/50 text-foreground hover:border-gold-500/30"
+              }`}
+            >
+              {verb}
+            </button>
+          ))}
+          {pool.length === 0 && (
+            <span className="text-xs text-muted italic">Alle Verben wurden eingeordnet.</span>
+          )}
+        </div>
+      </div>
+
+      {/* Category columns */}
+      <div className="grid gap-3 sm:grid-cols-3">
+        {exercise.categories.map((cat) => {
+          const placedHere = shuffledVerbs.filter((v) => placed[v] === cat.name);
+          const isTarget = selected !== null && !checked;
+          return (
+            <div
+              key={cat.name}
+              onClick={() => handleCategoryClick(cat.name)}
+              className={`rounded-lg p-3 border min-h-[90px] transition-all ${
+                isTarget
+                  ? "border-gold-500/50 bg-gold-500/5 hover:bg-gold-500/10 cursor-pointer"
+                  : "border-border bg-navy-800/20"
+              }`}
+            >
+              <p className="text-xs font-semibold text-gold-400 mb-2">{cat.name}</p>
+              <div className="flex flex-wrap gap-1.5">
+                {placedHere.map((verb) => {
+                  const correct = checked && isVerbCorrect(verb, cat.name);
+                  const wrong = checked && !isVerbCorrect(verb, cat.name);
+                  return (
+                    <button
+                      key={verb}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        if (!checked) {
+                          setPlaced((prev) => {
+                            const next = { ...prev };
+                            delete next[verb];
+                            return next;
+                          });
+                          setSelected(null);
+                        }
+                      }}
+                      disabled={checked}
+                      className={`px-2 py-1 rounded text-xs border transition-all ${
+                        correct
+                          ? "border-emerald-500 bg-emerald-500/10 text-emerald-400"
+                          : wrong
+                          ? "border-coral-500 bg-coral-500/10 text-coral-400"
+                          : "border-sky-500/30 bg-sky-500/10 text-sky-400 hover:opacity-70"
+                      }`}
+                    >
+                      {verb}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      {checked && (
+        <div className="space-y-1">
+          {exercise.categories.flatMap((cat) =>
+            cat.items
+              .filter((v) => placed[v] !== cat.name)
+              .map((v) => (
+                <p key={v} className="text-xs text-coral-400">
+                  „{v}" gehört zu:{" "}
+                  <span className="font-medium text-foreground/80">{cat.name}</span>
+                </p>
+              ))
+          )}
+        </div>
+      )}
+
+      {successMsg && <SuccessCelebration message={successMsg} />}
+      <div className="flex gap-2">
+        {!checked ? (
+          <button
+            onClick={handleCheck}
+            disabled={!allPlaced}
+            className="bg-gold-500 text-navy-900 px-4 py-2 rounded-lg text-sm font-medium hover:bg-gold-400 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+          >
+            Überprüfen <ChevronRight className="w-4 h-4" />
+          </button>
+        ) : (
+          <button
+            onClick={handleReset}
+            className="bg-navy-700 text-muted px-4 py-2 rounded-lg text-sm hover:text-foreground flex items-center gap-2"
+          >
+            <RotateCcw className="w-3.5 h-3.5" /> Nochmal
+          </button>
+        )}
+      </div>
+    </div>
+  );
+}
+
+// --- Sentence Completion ---
+function SentenceCompletionExercise({
+  exercise,
+  onComplete,
+}: {
+  exercise: Extract<Exercise, { type: "sentence-completion" }>;
+  onComplete?: () => void;
+}) {
+  const [answers, setAnswers] = useState<Record<number, string>>({});
+  const [submitted, setSubmitted] = useState(false);
+  const { speak } = useTTS();
+
+  const allFilled = exercise.sentences.every((_, i) => (answers[i] || "").trim().length > 0);
+
+  const handleSubmit = () => {
+    setSubmitted(true);
+    onComplete?.();
+  };
+
+  const handleReset = () => {
+    setAnswers({});
+    setSubmitted(false);
+  };
+
+  return (
+    <div className="space-y-4">
+      <p className="text-sm text-muted font-medium">{exercise.instruction}</p>
+      <div className="space-y-4">
+        {exercise.sentences.map((sent, idx) => (
+          <div key={idx} className="space-y-1.5">
+            <p className="text-sm text-foreground">{sent.prompt}</p>
+            <input
+              type="text"
+              value={answers[idx] || ""}
+              onChange={(e) =>
+                !submitted && setAnswers((prev) => ({ ...prev, [idx]: e.target.value }))
+              }
+              readOnly={submitted}
+              placeholder="Ergänze sinnvoll …"
+              className="w-full px-3 py-2 rounded-lg border text-sm bg-navy-800 outline-none transition-colors border-border text-foreground focus:border-gold-500"
+            />
+            {submitted && (
+              <div className="flex items-center gap-2">
+                <span className="text-xs text-muted">Mögliche Antwort:</span>
+                <button
+                  className="text-xs text-emerald-400 hover:text-gold-400 transition-colors"
+                  onClick={() => speak(sent.prompt.replace("___", sent.modelAnswer))}
+                >
+                  🔊 {sent.modelAnswer}
+                </button>
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+      {submitted && (
+        <SuccessCelebration message="Gut gemacht! Vergleiche deine Antworten mit den Musterlösungen. ✍️" />
+      )}
+      <div className="flex gap-2">
+        {!submitted ? (
+          <button
+            onClick={handleSubmit}
+            disabled={!allFilled}
+            className="bg-gold-500 text-navy-900 px-4 py-2 rounded-lg text-sm font-medium hover:bg-gold-400 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+          >
+            Überprüfen <ChevronRight className="w-4 h-4" />
+          </button>
+        ) : (
+          <button
+            onClick={handleReset}
+            className="bg-navy-700 text-muted px-4 py-2 rounded-lg text-sm hover:text-foreground flex items-center gap-2"
+          >
+            <RotateCcw className="w-3.5 h-3.5" /> Nochmal
+          </button>
+        )}
+      </div>
+    </div>
+  );
+}
+
+// --- Error Correction ---
+function ErrorCorrectionExercise({
+  exercise,
+  onComplete,
+}: {
+  exercise: Extract<Exercise, { type: "error-correction" }>;
+  onComplete?: () => void;
+}) {
+  const [answers, setAnswers] = useState<Record<number, string>>({});
+  const [checked, setChecked] = useState(false);
+  const [successMsg, setSuccessMsg] = useState<string | null>(null);
+  const { speak } = useTTS();
+
+  const normalize = (s: string) =>
+    s.trim().toLowerCase().replace(/[.,!?;:„""]/g, "").replace(/\s+/g, " ");
+
+  const allFilled = exercise.sentences.every((_, i) => (answers[i] || "").trim().length > 0);
+
+  const handleCheck = () => {
+    setChecked(true);
+    const allCorrect = exercise.sentences.every(
+      (s, i) => normalize(answers[i] || "") === normalize(s.correct)
+    );
+    if (allCorrect) {
+      setSuccessMsg(getRandomSuccess());
+      onComplete?.();
+    }
+  };
+
+  const handleReset = () => {
+    setAnswers({});
+    setChecked(false);
+    setSuccessMsg(null);
+  };
+
+  return (
+    <div className="space-y-4">
+      <p className="text-sm text-muted font-medium">{exercise.instruction}</p>
+      <div className="space-y-5">
+        {exercise.sentences.map((sent, idx) => {
+          const isCorrect = checked && normalize(answers[idx] || "") === normalize(sent.correct);
+          const isWrong = checked && !isCorrect;
+          return (
+            <div key={idx} className="space-y-2">
+              <div className="flex items-start gap-2 bg-coral-500/5 border border-coral-500/20 rounded-lg px-3 py-2">
+                <X className="w-3.5 h-3.5 text-coral-400 mt-0.5 shrink-0" />
+                <p className="text-sm text-foreground/70 line-through decoration-coral-400/50">
+                  {sent.incorrect}
+                </p>
+              </div>
+              <input
+                type="text"
+                value={answers[idx] || ""}
+                onChange={(e) =>
+                  !checked && setAnswers((prev) => ({ ...prev, [idx]: e.target.value }))
+                }
+                readOnly={checked}
+                placeholder="Korrigierter Satz …"
+                className={`w-full px-3 py-2 rounded-lg border text-sm bg-navy-800 outline-none transition-colors ${
+                  isCorrect
+                    ? "border-emerald-500 text-emerald-400"
+                    : isWrong
+                    ? "border-coral-500 text-coral-400"
+                    : "border-border text-foreground focus:border-gold-500"
+                }`}
+              />
+              {checked && isCorrect && (
+                <div className="flex items-center gap-1.5">
+                  <Check className="w-3.5 h-3.5 text-emerald-400" />
+                  <span className="text-xs text-emerald-400">Richtig!</span>
+                </div>
+              )}
+              {checked && isWrong && (
+                <div className="space-y-1">
+                  <button
+                    className="text-xs text-emerald-400 hover:text-gold-400 transition-colors"
+                    onClick={() => speak(sent.correct)}
+                  >
+                    🔊 {sent.correct}
+                  </button>
+                  {sent.explanation && (
+                    <p className="text-xs text-muted">{sent.explanation}</p>
+                  )}
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+      {successMsg && <SuccessCelebration message={successMsg} />}
+      <div className="flex gap-2">
+        {!checked ? (
+          <button
+            onClick={handleCheck}
+            disabled={!allFilled}
+            className="bg-gold-500 text-navy-900 px-4 py-2 rounded-lg text-sm font-medium hover:bg-gold-400 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+          >
+            Überprüfen <ChevronRight className="w-4 h-4" />
+          </button>
+        ) : (
+          <button
+            onClick={handleReset}
+            className="bg-navy-700 text-muted px-4 py-2 rounded-lg text-sm hover:text-foreground flex items-center gap-2"
+          >
+            <RotateCcw className="w-3.5 h-3.5" /> Nochmal
+          </button>
+        )}
+      </div>
     </div>
   );
 }

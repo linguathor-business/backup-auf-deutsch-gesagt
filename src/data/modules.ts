@@ -613,217 +613,195 @@ const module1: CourseModule = {
   ],
   "exercises": [
     {
-      "id": "m1-mc-1",
-      "type": "multiple-choice",
-      "skill": "lesen",
-      "instruction": "Beantworte die Fragen zur Geschichte «Der Umzug».",
-      "questions": [
-        {
-          "question": "Warum steht Alex um acht vor Bens Haus?",
-          "options": [
-            "Er bringt Post.",
-            "Er hilft Ben beim Umzug.",
-            "Er will Bens alte Wohnung besichtigen.",
-            "Er hat dort einen Termin."
-          ],
-          "correctIndex": 1
-        },
-        {
-          "question": "Was ist das Problem in Bens neuer Wohnung?",
-          "options": [
-            "Die Wohnung ist zu klein.",
-            "Ein Fenster lässt sich nicht schließen.",
-            "Es gibt kein fließendes Wasser.",
-            "Die Heizung funktioniert nicht."
-          ],
-          "correctIndex": 1
-        },
-        {
-          "question": "Wer ruft Alex während des Umzugs an?",
-          "options": [
-            "Frau Krüger",
-            "Jule",
-            "Mehmet",
-            "Der Hausmeister"
-          ],
-          "correctIndex": 1
-        },
-        {
-          "question": "Was macht die Vormieterin?",
-          "options": [
-            "Sie hilft beim Umzug.",
-            "Sie blockiert den Aufzug mit ihren Sachen.",
-            "Sie beschwert sich über den Lärm.",
-            "Sie bringt Kaffee."
-          ],
-          "correctIndex": 1
-        },
-        {
-          "question": "Wie endet der Tag?",
-          "options": [
-            "Ben ist eingezogen, wenn auch nicht perfekt.",
-            "Sie geben auf und gehen nach Hause.",
-            "Ben zieht in eine andere Wohnung.",
-            "Der Umzug wird auf morgen verschoben."
-          ],
-          "correctIndex": 0
-        }
-      ]
-    },
-    {
-      "id": "m1-tf-1",
-      "type": "true-false",
-      "skill": "lesen",
-      "instruction": "Richtig oder falsch? Entscheide basierend auf der Geschichte.",
-      "statements": [
-        {
-          "statement": "Alex hat sich freiwillig für den Umzug freigenommen.",
-          "correct": true
-        },
-        {
-          "statement": "Ben ist schlecht gelaunt am Morgen.",
-          "correct": false
-        },
-        {
-          "statement": "Frau Krüger zieht einen Kundentermin vor.",
-          "correct": true
-        },
-        {
-          "statement": "Das Fenster in der neuen Wohnung funktioniert perfekt.",
-          "correct": false
-        },
-        {
-          "statement": "Mehmet schickt eine Sprachnachricht.",
-          "correct": true
-        },
-        {
-          "statement": "Am Ende des Tages ist der Umzug komplett geschafft.",
-          "correct": true
-        }
-      ]
-    },
-    {
-      "id": "m1-gf-1",
+      "id": "m1-ex1",
       "type": "gap-fill",
-      "skill": "hoeren",
-      "instruction": "Ergänze die Sätze mit dem richtigen Verb mit «ziehen».",
+      "skill": "lesen",
+      "instruction": "Übung 1 – Lückentext: Schreibe das passende Verb in der richtigen Form. Achte auf die Verbform.",
       "sentences": [
         {
-          "text": "Ben ___ heute in seine neue Wohnung.",
-          "answer": "zieht"
+          "text": "Ben will heute noch halbwegs vernünftig ___.",
+          "answer": "einziehen"
         },
         {
-          "text": "Ich ___ mir meine Arbeitshandschuhe an.",
-          "answer": "ziehe"
+          "text": "Du siehst aus, als würdest du dich lieber einer Wurzelbehandlung ___.",
+          "answer": "unterziehen"
         },
         {
-          "text": "Frau Krüger ___ den Termin auf elf Uhr ___.",
-          "answer": "vor"
-        },
-        {
-          "text": "Die Vormieterin ist noch nicht ganz ___.",
+          "text": "Die Vormieterin ist noch nicht vollständig ___.",
           "answer": "ausgezogen"
         },
         {
-          "text": "Du ___ mich doch gerade bloß ___.",
-          "answer": "auf"
+          "text": "Frau Krüger hat den Kundentermin auf elf Uhr ___.",
+          "answer": "vorgezogen"
         },
         {
-          "text": "Jetzt ___ wir das hier ___.",
-          "answer": "durch"
+          "text": "Wir müssen das hier gemeinsam ___.",
+          "answer": "durchziehen"
         },
         {
-          "text": "So schnell werde ich hier nicht wieder ___.",
+          "text": "Ich ___ die Balkontür zu, damit wir uns nicht erkälten.",
+          "answer": "ziehe"
+        }
+      ]
+    },
+    {
+      "id": "m1-ex2",
+      "type": "verb-grouping",
+      "skill": "lesen",
+      "instruction": "Übung 2 – Verben in Gruppen: Ordne die ziehen-Verben den richtigen Kategorien zu. Klicke ein Verb an und wähle dann eine Kategorie.",
+      "categories": [
+        {
+          "name": "Wohnung & Ortswechsel",
+          "items": ["umziehen", "einziehen", "ausziehen", "wegziehen"]
+        },
+        {
+          "name": "Bewegung & Körper",
+          "items": ["anziehen", "hochziehen", "zuziehen"]
+        },
+        {
+          "name": "Übertragene Bedeutung",
+          "items": ["vorziehen", "aufziehen", "durchziehen", "sich unterziehen"]
+        }
+      ]
+    },
+    {
+      "id": "m1-ex3",
+      "type": "gap-fill",
+      "skill": "lesen",
+      "instruction": "Übung 3 – Passendes Verb einsetzen: Ergänze das passende Verb aus dem Kasten in der richtigen Form.",
+      "wordBank": ["anziehen", "ausziehen", "vorziehen", "zuziehen", "durchziehen", "wegziehen"],
+      "sentences": [
+        {
+          "text": "Er hat sich die Handschuhe ___.",
+          "answer": "angezogen"
+        },
+        {
+          "text": "Die Vormieterin ist noch nicht vollständig ___.",
+          "answer": "ausgezogen"
+        },
+        {
+          "text": "Frau Krüger hat den Termin auf elf Uhr ___.",
+          "answer": "vorgezogen"
+        },
+        {
+          "text": "Ich muss die Balkontür ___, sonst zieht es.",
+          "answer": "zuziehen"
+        },
+        {
+          "text": "Wir müssen das Projekt jetzt einfach ___.",
+          "answer": "durchziehen"
+        },
+        {
+          "text": "Er sagt, er wird von hier nie wieder ___.",
           "answer": "wegziehen"
         }
       ]
     },
     {
-      "id": "m1-match-1",
+      "id": "m1-ex4",
       "type": "matching",
-      "skill": "hoeren",
-      "instruction": "Verbinde die Ausdrücke mit den passenden Erklärungen.",
+      "skill": "lesen",
+      "instruction": "Übung 4 – Redewendungen verbinden: Welcher Ausdruck passt zu welcher Situation? Wähle links eine Situation und rechts den passenden Ausdruck.",
       "pairs": [
         {
-          "left": "umziehen",
-          "right": "die Wohnung wechseln"
+          "left": "Im Büro herrscht plötzlich totales Chaos.",
+          "right": "Die Hütte brennt."
         },
         {
-          "left": "jemanden aufziehen",
-          "right": "sich über jemanden lustig machen"
+          "left": "Jemandem reißt die Geduld – er wird gleich wütend.",
+          "right": "Jemandem platzt der Kragen."
         },
         {
-          "left": "etwas durchziehen",
-          "right": "konsequent bis zum Ende machen"
+          "left": "Ich hätte ohne dich nicht gewusst, was ich tun soll.",
+          "right": "Aufgeschmissen sein"
         },
         {
-          "left": "einen Termin vorziehen",
-          "right": "einen Termin früher stattfinden lassen"
+          "left": "Ich lade dich ein – ich bezahle heute.",
+          "right": "Das geht auf meinen Nacken."
         },
         {
-          "left": "die Hütte brennt",
-          "right": "es gibt eine dringende Situation"
+          "left": "Das klingt nach einer komplizierten Situation.",
+          "right": "Das kann ja heiter werden."
         },
         {
-          "left": "Leine ziehen",
-          "right": "weggehen, verschwinden"
+          "left": "Er macht sich über mich lustig.",
+          "right": "Jemanden aufziehen"
         }
       ]
     },
     {
-      "id": "m1-speak-1",
-      "type": "speaking",
-      "skill": "sprechen",
-      "prompt": "Erzähle in 4–5 Sätzen: Was passiert in der Geschichte «Der Umzug»? Benutze mindestens 4 Verben mit «ziehen».",
-      "mustUseWords": [
-        "umziehen",
-        "anziehen",
-        "vorziehen",
-        "durchziehen"
-      ],
-      "instruction": "Sprich laut und benutze die Pflicht-Ausdrücke.",
-      "modelAnswer": "Ben zieht heute in seine neue Wohnung um. Sein Freund Alex zieht sich die Arbeitshandschuhe an und hilft ihm. Leider zieht die Chefin einen wichtigen Termin vor. Trotzdem ziehen sie den Umzug gemeinsam durch."
+      "id": "m1-ex5",
+      "type": "sentence-completion",
+      "skill": "schreiben",
+      "instruction": "Übung 5 – Satzergänzungen: Ergänze die Sätze sinnvoll auf Deutsch. Danach siehst du eine mögliche Antwort.",
+      "sentences": [
+        {
+          "prompt": "Ohne dich wäre ich heute wirklich ___.",
+          "modelAnswer": "aufgeschmissen gewesen"
+        },
+        {
+          "prompt": "Sag bitte nicht, dass im Büro die Hütte ___.",
+          "modelAnswer": "brennt"
+        },
+        {
+          "prompt": "Noch eine dumme Bemerkung, und ihm platzt ___.",
+          "modelAnswer": "der Kragen"
+        },
+        {
+          "prompt": "Das war gar nicht so schlimm – alles war halb so ___.",
+          "modelAnswer": "wild"
+        },
+        {
+          "prompt": "Jetzt müssen wir das hier einfach noch ___.",
+          "modelAnswer": "durchziehen"
+        },
+        {
+          "prompt": "Das nächste Essen geht auf ___.",
+          "modelAnswer": "meinen Nacken"
+        }
+      ]
     },
     {
-      "id": "m1-speak-2",
-      "type": "speaking",
-      "skill": "sprechen",
-      "prompt": "Beschreibe deinen letzten Umzug oder den Umzug eines Freundes. Benutze mindestens 3 Ausdrücke mit «ziehen».",
-      "mustUseWords": [
-        "einziehen",
-        "ausziehen",
-        "umziehen"
-      ],
-      "instruction": "Sprich frei und verwende die Ausdrücke in ganzen Sätzen.",
-      "modelAnswer": "Letztes Jahr bin ich umgezogen. Zuerst musste ich aus meiner alten Wohnung ausziehen. Dann bin ich in die neue Wohnung eingezogen. Der Umzug hat sich ganz schön in die Länge gezogen."
+      "id": "m1-ex6",
+      "type": "error-correction",
+      "skill": "schreiben",
+      "instruction": "Übung 6 – Fehler finden: Jeder Satz enthält genau einen Fehler. Schreibe den korrigierten Satz.",
+      "sentences": [
+        {
+          "incorrect": "Ben zieht heute in seiner alten Wohnung aus ein.",
+          "correct": "Ben zieht heute aus seiner alten Wohnung aus.",
+          "explanation": "Man zieht aus einer Wohnung aus (ausziehen). Die Verwechslung mit einziehen führt zum Fehler."
+        },
+        {
+          "incorrect": "Ich ziehe die Balkontür an.",
+          "correct": "Ich ziehe die Balkontür zu.",
+          "explanation": "zuziehen = etwas schliessen (Tür, Vorhang). anziehen = Kleidung anlegen."
+        },
+        {
+          "incorrect": "Frau Krüger hat mich auf elf Uhr vorgezogen.",
+          "correct": "Frau Krüger hat den Termin auf elf Uhr vorgezogen.",
+          "explanation": "Man zieht einen Termin vor, keine Person."
+        },
+        {
+          "incorrect": "Im Büro platzt die Hütte.",
+          "correct": "Im Büro brennt die Hütte.",
+          "explanation": "Die Redewendung heisst die Hütte brennt (= Chaos / dringende Situation)."
+        },
+        {
+          "incorrect": "Ohne dich wäre ich halb so wild gewesen.",
+          "correct": "Ohne dich wäre ich aufgeschmissen gewesen.",
+          "explanation": "halb so wild = nicht so schlimm. Aufgeschmissen sein = hilflos, verloren sein."
+        }
+      ]
     },
     {
-      "id": "m1-write-1",
+      "id": "m1-ex7",
       "type": "open-writing",
       "skill": "schreiben",
-      "prompt": "Schreibe 5–7 Sätze über einen chaotischen Umzug. Benutze mindestens 5 Verben mit «ziehen».",
-      "mustUseWords": [
-        "umziehen",
-        "einziehen",
-        "ausziehen",
-        "anziehen",
-        "durchziehen"
-      ],
-      "instruction": "Schreibe deinen Text unten. Benutze die Pflicht-Ausdrücke.",
-      "modelAnswer": "Letzten Samstag bin ich umgezogen. Ich habe mir alte Klamotten angezogen und die ersten Kartons gepackt. Die Vormieterin war noch nicht ganz ausgezogen, das war stressig. Aber wir haben alles durchgezogen und am Abend bin ich endlich in die neue Wohnung eingezogen."
-    },
-    {
-      "id": "m1-write-2",
-      "type": "open-writing",
-      "skill": "schreiben",
-      "prompt": "Schreibe 4–5 Sätze aus Bens Perspektive über den Umzugstag. Benutze mindestens 3 Redewendungen.",
-      "mustUseWords": [
-        "die Hütte brennt",
-        "aufziehen",
-        "in die Länge ziehen"
-      ],
-      "instruction": "Schreibe deinen Text unten. Benutze die Pflicht-Ausdrücke.",
-      "modelAnswer": "Heute war Umzugstag und am Anfang dachte ich, die Hütte brennt. Alex hat mich die ganze Zeit aufgezogen, aber er hat auch richtig angepackt. Der ganze Umzug hat sich leider ziemlich in die Länge gezogen, weil die Vormieterin ihre Sachen noch nicht weggeräumt hatte."
+      "instruction": "Übung 7 – Verben erklären: Erkläre die folgenden ziehen-Verben mit eigenen Worten auf Deutsch.",
+      "prompt": "Erkläre auf Deutsch, was diese ziehen-Verben bedeuten. Schreibe für jedes Verb mindestens einen Satz mit einem eigenen Beispiel:\n\n- umziehen\n- einziehen\n- ausziehen\n- vorziehen\n- durchziehen\n- aufziehen",
+      "mustUseWords": ["umziehen", "einziehen", "ausziehen", "vorziehen", "durchziehen", "aufziehen"],
+      "modelAnswer": "Umziehen bedeutet, die Wohnung zu wechseln. Einziehen ist das Ankommen in der neuen Wohnung. Ausziehen ist das Gegenteil: Man verlässt die alte Wohnung. Vorziehen kann einen Termin früher stattfinden lassen oder etwas bevorzugen. Durchziehen heisst, etwas konsequent bis zum Ende zu machen. Aufziehen bedeutet jemanden necken oder sich über ihn lustig machen."
     }
   ],
   "reviewItems": []

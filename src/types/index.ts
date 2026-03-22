@@ -28,6 +28,7 @@ export interface ExerciseBase {
 
 export interface GapFillExercise extends ExerciseBase {
   type: "gap-fill";
+  wordBank?: string[];
   sentences: {
     text: string; // use ___ for gaps
     answer: string;
@@ -73,13 +74,41 @@ export interface SpeakingExercise extends ExerciseBase {
   modelAnswer: string;
 }
 
+export interface VerbGroupingExercise extends ExerciseBase {
+  type: "verb-grouping";
+  categories: {
+    name: string;
+    items: string[];
+  }[];
+}
+
+export interface SentenceCompletionExercise extends ExerciseBase {
+  type: "sentence-completion";
+  sentences: {
+    prompt: string;
+    modelAnswer: string;
+  }[];
+}
+
+export interface ErrorCorrectionExercise extends ExerciseBase {
+  type: "error-correction";
+  sentences: {
+    incorrect: string;
+    correct: string;
+    explanation?: string;
+  }[];
+}
+
 export type Exercise =
   | GapFillExercise
   | MultipleChoiceExercise
   | TrueFalseExercise
   | MatchingExercise
   | OpenWritingExercise
-  | SpeakingExercise;
+  | SpeakingExercise
+  | VerbGroupingExercise
+  | SentenceCompletionExercise
+  | ErrorCorrectionExercise;
 
 export interface ReviewItem {
   fromModule: number;
