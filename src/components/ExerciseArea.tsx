@@ -45,6 +45,59 @@ function SuccessCelebration({ message }: { message: string }) {
   );
 }
 
+function useAIFeedback() {
+  const [aiFeedback, setAiFeedback] = useState<string | null>(null);
+  const [aiFeedbackLoading, setAiFeedbackLoading] = useState(false);
+
+  const getFeedback = useCallback(async (payload: Record<string, unknown>) => {
+    setAiFeedbackLoading(true);
+    setAiFeedback(null);
+    try {
+      const res = await fetch("/api/check-answer", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      if (!res.ok) throw new Error("API error");
+      const data = await res.json();
+      setAiFeedback(data.feedback ?? "Kein Feedback verfügbar.");
+    } catch {
+      setAiFeedback("KI-Feedback konnte nicht geladen werden.");
+    } finally {
+      setAiFeedbackLoading(false);
+    }
+  }, []);
+
+  const resetAIFeedback = useCallback(() => {
+    setAiFeedback(null);
+    setAiFeedbackLoading(false);
+  }, []);
+
+  return { aiFeedback, aiFeedbackLoading, getFeedback, resetAIFeedback };
+}
+
+function AIFeedbackBox({ feedback, loading }: { feedback: string | null; loading: boolean }) {
+  if (!feedback && !loading) return null;
+  return (
+    <div className="bg-indigo-500/5 border border-indigo-500/20 rounded-lg p-4">
+      <div className="flex items-center gap-2 mb-2">
+        <span className="text-sm">✨</span>
+        <p className="text-xs font-medium text-indigo-400">KI-Feedback</p>
+      </div>
+      {loading ? (
+        <div className="flex items-center gap-2 py-1">
+          <div className="w-2.5 h-2.5 rounded-full bg-indigo-400 animate-bounce [animation-delay:0ms]" />
+          <div className="w-2.5 h-2.5 rounded-full bg-indigo-400 animate-bounce [animation-delay:150ms]" />
+          <div className="w-2.5 h-2.5 rounded-full bg-indigo-400 animate-bounce [animation-delay:300ms]" />
+          <span className="text-xs text-indigo-300/80 ml-1">Wird ausgewertet…</span>
+        </div>
+      ) : (
+        <p className="text-sm text-foreground whitespace-pre-wrap">{feedback}</p>
+      )}
+    </div>
+  );
+}
+
 export default function ExerciseArea({ exercises, onSkillComplete }: ExerciseAreaProps) {
   return (
     <div className="bg-card rounded-xl border border-border p-6">
@@ -109,20 +162,16 @@ function MultipleChoiceExercise({
   onComplete?: () => void;
 }) {
   const [answers, setAnswers] = useState<Record<number, number>>({});
-  const [checked, setChecked] = useState(false);
+  const [checkedItems, setCheckedItems] = useState<Set<number>>(new Set());
   const [successMsg, setSuccessMsg] = useState<string | null>(null);
 
-  const handleSelect = (qIdx: number, optIdx: number) => {
-    if (checked) return;
-    setAnswers((prev) => ({ ...prev, [qIdx]: optIdx }));
-  };
-
-  const handleCheck = () => {
-    setChecked(true);
-    const allCorrect = exercise.questions.every(
-      (q, i) => answers[i] === q.correctIndex
+  const triggerCheck = (indices: number[], currentAnswers: Record<number, number>) => {
+    const next = new Set([...checkedItems, ...indices]);
+    setCheckedItems(next);
+    const allDone = exercise.questions.every(
+      (q, i) => next.has(i) && currentAnswers[i] === q.correctIndex
     );
-    if (allCorrect) {
+    if (allDone) {
       setSuccessMsg(getRandomSuccess());
       onComplete?.();
     }
@@ -130,63 +179,82 @@ function MultipleChoiceExercise({
 
   const handleReset = () => {
     setAnswers({});
-    setChecked(false);
+    setCheckedItems(new Set());
     setSuccessMsg(null);
   };
+
+  const anyAnswered = Object.keys(answers).length > 0;
 
   return (
     <div className="space-y-4">
       <p className="text-sm text-muted font-medium">{exercise.instruction}</p>
-      {exercise.questions.map((q, qIdx) => (
-        <div key={qIdx} className="space-y-2">
-          <p className="text-sm text-foreground font-medium">
-            {qIdx + 1}. {q.question}
-          </p>
-          <div className="grid gap-2">
-            {q.options.map((opt, oIdx) => {
-              const isSelected = answers[qIdx] === oIdx;
-              const isCorrect = q.correctIndex === oIdx;
-              let cls =
-                "w-full text-left px-3 py-2 rounded-lg text-sm border transition-all ";
-              if (checked && isSelected && isCorrect) {
-                cls += "border-emerald-500 bg-emerald-500/10 text-emerald-400";
-              } else if (checked && isSelected && !isCorrect) {
-                cls += "border-coral-500 bg-coral-500/10 text-coral-400";
-              } else if (checked && isCorrect) {
-                cls += "border-emerald-500/50 bg-emerald-500/5 text-muted";
-              } else if (isSelected) {
-                cls += "border-gold-500 bg-gold-500/10 text-foreground";
-              } else {
-                cls +=
-                  "border-border bg-navy-800/30 text-muted hover:border-gold-500/30 hover:text-foreground";
-              }
-              return (
-                <button key={oIdx} onClick={() => handleSelect(qIdx, oIdx)} className={cls} disabled={checked}>
-                  <span className="flex items-center gap-2">
-                    <span className="w-5 h-5 rounded-full border border-current flex items-center justify-center text-xs shrink-0">
-                      {checked && isSelected && isCorrect && <Check className="w-3 h-3" />}
-                      {checked && isSelected && !isCorrect && <X className="w-3 h-3" />}
-                      {!checked && String.fromCharCode(65 + oIdx)}
-                    </span>
-                    {opt}
-                  </span>
+      {exercise.questions.map((q, qIdx) => {
+        const isItemChecked = checkedItems.has(qIdx);
+        return (
+          <div key={qIdx} className="space-y-2">
+            <div className="flex items-start justify-between gap-2">
+              <p className="text-sm text-foreground font-medium">
+                {qIdx + 1}. {q.question}
+              </p>
+              {answers[qIdx] !== undefined && !isItemChecked && (
+                <button
+                  onClick={() => triggerCheck([qIdx], answers)}
+                  className="shrink-0 px-2 py-0.5 rounded text-xs bg-gold-500/10 border border-gold-500/30 text-gold-400 hover:bg-gold-500/20 transition-colors whitespace-nowrap"
+                >
+                  Prüfen
                 </button>
-              );
-            })}
+              )}
+            </div>
+            <div className="grid gap-2">
+              {q.options.map((opt, oIdx) => {
+                const isSelected = answers[qIdx] === oIdx;
+                const isCorrect = q.correctIndex === oIdx;
+                let cls =
+                  "w-full text-left px-3 py-2 rounded-lg text-sm border transition-all ";
+                if (isItemChecked && isSelected && isCorrect) {
+                  cls += "border-emerald-500 bg-emerald-500/10 text-emerald-400";
+                } else if (isItemChecked && isSelected && !isCorrect) {
+                  cls += "border-coral-500 bg-coral-500/10 text-coral-400";
+                } else if (isItemChecked && isCorrect) {
+                  cls += "border-emerald-500/50 bg-emerald-500/5 text-muted";
+                } else if (isSelected) {
+                  cls += "border-gold-500 bg-gold-500/10 text-foreground";
+                } else {
+                  cls +=
+                    "border-border bg-navy-800/30 text-muted hover:border-gold-500/30 hover:text-foreground";
+                }
+                return (
+                  <button
+                    key={oIdx}
+                    onClick={() => !isItemChecked && setAnswers((prev) => ({ ...prev, [qIdx]: oIdx }))}
+                    className={cls}
+                    disabled={isItemChecked}
+                  >
+                    <span className="flex items-center gap-2">
+                      <span className="w-5 h-5 rounded-full border border-current flex items-center justify-center text-xs shrink-0">
+                        {isItemChecked && isSelected && isCorrect && <Check className="w-3 h-3" />}
+                        {isItemChecked && isSelected && !isCorrect && <X className="w-3 h-3" />}
+                        {!isItemChecked && String.fromCharCode(65 + oIdx)}
+                      </span>
+                      {opt}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
           </div>
-        </div>
-      ))}
+        );
+      })}
       {successMsg && <SuccessCelebration message={successMsg} />}
       <div className="flex gap-2">
-        {!checked ? (
-          <button
-            onClick={handleCheck}
-            disabled={Object.keys(answers).length < exercise.questions.length}
-            className="bg-gold-500 text-navy-900 px-4 py-2 rounded-lg text-sm font-medium hover:bg-gold-400 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
-          >
-            Überprüfen <ChevronRight className="w-4 h-4" />
-          </button>
-        ) : (
+        <button
+          onClick={() => triggerCheck(Object.keys(answers).map(Number), answers)}
+          disabled={!anyAnswered}
+          className="bg-gold-500 text-navy-900 px-4 py-2 rounded-lg text-sm font-medium hover:bg-gold-400 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+        >
+          Alle prüfen <ChevronRight className="w-4 h-4" />
+        </button>
+        {checkedItems.size > 0 && (
           <button
             onClick={handleReset}
             className="bg-navy-700 text-muted px-4 py-2 rounded-lg text-sm hover:text-foreground transition-colors flex items-center gap-2"
@@ -208,20 +276,16 @@ function TrueFalseExercise({
   onComplete?: () => void;
 }) {
   const [answers, setAnswers] = useState<Record<number, boolean | null>>({});
-  const [checked, setChecked] = useState(false);
+  const [checkedItems, setCheckedItems] = useState<Set<number>>(new Set());
   const [successMsg, setSuccessMsg] = useState<string | null>(null);
 
-  const handleSelect = (idx: number, value: boolean) => {
-    if (checked) return;
-    setAnswers((prev) => ({ ...prev, [idx]: value }));
-  };
-
-  const handleCheck = () => {
-    setChecked(true);
-    const allCorrect = exercise.statements.every(
-      (s, i) => answers[i] === s.correct
+  const triggerCheck = (indices: number[], currentAnswers: Record<number, boolean | null>) => {
+    const next = new Set([...checkedItems, ...indices]);
+    setCheckedItems(next);
+    const allDone = exercise.statements.every(
+      (s, i) => next.has(i) && currentAnswers[i] === s.correct
     );
-    if (allCorrect) {
+    if (allDone) {
       setSuccessMsg(getRandomSuccess());
       onComplete?.();
     }
@@ -229,49 +293,64 @@ function TrueFalseExercise({
 
   const handleReset = () => {
     setAnswers({});
-    setChecked(false);
+    setCheckedItems(new Set());
     setSuccessMsg(null);
   };
 
   return (
     <div className="space-y-4">
       <p className="text-sm text-muted font-medium">{exercise.instruction}</p>
-      {exercise.statements.map((stmt, idx) => (
-        <div key={idx} className="flex items-start gap-3 p-3 bg-navy-800/30 rounded-lg border border-border/50">
-          <span className="text-sm text-foreground flex-1">{stmt.statement}</span>
-          <div className="flex gap-2 shrink-0">
-            {[true, false].map((val) => {
-              const isSel = answers[idx] === val;
-              let cls = "px-3 py-1 rounded text-xs font-medium border transition-all ";
-              if (checked && isSel && val === stmt.correct) {
-                cls += "border-emerald-500 bg-emerald-500/20 text-emerald-400";
-              } else if (checked && isSel && val !== stmt.correct) {
-                cls += "border-coral-500 bg-coral-500/20 text-coral-400";
-              } else if (isSel) {
-                cls += "border-gold-500 bg-gold-500/10 text-gold-400";
-              } else {
-                cls += "border-border text-muted hover:border-gold-500/30";
-              }
-              return (
-                <button key={String(val)} onClick={() => handleSelect(idx, val)} className={cls} disabled={checked}>
-                  {val ? "Richtig" : "Falsch"}
+      {exercise.statements.map((stmt, idx) => {
+        const isItemChecked = checkedItems.has(idx);
+        return (
+          <div key={idx} className="flex items-start gap-3 p-3 bg-navy-800/30 rounded-lg border border-border/50">
+            <span className="text-sm text-foreground flex-1">{stmt.statement}</span>
+            <div className="flex items-center gap-2 shrink-0">
+              {[true, false].map((val) => {
+                const isSel = answers[idx] === val;
+                let cls = "px-3 py-1 rounded text-xs font-medium border transition-all ";
+                if (isItemChecked && isSel && val === stmt.correct) {
+                  cls += "border-emerald-500 bg-emerald-500/20 text-emerald-400";
+                } else if (isItemChecked && isSel && val !== stmt.correct) {
+                  cls += "border-coral-500 bg-coral-500/20 text-coral-400";
+                } else if (isSel) {
+                  cls += "border-gold-500 bg-gold-500/10 text-gold-400";
+                } else {
+                  cls += "border-border text-muted hover:border-gold-500/30";
+                }
+                return (
+                  <button
+                    key={String(val)}
+                    onClick={() => !isItemChecked && setAnswers((prev) => ({ ...prev, [idx]: val }))}
+                    className={cls}
+                    disabled={isItemChecked}
+                  >
+                    {val ? "Richtig" : "Falsch"}
+                  </button>
+                );
+              })}
+              {answers[idx] !== undefined && answers[idx] !== null && !isItemChecked && (
+                <button
+                  onClick={() => triggerCheck([idx], answers)}
+                  className="w-6 h-6 rounded-full bg-gold-500/10 border border-gold-500/30 text-gold-400 hover:bg-gold-500/20 transition-colors flex items-center justify-center text-xs"
+                >
+                  ✓
                 </button>
-              );
-            })}
+              )}
+            </div>
           </div>
-        </div>
-      ))}
+        );
+      })}
       {successMsg && <SuccessCelebration message={successMsg} />}
       <div className="flex gap-2">
-        {!checked ? (
-          <button
-            onClick={handleCheck}
-            disabled={Object.keys(answers).length < exercise.statements.length}
-            className="bg-gold-500 text-navy-900 px-4 py-2 rounded-lg text-sm font-medium hover:bg-gold-400 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
-          >
-            Überprüfen <ChevronRight className="w-4 h-4" />
-          </button>
-        ) : (
+        <button
+          onClick={() => triggerCheck(Object.keys(answers).map(Number), answers)}
+          disabled={Object.keys(answers).length === 0}
+          className="bg-gold-500 text-navy-900 px-4 py-2 rounded-lg text-sm font-medium hover:bg-gold-400 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+        >
+          Alle prüfen <ChevronRight className="w-4 h-4" />
+        </button>
+        {checkedItems.size > 0 && (
           <button
             onClick={handleReset}
             className="bg-navy-700 text-muted px-4 py-2 rounded-lg text-sm hover:text-foreground flex items-center gap-2"
@@ -293,16 +372,20 @@ function GapFillExercise({
   onComplete?: () => void;
 }) {
   const [answers, setAnswers] = useState<Record<number, string>>({});
-  const [checked, setChecked] = useState(false);
+  const [checkedItems, setCheckedItems] = useState<Set<number>>(new Set());
   const [successMsg, setSuccessMsg] = useState<string | null>(null);
   const { speak } = useTTS();
 
-  const handleCheck = () => {
-    setChecked(true);
-    const allCorrect = exercise.sentences.every(
-      (s, i) => (answers[i] || "").trim().toLowerCase() === s.answer.toLowerCase()
+  const isAnswerCorrect = (idx: number, val: string) =>
+    val.trim().toLowerCase() === exercise.sentences[idx].answer.toLowerCase();
+
+  const triggerCheck = (indices: number[], currentAnswers: Record<number, string>) => {
+    const next = new Set([...checkedItems, ...indices]);
+    setCheckedItems(next);
+    const allDone = exercise.sentences.every(
+      (_, i) => next.has(i) && isAnswerCorrect(i, currentAnswers[i] ?? "")
     );
-    if (allCorrect) {
+    if (allDone) {
       setSuccessMsg(getRandomSuccess());
       onComplete?.();
     }
@@ -310,9 +393,11 @@ function GapFillExercise({
 
   const handleReset = () => {
     setAnswers({});
-    setChecked(false);
+    setCheckedItems(new Set());
     setSuccessMsg(null);
   };
+
+  const anyAnswered = Object.values(answers).some((v) => v.trim());
 
   return (
     <div className="space-y-4">
@@ -338,12 +423,12 @@ function GapFillExercise({
         </p>
       )}
       {exercise.sentences.map((sent, idx) => {
-        const isCorrect =
-          checked &&
-          (answers[idx] || "").trim().toLowerCase() === sent.answer.toLowerCase();
-        const isWrong = checked && !isCorrect;
+        const isItemChecked = checkedItems.has(idx);
+        const val = answers[idx] ?? "";
+        const isCorrect = isItemChecked && isAnswerCorrect(idx, val);
+        const isWrong = isItemChecked && !isCorrect;
         return (
-          <div key={idx} className="flex items-center gap-3">
+          <div key={idx} className="flex items-center gap-2">
             {exercise.skill === "hoeren" && (
               <button
                 onClick={() => speak(sent.text.replace("___", sent.answer))}
@@ -360,11 +445,15 @@ function GapFillExercise({
                   {pIdx < arr.length - 1 && (
                     <input
                       type="text"
-                      value={answers[idx] || ""}
+                      value={val}
                       onChange={(e) =>
-                        !checked &&
+                        !isItemChecked &&
                         setAnswers((prev) => ({ ...prev, [idx]: e.target.value }))
                       }
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter" && val.trim() && !isItemChecked)
+                          triggerCheck([idx], answers);
+                      }}
                       className={`inline-block w-28 mx-1 px-2 py-0.5 rounded border text-sm bg-navy-800 outline-none transition-colors ${
                         isCorrect
                           ? "border-emerald-500 text-emerald-400"
@@ -373,14 +462,22 @@ function GapFillExercise({
                           : "border-border text-foreground focus:border-gold-500"
                       }`}
                       placeholder="..."
-                      readOnly={checked}
+                      readOnly={isItemChecked}
                     />
                   )}
                 </span>
               ))}
             </p>
-            {checked && (
-              <span className="text-xs">
+            {!isItemChecked && val.trim() && (
+              <button
+                onClick={() => triggerCheck([idx], answers)}
+                className="shrink-0 px-2 py-0.5 rounded text-xs bg-gold-500/10 border border-gold-500/30 text-gold-400 hover:bg-gold-500/20 transition-colors"
+              >
+                ✓
+              </button>
+            )}
+            {isItemChecked && (
+              <span className="text-xs shrink-0">
                 {isCorrect ? (
                   <Check className="w-4 h-4 text-emerald-400" />
                 ) : (
@@ -393,14 +490,21 @@ function GapFillExercise({
       })}
       {successMsg && <SuccessCelebration message={successMsg} />}
       <div className="flex gap-2">
-        {!checked ? (
-          <button
-            onClick={handleCheck}
-            className="bg-gold-500 text-navy-900 px-4 py-2 rounded-lg text-sm font-medium hover:bg-gold-400 flex items-center gap-2"
-          >
-            Überprüfen <ChevronRight className="w-4 h-4" />
-          </button>
-        ) : (
+        <button
+          onClick={() =>
+            triggerCheck(
+              Object.entries(answers)
+                .filter(([, v]) => v.trim())
+                .map(([k]) => Number(k)),
+              answers
+            )
+          }
+          disabled={!anyAnswered}
+          className="bg-gold-500 text-navy-900 px-4 py-2 rounded-lg text-sm font-medium hover:bg-gold-400 flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          Alle prüfen <ChevronRight className="w-4 h-4" />
+        </button>
+        {checkedItems.size > 0 && (
           <button
             onClick={handleReset}
             className="bg-navy-700 text-muted px-4 py-2 rounded-lg text-sm hover:text-foreground flex items-center gap-2"
@@ -423,11 +527,10 @@ function MatchingExercise({
 }) {
   const { speak } = useTTS();
   const [selectedLeft, setSelectedLeft] = useState<number | null>(null);
-  const [matches, setMatches] = useState<Record<number, number>>({});
+  const [matches, setMatches] = useState<Record<number, number>>({}); // leftIdx → rightOrigIdx
   const [checked, setChecked] = useState(false);
   const [successMsg, setSuccessMsg] = useState<string | null>(null);
 
-  // Shuffle right side (stable)
   const [shuffledRight] = useState(() => {
     const indices = exercise.pairs.map((_, i) => i);
     for (let i = indices.length - 1; i > 0; i--) {
@@ -437,9 +540,11 @@ function MatchingExercise({
     return indices;
   });
 
+  const badge = (idx: number) => String.fromCharCode(65 + idx);
+
   const handleLeftClick = (idx: number) => {
     if (checked) return;
-    setSelectedLeft(idx);
+    setSelectedLeft((prev) => (prev === idx ? null : idx));
   };
 
   const handleRightClick = (shuffledIdx: number) => {
@@ -464,84 +569,161 @@ function MatchingExercise({
     setSuccessMsg(null);
   };
 
+  // Which left index has matched this right item (if any)
+  const rightMatchedLeft = (origIdx: number): number | null => {
+    const entry = Object.entries(matches).find(([, r]) => Number(r) === origIdx);
+    return entry ? Number(entry[0]) : null;
+  };
+
   return (
     <div className="space-y-4">
       <p className="text-sm text-muted font-medium">{exercise.instruction}</p>
-      {exercise.skill === "hoeren" && (
-        <p className="text-xs text-sky-400 italic">
-          Was ist damit gemeint? Verbinde die Ausdrücke mit den passenden Erklärungen.
-        </p>
-      )}
-      <div className="grid grid-cols-2 gap-4">
+
+      {checked ? (
+        // ── Results view: one row per pair, correct answer always visible ──
         <div className="space-y-2">
           {exercise.pairs.map((pair, idx) => {
-            const isMatched = matches[idx] !== undefined;
-            const isSelected = selectedLeft === idx;
+            const matchedRightIdx = matches[idx];
+            const correct = matchedRightIdx === idx;
+            const userAnswer =
+              matchedRightIdx !== undefined && !correct
+                ? exercise.pairs[matchedRightIdx]?.right
+                : null;
             return (
-              <button
+              <div
                 key={idx}
-                onClick={() => handleLeftClick(idx)}
-                disabled={checked}
-                className={`w-full text-left px-3 py-2 rounded-lg text-sm border transition-all ${
-                  isSelected
-                    ? "border-gold-500 bg-gold-500/10 text-gold-400"
-                    : isMatched
-                    ? "border-sky-500/30 bg-sky-500/5 text-sky-400"
-                    : "border-border bg-navy-800/30 text-foreground hover:border-gold-500/30"
+                className={`rounded-lg p-3 border ${
+                  correct
+                    ? "border-emerald-500/40 bg-emerald-500/5"
+                    : "border-coral-500/30 bg-coral-500/5"
                 }`}
               >
-                <span className="flex items-center gap-2">
-                  {exercise.skill === "hoeren" && (
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        speak(pair.left);
-                      }}
-                      className="text-gold-500 hover:text-gold-400 shrink-0"
-                    >
-                      <Volume2 className="w-3.5 h-3.5" />
-                    </button>
-                  )}
-                  {pair.left}
-                </span>
-              </button>
+                <div className="flex items-start gap-3">
+                  <span
+                    className={`text-xs font-bold w-5 shrink-0 mt-0.5 ${
+                      correct ? "text-emerald-400" : "text-coral-400"
+                    }`}
+                  >
+                    {badge(idx)}.
+                  </span>
+                  <div className="flex-1 min-w-0 space-y-1">
+                    <p className="text-sm text-foreground/80">{pair.left}</p>
+                    <div className="flex flex-wrap items-center gap-2 text-sm">
+                      <span className="text-muted text-xs">→</span>
+                      {correct ? (
+                        <span className="text-emerald-400 flex items-center gap-1">
+                          {pair.right} <Check className="w-3.5 h-3.5" />
+                        </span>
+                      ) : (
+                        <span className="flex flex-wrap items-center gap-2">
+                          {userAnswer && (
+                            <span className="text-coral-400 line-through text-xs">
+                              {userAnswer}
+                            </span>
+                          )}
+                          <span className="text-emerald-400">{pair.right}</span>
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
             );
           })}
         </div>
-        <div className="space-y-2">
-          {shuffledRight.map((origIdx, shuffIdx) => {
-            const isMatched = Object.values(matches).includes(origIdx);
-            const matchedCorrectly = checked && Object.entries(matches).find(
-              ([left, right]) => Number(right) === origIdx && Number(left) === origIdx
-            );
-            const matchedWrongly = checked && isMatched && !matchedCorrectly;
-            return (
-              <button
-                key={shuffIdx}
-                onClick={() => handleRightClick(shuffIdx)}
-                disabled={checked}
-                className={`w-full text-left px-3 py-2 rounded-lg text-sm border transition-all ${
-                  matchedCorrectly
-                    ? "border-emerald-500 bg-emerald-500/10 text-emerald-400"
-                    : matchedWrongly
-                    ? "border-coral-500 bg-coral-500/10 text-coral-400"
-                    : isMatched
-                    ? "border-sky-500/30 bg-sky-500/5 text-sky-400"
-                    : "border-border bg-navy-800/30 text-foreground hover:border-gold-500/30"
-                }`}
-              >
-                {exercise.pairs[origIdx].right}
-              </button>
-            );
-          })}
-        </div>
-      </div>
+      ) : (
+        // ── Matching grid: click left then click right to connect ──
+        <>
+          {selectedLeft !== null && (
+            <p className="text-xs text-gold-400 italic">
+              „{exercise.pairs[selectedLeft].left}" ausgewählt — wähle jetzt rechts den passenden Ausdruck.
+            </p>
+          )}
+          <div className="grid grid-cols-2 gap-3">
+            {/* Left column */}
+            <div className="space-y-2">
+              {exercise.pairs.map((pair, idx) => {
+                const isMatched = matches[idx] !== undefined;
+                const isSelected = selectedLeft === idx;
+                return (
+                  <button
+                    key={idx}
+                    onClick={() => handleLeftClick(idx)}
+                    className={`w-full text-left px-3 py-2 rounded-lg text-sm border transition-all ${
+                      isSelected
+                        ? "border-gold-500 bg-gold-500/10 text-gold-400 ring-1 ring-gold-500/40"
+                        : isMatched
+                        ? "border-sky-500/40 bg-sky-500/5 text-sky-400"
+                        : "border-border bg-navy-800/30 text-foreground hover:border-gold-500/30"
+                    }`}
+                  >
+                    <span className="flex items-center gap-2">
+                      {exercise.skill === "hoeren" && (
+                        <button
+                          onClick={(e) => { e.stopPropagation(); speak(pair.left); }}
+                          className="text-gold-500 hover:text-gold-400 shrink-0"
+                        >
+                          <Volume2 className="w-3.5 h-3.5" />
+                        </button>
+                      )}
+                      <span
+                        className={`w-5 h-5 rounded-full border flex items-center justify-center text-xs font-bold shrink-0 ${
+                          isSelected
+                            ? "border-gold-500 text-gold-300 bg-gold-500/20"
+                            : isMatched
+                            ? "border-sky-500/60 text-sky-400 bg-sky-500/10"
+                            : "border-muted/40 text-muted/60"
+                        }`}
+                      >
+                        {badge(idx)}
+                      </span>
+                      <span className="flex-1">{pair.left}</span>
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Right column */}
+            <div className="space-y-2">
+              {shuffledRight.map((origIdx, shuffIdx) => {
+                const leftIdx = rightMatchedLeft(origIdx);
+                const isMatched = leftIdx !== null;
+                const isTargetable = selectedLeft !== null;
+                return (
+                  <button
+                    key={shuffIdx}
+                    onClick={() => handleRightClick(shuffIdx)}
+                    className={`w-full text-left px-3 py-2 rounded-lg text-sm border transition-all ${
+                      isMatched
+                        ? "border-sky-500/40 bg-sky-500/5 text-sky-400"
+                        : isTargetable
+                        ? "border-gold-500/40 text-foreground hover:border-gold-500 hover:bg-gold-500/5 cursor-pointer"
+                        : "border-border bg-navy-800/30 text-foreground hover:border-gold-500/20"
+                    }`}
+                  >
+                    <span className="flex items-center justify-between gap-2">
+                      <span>{exercise.pairs[origIdx].right}</span>
+                      {isMatched && leftIdx !== null && (
+                        <span className="w-5 h-5 rounded-full border border-sky-500/60 bg-sky-500/10 text-sky-400 text-xs flex items-center justify-center font-bold shrink-0">
+                          {badge(leftIdx)}
+                        </span>
+                      )}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        </>
+      )}
+
       {successMsg && <SuccessCelebration message={successMsg} />}
       <div className="flex gap-2">
         {!checked ? (
           <button
             onClick={handleCheck}
-            disabled={Object.keys(matches).length < exercise.pairs.length}
+            disabled={Object.keys(matches).length === 0}
             className="bg-gold-500 text-navy-900 px-4 py-2 rounded-lg text-sm font-medium hover:bg-gold-400 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
           >
             Überprüfen <ChevronRight className="w-4 h-4" />
@@ -572,12 +754,21 @@ function WritingExercise({
   const [submitted, setSubmitted] = useState(false);
   const [showFeedback, setShowFeedback] = useState(false);
   const { speak } = useTTS();
+  const { aiFeedback, aiFeedbackLoading, getFeedback, resetAIFeedback } = useAIFeedback();
 
   const handleSubmit = () => {
     if (text.trim().length < 10) return;
     setSubmitted(true);
     setShowFeedback(true);
     onComplete?.();
+    getFeedback({
+      exerciseType: "open-writing",
+      instruction: exercise.instruction,
+      prompt: exercise.prompt,
+      mustUseWords: exercise.mustUseWords,
+      modelAnswer: exercise.modelAnswer,
+      studentAnswer: text,
+    });
   };
 
   const usedWords = exercise.mustUseWords?.filter((w) =>
@@ -593,6 +784,7 @@ function WritingExercise({
     setSubmitted(false);
     setShowFeedback(false);
     setShowModel(false);
+    resetAIFeedback();
   };
 
   return (
@@ -658,6 +850,7 @@ function WritingExercise({
         </div>
       )}
 
+      <AIFeedbackBox feedback={aiFeedback} loading={aiFeedbackLoading} />
       {submitted && (
         <SuccessCelebration message="Text eingereicht! Vergleiche mit der Musterlösung. ✍️" />
       )}
@@ -714,6 +907,7 @@ function SpeakingExercise({
   const recognitionRef = useRef</* SpeechRecognition */ any>(null);
   const [speechSupported, setSpeechSupported] = useState(true);
   const { speak } = useTTS();
+  const { aiFeedback, aiFeedbackLoading, getFeedback, resetAIFeedback } = useAIFeedback();
 
   useEffect(() => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -762,6 +956,15 @@ function SpeakingExercise({
       setIsRecording(false);
     }
     onComplete?.();
+    if (transcript.trim()) {
+      getFeedback({
+        exerciseType: "speaking",
+        prompt: exercise.prompt,
+        mustUseWords: exercise.mustUseWords,
+        modelAnswer: exercise.modelAnswer,
+        transcript,
+      });
+    }
   };
 
   const handleReset = () => {
@@ -769,6 +972,7 @@ function SpeakingExercise({
     setTranscript("");
     setShowFeedback(false);
     setShowModel(false);
+    resetAIFeedback();
   };
 
   const usedWords = exercise.mustUseWords?.filter((w) =>
@@ -867,6 +1071,7 @@ function SpeakingExercise({
       )}
 
       {completed && <SuccessCelebration message="Gut gemacht! Vergleiche mit der Musterlösung. 🗣️" />}
+      <AIFeedbackBox feedback={aiFeedback} loading={aiFeedbackLoading} />
 
       <div className="flex gap-2 flex-wrap">
         {!completed ? (
@@ -1065,7 +1270,7 @@ function VerbGroupingExercise({
         {!checked ? (
           <button
             onClick={handleCheck}
-            disabled={!allPlaced}
+            disabled={Object.keys(placed).length === 0}
             className="bg-gold-500 text-navy-900 px-4 py-2 rounded-lg text-sm font-medium hover:bg-gold-400 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
           >
             Überprüfen <ChevronRight className="w-4 h-4" />
@@ -1094,17 +1299,28 @@ function SentenceCompletionExercise({
   const [answers, setAnswers] = useState<Record<number, string>>({});
   const [submitted, setSubmitted] = useState(false);
   const { speak } = useTTS();
+  const { aiFeedback, aiFeedbackLoading, getFeedback, resetAIFeedback } = useAIFeedback();
 
   const allFilled = exercise.sentences.every((_, i) => (answers[i] || "").trim().length > 0);
 
   const handleSubmit = () => {
     setSubmitted(true);
     onComplete?.();
+    getFeedback({
+      exerciseType: "sentence-completion",
+      instruction: exercise.instruction,
+      sentences: exercise.sentences.map((s, i) => ({
+        prompt: s.prompt,
+        studentAnswer: answers[i] || "",
+        modelAnswer: s.modelAnswer,
+      })),
+    });
   };
 
   const handleReset = () => {
     setAnswers({});
     setSubmitted(false);
+    resetAIFeedback();
   };
 
   return (
@@ -1138,6 +1354,7 @@ function SentenceCompletionExercise({
           </div>
         ))}
       </div>
+      <AIFeedbackBox feedback={aiFeedback} loading={aiFeedbackLoading} />
       {submitted && (
         <SuccessCelebration message="Gut gemacht! Vergleiche deine Antworten mit den Musterlösungen. ✍️" />
       )}
@@ -1172,21 +1389,23 @@ function ErrorCorrectionExercise({
   onComplete?: () => void;
 }) {
   const [answers, setAnswers] = useState<Record<number, string>>({});
-  const [checked, setChecked] = useState(false);
+  const [checkedItems, setCheckedItems] = useState<Set<number>>(new Set());
   const [successMsg, setSuccessMsg] = useState<string | null>(null);
   const { speak } = useTTS();
 
   const normalize = (s: string) =>
     s.trim().toLowerCase().replace(/[.,!?;:„""]/g, "").replace(/\s+/g, " ");
 
-  const allFilled = exercise.sentences.every((_, i) => (answers[i] || "").trim().length > 0);
+  const isAnswerCorrect = (idx: number, val: string) =>
+    normalize(val) === normalize(exercise.sentences[idx].correct);
 
-  const handleCheck = () => {
-    setChecked(true);
-    const allCorrect = exercise.sentences.every(
-      (s, i) => normalize(answers[i] || "") === normalize(s.correct)
+  const triggerCheck = (indices: number[], currentAnswers: Record<number, string>) => {
+    const next = new Set([...checkedItems, ...indices]);
+    setCheckedItems(next);
+    const allDone = exercise.sentences.every(
+      (_, i) => next.has(i) && isAnswerCorrect(i, currentAnswers[i] ?? "")
     );
-    if (allCorrect) {
+    if (allDone) {
       setSuccessMsg(getRandomSuccess());
       onComplete?.();
     }
@@ -1194,17 +1413,21 @@ function ErrorCorrectionExercise({
 
   const handleReset = () => {
     setAnswers({});
-    setChecked(false);
+    setCheckedItems(new Set());
     setSuccessMsg(null);
   };
+
+  const anyAnswered = Object.values(answers).some((v) => v.trim());
 
   return (
     <div className="space-y-4">
       <p className="text-sm text-muted font-medium">{exercise.instruction}</p>
       <div className="space-y-5">
         {exercise.sentences.map((sent, idx) => {
-          const isCorrect = checked && normalize(answers[idx] || "") === normalize(sent.correct);
-          const isWrong = checked && !isCorrect;
+          const isItemChecked = checkedItems.has(idx);
+          const val = answers[idx] ?? "";
+          const isCorrect = isItemChecked && isAnswerCorrect(idx, val);
+          const isWrong = isItemChecked && !isCorrect;
           return (
             <div key={idx} className="space-y-2">
               <div className="flex items-start gap-2 bg-coral-500/5 border border-coral-500/20 rounded-lg px-3 py-2">
@@ -1213,29 +1436,43 @@ function ErrorCorrectionExercise({
                   {sent.incorrect}
                 </p>
               </div>
-              <input
-                type="text"
-                value={answers[idx] || ""}
-                onChange={(e) =>
-                  !checked && setAnswers((prev) => ({ ...prev, [idx]: e.target.value }))
-                }
-                readOnly={checked}
-                placeholder="Korrigierter Satz …"
-                className={`w-full px-3 py-2 rounded-lg border text-sm bg-navy-800 outline-none transition-colors ${
-                  isCorrect
-                    ? "border-emerald-500 text-emerald-400"
-                    : isWrong
-                    ? "border-coral-500 text-coral-400"
-                    : "border-border text-foreground focus:border-gold-500"
-                }`}
-              />
-              {checked && isCorrect && (
+              <div className="flex items-center gap-2">
+                <input
+                  type="text"
+                  value={val}
+                  onChange={(e) =>
+                    !isItemChecked && setAnswers((prev) => ({ ...prev, [idx]: e.target.value }))
+                  }
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" && val.trim() && !isItemChecked)
+                      triggerCheck([idx], answers);
+                  }}
+                  readOnly={isItemChecked}
+                  placeholder="Korrigierter Satz …"
+                  className={`flex-1 px-3 py-2 rounded-lg border text-sm bg-navy-800 outline-none transition-colors ${
+                    isCorrect
+                      ? "border-emerald-500 text-emerald-400"
+                      : isWrong
+                      ? "border-coral-500 text-coral-400"
+                      : "border-border text-foreground focus:border-gold-500"
+                  }`}
+                />
+                {!isItemChecked && val.trim() && (
+                  <button
+                    onClick={() => triggerCheck([idx], answers)}
+                    className="shrink-0 px-2 py-1.5 rounded text-xs bg-gold-500/10 border border-gold-500/30 text-gold-400 hover:bg-gold-500/20 transition-colors"
+                  >
+                    ✓
+                  </button>
+                )}
+              </div>
+              {isItemChecked && isCorrect && (
                 <div className="flex items-center gap-1.5">
                   <Check className="w-3.5 h-3.5 text-emerald-400" />
                   <span className="text-xs text-emerald-400">Richtig!</span>
                 </div>
               )}
-              {checked && isWrong && (
+              {isItemChecked && isWrong && (
                 <div className="space-y-1">
                   <button
                     className="text-xs text-emerald-400 hover:text-gold-400 transition-colors"
@@ -1254,15 +1491,21 @@ function ErrorCorrectionExercise({
       </div>
       {successMsg && <SuccessCelebration message={successMsg} />}
       <div className="flex gap-2">
-        {!checked ? (
-          <button
-            onClick={handleCheck}
-            disabled={!allFilled}
-            className="bg-gold-500 text-navy-900 px-4 py-2 rounded-lg text-sm font-medium hover:bg-gold-400 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
-          >
-            Überprüfen <ChevronRight className="w-4 h-4" />
-          </button>
-        ) : (
+        <button
+          onClick={() =>
+            triggerCheck(
+              Object.entries(answers)
+                .filter(([, v]) => v.trim())
+                .map(([k]) => Number(k)),
+              answers
+            )
+          }
+          disabled={!anyAnswered}
+          className="bg-gold-500 text-navy-900 px-4 py-2 rounded-lg text-sm font-medium hover:bg-gold-400 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+        >
+          Alle prüfen <ChevronRight className="w-4 h-4" />
+        </button>
+        {checkedItems.size > 0 && (
           <button
             onClick={handleReset}
             className="bg-navy-700 text-muted px-4 py-2 rounded-lg text-sm hover:text-foreground flex items-center gap-2"

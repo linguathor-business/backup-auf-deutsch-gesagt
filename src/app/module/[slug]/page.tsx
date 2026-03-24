@@ -85,15 +85,13 @@ export default function ModulePage() {
     },
     exerciseAnswers: {},
   };
+  const exercisesAnyDone = Object.values(modProgress.sections.exercises).some(Boolean);
   const completionDone = [
     modProgress.sections.story,
     modProgress.sections.vocabulary,
-    modProgress.sections.exercises.lesen,
-    modProgress.sections.exercises.hoeren,
-    modProgress.sections.exercises.sprechen,
-    modProgress.sections.exercises.schreiben,
+    exercisesAnyDone,
   ].filter(Boolean).length;
-  const completionPct = Math.round((completionDone / 6) * 100);
+  const completionPct = Math.round((completionDone / 3) * 100);
 
   const sections: { key: SectionKey; label: string; icon: typeof BookOpen; done: boolean }[] = [
     { key: "story", label: "Geschichte", icon: BookOpen, done: modProgress.sections.story },
@@ -104,10 +102,7 @@ export default function ModulePage() {
   const allDone =
     modProgress.sections.story &&
     modProgress.sections.vocabulary &&
-    modProgress.sections.exercises.lesen &&
-    modProgress.sections.exercises.hoeren &&
-    modProgress.sections.exercises.sprechen &&
-    modProgress.sections.exercises.schreiben;
+    exercisesAnyDone;
 
   const handleCompleteModule = () => {
     markModuleComplete(courseModule.id);
@@ -217,20 +212,25 @@ export default function ModulePage() {
               )}
               Vokabeln
             </button>
-            {(["lesen", "hoeren", "sprechen", "schreiben"] as const).map((skill) => (
-              <button
-                key={skill}
-                onClick={() => toggleExerciseSkillDone(courseModule.id, skill)}
-                className="flex items-center gap-2 text-sm text-foreground/80 hover:text-foreground transition-colors"
-              >
-                {modProgress.sections.exercises[skill] ? (
-                  <CheckSquare className="w-4 h-4 text-emerald-400" />
-                ) : (
-                  <Square className="w-4 h-4 text-muted" />
-                )}
-                {skill === "lesen" ? "Lesen" : skill === "hoeren" ? "Hören" : skill === "sprechen" ? "Sprechen" : "Schreiben"}
-              </button>
-            ))}
+            <button
+              onClick={() => {
+                const skills = ["lesen", "hoeren", "sprechen", "schreiben"] as const;
+                const allSkillsDone = skills.every((s) => modProgress.sections.exercises[s]);
+                skills.forEach((skill) => {
+                  if (allSkillsDone || !modProgress.sections.exercises[skill]) {
+                    toggleExerciseSkillDone(courseModule.id, skill);
+                  }
+                });
+              }}
+              className="flex items-center gap-2 text-sm text-foreground/80 hover:text-foreground transition-colors"
+            >
+              {Object.values(modProgress.sections.exercises).every(Boolean) ? (
+                <CheckSquare className="w-4 h-4 text-emerald-400" />
+              ) : (
+                <Square className="w-4 h-4 text-muted" />
+              )}
+              Übungen
+            </button>
           </div>
         </div>
 
