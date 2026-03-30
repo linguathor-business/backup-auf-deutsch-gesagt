@@ -101,6 +101,57 @@ function AIFeedbackBox({ feedback, loading }: { feedback: string | null; loading
   );
 }
 
+/**
+ * Checks whether a required verb (given as infinitive, e.g. "aufziehen") is
+ * present in a student's text in any of its common conjugated forms.
+ *
+ * Strategy for separable verbs (prefix + ziehen/bringen/…):
+ *   1. Direct substring match  → "aufziehen", "aufgezogen"
+ *   2. Past participle          → "aufgezogen", "umgezogen" etc.
+ *   3. Separated prefix form   → prefix appears somewhere AND stem form appears
+ *      in the text (e.g. "zieht … auf" counts for "aufziehen")
+ *
+ * For non-separable and inseparable verbs the direct match covers most cases.
+ */
+const SEPARABLE_PREFIXES = [
+  "ab","an","auf","aus","bei","durch","ein","fest","frei","her","hin",
+  "hoch","los","mit","nach","raus","rein","rüber","um","unter","vor",
+  "weg","weiter","zu","zurück","zusammen",
+];
+
+function verbUsedInText(infinitive: string, text: string): boolean {
+  const lower = text.toLowerCase();
+  const verb = infinitive.toLowerCase();
+
+  // 1. Direct substring match (handles infinitive, present tense "ziehen", base form)
+  if (lower.includes(verb)) return true;
+
+  // Detect separable prefix
+  const prefix = SEPARABLE_PREFIXES.find((p) => verb.startsWith(p) && verb.length > p.length + 2);
+
+  if (prefix) {
+    const stem = verb.slice(prefix.length); // e.g. "ziehen" from "aufziehen"
+
+    // 2. Past participle: prefix + "ge" + stem-root (e.g. "aufgezogen", "umgezogen")
+    // Strip infinitive ending (-en / -n) to get root
+    const stemRoot = stem.endsWith("en") ? stem.slice(0, -2) : stem.endsWith("n") ? stem.slice(0, -1) : stem;
+    const pastParticiple = `${prefix}ge${stemRoot}en`;
+    const pastParticipleShort = `${prefix}ge${stemRoot}t`;
+    if (lower.includes(pastParticiple) || lower.includes(pastParticipleShort)) return true;
+
+    // 3. Separated form: prefix appears as a word AND a conjugated stem form appears
+    // Check that the prefix appears as a standalone word boundary match
+    const prefixRegex = new RegExp(`\\b${prefix}\\b`);
+    if (prefixRegex.test(lower)) {
+      // Check stem conjugations: zieht, ziehe, ziehst, zogen, zog, ziehen
+      const stemConjugations = [stem, stemRoot + "t", stemRoot + "st", stemRoot + "e"];
+      if (stemConjugations.some((c) => lower.includes(c))) return true;
+    }
+  }
+
+  return false;
+}
+
 export default function ExerciseArea({ exercises, onSkillComplete }: ExerciseAreaProps) {
   return (
     <div className="bg-card rounded-xl border border-border p-6">
@@ -776,13 +827,8 @@ function WritingExercise({
     });
   };
 
-  const usedWords = exercise.mustUseWords?.filter((w) =>
-    text.toLowerCase().includes(w.toLowerCase())
-  ) || [];
-
-  const missingWords = exercise.mustUseWords?.filter(
-    (w) => !text.toLowerCase().includes(w.toLowerCase())
-  ) || [];
+  const usedWords = exercise.mustUseWords?.filter((w) => verbUsedInText(w, text)) || [];
+  const missingWords = exercise.mustUseWords?.filter((w) => !verbUsedInText(w, text)) || [];
 
   const handleReset = () => {
     setText("");
@@ -980,9 +1026,7 @@ function SpeakingExercise({
     resetAIFeedback();
   };
 
-  const usedWords = exercise.mustUseWords?.filter((w) =>
-    transcript.toLowerCase().includes(w.toLowerCase())
-  ) || [];
+  const usedWords = exercise.mustUseWords?.filter((w) => verbUsedInText(w, transcript)) || [];
 
   return (
     <div className="space-y-4">
