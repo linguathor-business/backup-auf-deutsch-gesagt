@@ -614,9 +614,37 @@ const module1: CourseModule = {
   "exercises": [
     {
       "id": "m1-ex1",
+      "type": "true-false",
+      "skill": "lesen",
+      "instruction": "Übung 1 – Richtig oder falsch? Lies die Aussagen und entscheide: Stimmt das mit der Geschichte überein?",
+      "statements": [
+        {
+          "statement": "Der Erzähler freut sich sehr darauf, Ben beim Umzug zu helfen.",
+          "correct": false
+        },
+        {
+          "statement": "Frau Krüger zieht den Kundentermin auf elf Uhr vor.",
+          "correct": true
+        },
+        {
+          "statement": "Die Vormieterin ist schon vollständig ausgezogen, als Ben und der Erzähler in der neuen Wohnung ankommen.",
+          "correct": false
+        },
+        {
+          "statement": "Der Erzähler zieht die Balkontür zu, damit es nicht zieht.",
+          "correct": true
+        },
+        {
+          "statement": "Am Ende des Tages ist Ben noch nicht in seine neue Wohnung eingezogen.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "m1-ex2",
       "type": "gap-fill",
       "skill": "lesen",
-      "instruction": "Übung 1 – Lückentext: Schreibe das passende Verb in der richtigen Form. Achte auf die Verbform.",
+      "instruction": "Übung 2 – Lückentext: Schreibe das passende Verb in der richtigen Form. Achte auf die Verbform.",
       "sentences": [
         {
           "text": "Ben will heute noch halbwegs vernünftig ___.",
@@ -645,10 +673,10 @@ const module1: CourseModule = {
       ]
     },
     {
-      "id": "m1-ex2",
+      "id": "m1-ex3",
       "type": "verb-grouping",
       "skill": "lesen",
-      "instruction": "Übung 2 – Verben in Gruppen: Ordne die ziehen-Verben den richtigen Kategorien zu. Klicke ein Verb an und wähle dann eine Kategorie.",
+      "instruction": "Übung 3 – Verben in Gruppen: Ordne die ziehen-Verben den richtigen Kategorien zu. Klicke ein Verb an und wähle dann eine Kategorie.",
       "categories": [
         {
           "name": "Wohnung & Ortswechsel",
@@ -665,10 +693,10 @@ const module1: CourseModule = {
       ]
     },
     {
-      "id": "m1-ex3",
+      "id": "m1-ex4",
       "type": "gap-fill",
       "skill": "lesen",
-      "instruction": "Übung 3 – Passendes Verb einsetzen: Ergänze das passende Verb aus dem Kasten in der richtigen Form.",
+      "instruction": "Übung 4 – Passendes Verb einsetzen: Ergänze das passende Verb aus dem Kasten in der richtigen Form.",
       "wordBank": ["anziehen", "ausziehen", "vorziehen", "zuziehen", "durchziehen", "wegziehen"],
       "sentences": [
         {
@@ -698,10 +726,10 @@ const module1: CourseModule = {
       ]
     },
     {
-      "id": "m1-ex4",
+      "id": "m1-ex5",
       "type": "matching",
       "skill": "lesen",
-      "instruction": "Übung 4 – Redewendungen verbinden: Welcher Ausdruck passt zu welcher Situation? Wähle links eine Situation und rechts den passenden Ausdruck.",
+      "instruction": "Übung 5 – Redewendungen verbinden: Welcher Ausdruck passt zu welcher Situation? Wähle links eine Situation und rechts den passenden Ausdruck.",
       "pairs": [
         {
           "left": "Im Büro herrscht plötzlich totales Chaos.",
@@ -730,10 +758,10 @@ const module1: CourseModule = {
       ]
     },
     {
-      "id": "m1-ex5",
+      "id": "m1-ex6",
       "type": "sentence-completion",
       "skill": "schreiben",
-      "instruction": "Übung 5 – Satzergänzungen: Ergänze die Sätze sinnvoll auf Deutsch. Danach siehst du eine mögliche Antwort.",
+      "instruction": "Übung 6 – Satzergänzungen: Ergänze die Sätze sinnvoll auf Deutsch. Danach siehst du eine mögliche Antwort.",
       "sentences": [
         {
           "prompt": "Ohne dich wäre ich heute wirklich ___.",
@@ -762,10 +790,10 @@ const module1: CourseModule = {
       ]
     },
     {
-      "id": "m1-ex6",
+      "id": "m1-ex7",
       "type": "error-correction",
       "skill": "schreiben",
-      "instruction": "Übung 6 – Fehler finden: Jeder Satz enthält genau einen Fehler. Schreibe den korrigierten Satz.",
+      "instruction": "Übung 7 – Fehler finden: Jeder Satz enthält genau einen Fehler. Schreibe den korrigierten Satz.",
       "sentences": [
         {
           "incorrect": "Ben zieht heute in seiner alten Wohnung aus ein.",
@@ -795,13 +823,83 @@ const module1: CourseModule = {
       ]
     },
     {
-      "id": "m1-ex7",
+      "id": "m1-ex8",
       "type": "open-writing",
       "skill": "schreiben",
-      "instruction": "Übung 7 – Verben erklären: Erkläre die folgenden ziehen-Verben mit eigenen Worten auf Deutsch.",
+      "instruction": "Übung 8 – Verben erklären: Erkläre die folgenden ziehen-Verben mit eigenen Worten auf Deutsch.",
       "prompt": "Erkläre auf Deutsch, was diese ziehen-Verben bedeuten. Schreibe für jedes Verb mindestens einen Satz mit einem eigenen Beispiel:\n\n- umziehen\n- einziehen\n- ausziehen\n- vorziehen\n- durchziehen\n- aufziehen",
       "mustUseWords": ["umziehen", "einziehen", "ausziehen", "vorziehen", "durchziehen", "aufziehen"],
       "modelAnswer": "Umziehen bedeutet, die Wohnung zu wechseln. Einziehen ist das Ankommen in der neuen Wohnung. Ausziehen ist das Gegenteil: Man verlässt die alte Wohnung. Vorziehen kann einen Termin früher stattfinden lassen oder etwas bevorzugen. Durchziehen heisst, etwas konsequent bis zum Ende zu machen. Aufziehen bedeutet jemanden necken oder sich über ihn lustig machen."
+    },
+    {
+      "id": "m1-ex9",
+      "type": "info-box",
+      "skill": "lesen",
+      "instruction": "Übung 9 – Doppelte Bedeutungen: Viele ziehen-Verben haben mehr als eine Bedeutung!",
+      "content": "Viele ziehen-Verben, die du in der Geschichte kennengelernt hast, haben im Alltag noch eine weitere Bedeutung. Schau dir die Beispiele unten an – erkennst du den Unterschied?",
+      "verbExamples": [
+        {
+          "verb": "ausziehen",
+          "meanings": [
+            { "label": "Im Text", "example": "Die Vormieterin ist ausgezogen – sie hat die Wohnung verlassen." },
+            { "label": "Weitere Bedeutung", "example": "Es ist heiß – er zieht sein Hemd aus. (Kleidung ablegen)" }
+          ]
+        },
+        {
+          "verb": "anziehen",
+          "meanings": [
+            { "label": "Im Text", "example": "Ich ziehe mir die Handschuhe an. (Kleidung anlegen)" },
+            { "label": "Weitere Bedeutung", "example": "Das Museum zieht viele Besucher an. (anlocken, Interesse wecken)" }
+          ]
+        },
+        {
+          "verb": "aufziehen",
+          "meanings": [
+            { "label": "Im Text", "example": "Du ziehst mich doch bloß auf! (jemanden necken)" },
+            { "label": "Weitere Bedeutung", "example": "Sie hat ihre Kinder allein aufgezogen. (großziehen)" }
+          ]
+        },
+        {
+          "verb": "zuziehen",
+          "meanings": [
+            { "label": "Im Text", "example": "Ich ziehe die Balkontür zu. (schließen)" },
+            { "label": "Weitere Bedeutung", "example": "Beim Sport hat er sich eine Verletzung zugezogen. (sich etwas Unangenehmes einhandeln)" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "m1-ex10",
+      "type": "multiple-choice",
+      "skill": "lesen",
+      "instruction": "Übung 10 – Welche Bedeutung? Wähle die richtige Bedeutung des Verbs im jeweiligen Satz.",
+      "questions": [
+        {
+          "question": "\"Es war so warm, dass er sich sofort das Hemd auszog.\" – Was bedeutet ausziehen hier?",
+          "options": ["eine Wohnung verlassen", "Kleidung ablegen", "hinausgehen"],
+          "correctIndex": 1
+        },
+        {
+          "question": "\"Das neue Café zieht viele Stammgäste an.\" – Was bedeutet anziehen hier?",
+          "options": ["Kleidung anlegen", "jemanden ärgern", "jemanden oder etwas anlocken"],
+          "correctIndex": 2
+        },
+        {
+          "question": "\"Hör auf, mich aufzuziehen – das war kein Witz!\" – Was bedeutet aufziehen hier?",
+          "options": ["etwas nach oben ziehen", "jemanden necken", "ein Kind großziehen"],
+          "correctIndex": 1
+        },
+        {
+          "question": "\"Beim Skifahren hat sie sich eine Verletzung zugezogen.\" – Was bedeutet sich etwas zuziehen hier?",
+          "options": ["etwas schließen", "in eine neue Stadt ziehen", "sich etwas Unangenehmes einhandeln"],
+          "correctIndex": 2
+        },
+        {
+          "question": "\"Sie hat ihre drei Kinder allein aufgezogen.\" – Was bedeutet aufziehen hier?",
+          "options": ["jemanden necken", "Kinder großziehen und erziehen", "etwas nach oben bewegen"],
+          "correctIndex": 1
+        }
+      ]
     }
   ],
   "reviewItems": []

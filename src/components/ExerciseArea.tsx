@@ -151,6 +151,8 @@ function ExerciseRenderer({
       return <SentenceCompletionExercise exercise={exercise} onComplete={onComplete} />;
     case "error-correction":
       return <ErrorCorrectionExercise exercise={exercise} onComplete={onComplete} />;
+    case "info-box":
+      return <InfoBoxExerciseComponent exercise={exercise} onComplete={onComplete} />;
     default:
       return null;
   }
@@ -1517,6 +1519,56 @@ function ErrorCorrectionExercise({
           </button>
         )}
       </div>
+    </div>
+  );
+}
+
+// --- Info Box ---
+function InfoBoxExerciseComponent({
+  exercise,
+  onComplete,
+}: {
+  exercise: Extract<Exercise, { type: "info-box" }>;
+  onComplete?: () => void;
+}) {
+  const [done, setDone] = useState(false);
+  return (
+    <div className="space-y-4">
+      <div className="bg-indigo-500/10 border border-indigo-400/30 rounded-xl p-4 space-y-3">
+        <div className="flex items-center gap-2 mb-1">
+          <span className="text-base">💡</span>
+          <p className="text-sm font-semibold text-indigo-400">Hinweis – Doppelte Bedeutungen</p>
+        </div>
+        <p className="text-sm text-foreground/80">{exercise.content}</p>
+        {exercise.verbExamples && (
+          <div className="space-y-3 mt-2">
+            {exercise.verbExamples.map((ve, i) => (
+              <div key={i} className="bg-navy-800/40 rounded-lg p-3 space-y-1">
+                <p className="text-sm font-semibold text-gold-400">{ve.verb}</p>
+                {ve.meanings.map((m, j) => (
+                  <div key={j} className="flex gap-2 text-sm">
+                    <span className="text-indigo-400 shrink-0 font-medium">{j + 1}.</span>
+                    <span>
+                      <span className="text-muted">{m.label}: </span>
+                      <span className="text-foreground/75 italic">{m.example}</span>
+                    </span>
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+      {!done ? (
+        <button
+          onClick={() => { setDone(true); onComplete?.(); }}
+          className="bg-gold-500 text-navy-900 px-4 py-2 rounded-lg text-sm font-medium hover:bg-gold-400 transition-colors flex items-center gap-2"
+        >
+          Verstanden <ChevronRight className="w-4 h-4" />
+        </button>
+      ) : (
+        <SuccessCelebration message="Super! Jetzt kennst du die doppelten Bedeutungen. 🌟" />
+      )}
     </div>
   );
 }

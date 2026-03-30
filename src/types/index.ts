@@ -99,6 +99,15 @@ export interface ErrorCorrectionExercise extends ExerciseBase {
   }[];
 }
 
+export interface InfoBoxExercise extends ExerciseBase {
+  type: "info-box";
+  content: string;
+  verbExamples?: {
+    verb: string;
+    meanings: { label: string; example: string }[];
+  }[];
+}
+
 export type Exercise =
   | GapFillExercise
   | MultipleChoiceExercise
@@ -108,7 +117,8 @@ export type Exercise =
   | SpeakingExercise
   | VerbGroupingExercise
   | SentenceCompletionExercise
-  | ErrorCorrectionExercise;
+  | ErrorCorrectionExercise
+  | InfoBoxExercise;
 
 export interface ReviewItem {
   fromModule: number;
