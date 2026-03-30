@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
-const GEMINI_MODEL = "gemini-1.5-flash";
+const GEMINI_MODEL = "gemini-2.5-flash-lite";
 const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent`;
 
 type SentenceItem = { prompt: string; studentAnswer: string; modelAnswer: string };
@@ -105,46 +105,58 @@ export async function POST(req: NextRequest) {
 
   const prompt = buildPrompt(body);
 
-  const controller = new AbortController();
-  const timeoutId = setTimeout(() => controller.abort(), 15000);
+  const MAX_RETRIES = 3;
+  const RETRY_DELAYS = [1000, 3000, 6000]; // ms — backoff for 429 bursts
 
-  try {
-    const res = await fetch(`${GEMINI_URL}?key=${apiKey}`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        contents: [{ parts: [{ text: prompt }] }],
-        generationConfig: { maxOutputTokens: 256, temperature: 0.4 },
-      }),
-      signal: controller.signal,
-    });
-    clearTimeout(timeoutId);
+  for (let attempt = 0; attempt < MAX_RETRIES; attempt++) {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 15000);
 
-    if (!res.ok) {
-      const errText = await res.text();
-      console.error("Gemini API error:", res.status, errText);
-      return NextResponse.json(
-        { error: "AI feedback unavailable" },
-        { status: res.status === 429 ? 429 : 502 }
-      );
+    try {
+      const res = await fetch(`${GEMINI_URL}?key=${apiKey}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          contents: [{ parts: [{ text: prompt }] }],
+          generationConfig: { maxOutputTokens: 256, temperature: 0.4 },
+        }),
+        signal: controller.signal,
+      });
+      clearTimeout(timeoutId);
+
+      if (res.status === 429 && attempt < MAX_RETRIES - 1) {
+        await new Promise((r) => setTimeout(r, RETRY_DELAYS[attempt]));
+        continue;
+      }
+
+      if (!res.ok) {
+        const errText = await res.text();
+        console.error("Gemini API error:", res.status, errText);
+        return NextResponse.json(
+          { error: "AI feedback unavailable" },
+          { status: res.status === 429 ? 429 : 502 }
+        );
+      }
+
+      const data = await res.json();
+      const feedback: string | undefined =
+        data.candidates?.[0]?.content?.parts?.[0]?.text;
+
+      if (!feedback) {
+        return NextResponse.json({ error: "No feedback returned" }, { status: 502 });
+      }
+
+      return NextResponse.json({ feedback });
+    } catch (error) {
+      clearTimeout(timeoutId);
+      if (error instanceof Error && error.name === "AbortError") {
+        console.error("Gemini request timed out after 15s");
+        return NextResponse.json({ error: "Request timed out" }, { status: 504 });
+      }
+      console.error("Gemini fetch error:", error);
+      return NextResponse.json({ error: "AI feedback unavailable" }, { status: 502 });
     }
-
-    const data = await res.json();
-    const feedback: string | undefined =
-      data.candidates?.[0]?.content?.parts?.[0]?.text;
-
-    if (!feedback) {
-      return NextResponse.json({ error: "No feedback returned" }, { status: 502 });
-    }
-
-    return NextResponse.json({ feedback });
-  } catch (error) {
-    clearTimeout(timeoutId);
-    if (error instanceof Error && error.name === "AbortError") {
-      console.error("Gemini request timed out after 15s");
-      return NextResponse.json({ error: "Request timed out" }, { status: 504 });
-    }
-    console.error("Gemini fetch error:", error);
-    return NextResponse.json({ error: "AI feedback unavailable" }, { status: 502 });
   }
+
+  return NextResponse.json({ error: "AI feedback unavailable after retries" }, { status: 502 });
 }
