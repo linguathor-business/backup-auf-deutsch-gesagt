@@ -58,11 +58,14 @@ function useAIFeedback() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
-      if (!res.ok) throw new Error("API error");
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({}));
+        throw new Error(`[${res.status}] ${err.error ?? res.statusText}`);
+      }
       const data = await res.json();
       setAiFeedback(data.feedback ?? "Kein Feedback verfügbar.");
-    } catch {
-      setAiFeedback("KI-Feedback konnte nicht geladen werden.");
+    } catch (err) {
+      setAiFeedback(`KI-Feedback konnte nicht geladen werden. (${err instanceof Error ? err.message : String(err)})`);
     } finally {
       setAiFeedbackLoading(false);
     }
