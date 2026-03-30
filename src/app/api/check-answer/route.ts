@@ -1,7 +1,9 @@
+import { GoogleGenerativeAI } from "@google/generative-ai";
 import { NextRequest, NextResponse } from "next/server";
 
-const GEMINI_MODEL = "gemini-2.5-flash-lite";
-const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent`;
+const MODELS = ["gemini-2.5-flash-lite", "gemini-2.5-flash"] as const;
+const MAX_RETRIES = 3;
+const delay = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
 type SentenceItem = { prompt: string; studentAnswer: string; modelAnswer: string };
 
@@ -75,6 +77,36 @@ function buildPrompt(body: CheckAnswerBody): string {
   return base;
 }
 
+async function generateWithBackoff(
+  genAI: GoogleGenerativeAI,
+  modelName: string,
+  prompt: string,
+): Promise<string> {
+  const model = genAI.getGenerativeModel({
+    model: modelName,
+    generationConfig: { maxOutputTokens: 256, temperature: 0.4 },
+  });
+
+  for (let i = 0; i < MAX_RETRIES; i++) {
+    try {
+      const result = await model.generateContent(prompt);
+      return result.response.text();
+    } catch (error: unknown) {
+      const is429 =
+        (error as { status?: number }).status === 429 ||
+        (error instanceof Error && error.message.includes("429"));
+      if (is429 && i < MAX_RETRIES - 1) {
+        const waitTime = 1000 * Math.pow(2, i);
+        console.warn(`[429] ${modelName} rate-limited. Retrying in ${waitTime}ms (attempt ${i + 1}/${MAX_RETRIES})…`);
+        await delay(waitTime);
+        continue;
+      }
+      throw error;
+    }
+  }
+  throw new Error("Exhausted retries");
+}
+
 export async function POST(req: NextRequest) {
   const apiKey = process.env.GEMINI_API_KEY;
   if (!apiKey) {
@@ -93,7 +125,6 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Invalid exercise type" }, { status: 400 });
   }
 
-  // Validate input length to prevent abuse
   const textToCheck =
     body.studentAnswer ??
     body.transcript ??
@@ -104,59 +135,18 @@ export async function POST(req: NextRequest) {
   }
 
   const prompt = buildPrompt(body);
+  const genAI = new GoogleGenerativeAI(apiKey);
 
-  const MAX_RETRIES = 3;
-  const RETRY_DELAYS = [1000, 3000, 6000]; // ms — backoff for 429 bursts
-
-  for (let attempt = 0; attempt < MAX_RETRIES; attempt++) {
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 15000);
-
+  for (const modelName of MODELS) {
     try {
-      const res = await fetch(`${GEMINI_URL}?key=${apiKey}`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          contents: [{ parts: [{ text: prompt }] }],
-          generationConfig: { maxOutputTokens: 256, temperature: 0.4 },
-        }),
-        signal: controller.signal,
-      });
-      clearTimeout(timeoutId);
-
-      if (res.status === 429 && attempt < MAX_RETRIES - 1) {
-        await new Promise((r) => setTimeout(r, RETRY_DELAYS[attempt]));
-        continue;
-      }
-
-      if (!res.ok) {
-        const errText = await res.text();
-        console.error("Gemini API error:", res.status, errText);
-        return NextResponse.json(
-          { error: "AI feedback unavailable" },
-          { status: res.status === 429 ? 429 : 502 }
-        );
-      }
-
-      const data = await res.json();
-      const feedback: string | undefined =
-        data.candidates?.[0]?.content?.parts?.[0]?.text;
-
-      if (!feedback) {
-        return NextResponse.json({ error: "No feedback returned" }, { status: 502 });
-      }
-
+      const feedback = await generateWithBackoff(genAI, modelName, prompt);
+      if (!feedback) continue;
       return NextResponse.json({ feedback });
     } catch (error) {
-      clearTimeout(timeoutId);
-      if (error instanceof Error && error.name === "AbortError") {
-        console.error("Gemini request timed out after 15s");
-        return NextResponse.json({ error: "Request timed out" }, { status: 504 });
-      }
-      console.error("Gemini fetch error:", error);
-      return NextResponse.json({ error: "AI feedback unavailable" }, { status: 502 });
+      console.error(`[${modelName}] failed:`, error);
+      // Try next model
     }
   }
 
-  return NextResponse.json({ error: "AI feedback unavailable after retries" }, { status: 502 });
+  return NextResponse.json({ error: "AI feedback unavailable" }, { status: 502 });
 }
