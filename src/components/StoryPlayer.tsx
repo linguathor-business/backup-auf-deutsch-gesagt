@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useCallback, useMemo } from "react";
+import { useState, useRef, useCallback, useMemo, useEffect } from "react";
 import { Play, Pause, RotateCcw, Volume2, Loader2, X } from "lucide-react";
 import { CourseModule, VocabItem } from "@/types";
 import { useTTS } from "@/lib/use-tts";
@@ -14,7 +14,6 @@ interface StoryPlayerProps {
 function buildWordLookup(module: CourseModule): Map<string, VocabItem> {
   const map = new Map<string, VocabItem>();
   for (const v of module.coreVerbs) {
-    // Add the main german entry and also each word in it
     const words = v.german.toLowerCase().split(/\s+/);
     for (const w of words) {
       if (w.length > 2) map.set(w.replace(/[^a-zäöüß]/g, ""), v);
@@ -36,7 +35,15 @@ function stripBold(text: string) {
   return text.replace(/\*\*/g, "");
 }
 
+function formatTime(seconds: number) {
+  const m = Math.floor(seconds / 60);
+  const s = Math.floor(seconds % 60);
+  return `${m}:${s.toString().padStart(2, "0")}`;
+}
+
 export default function StoryPlayer({ module, onComplete }: StoryPlayerProps) {
+  const hasAudioFile = !!module.story.audioFile;
+
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentSentence, setCurrentSentence] = useState(-1);
   const [hasFinished, setHasFinished] = useState(false);
@@ -46,24 +53,132 @@ export default function StoryPlayer({ module, onComplete }: StoryPlayerProps) {
     rect: { top: number; left: number };
   } | null>(null);
 
-  const { speak, stop, loading } = useTTS();
+  // MP3 audio state
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const [audioDuration, setAudioDuration] = useState(0);
+  const [audioCurrentTime, setAudioCurrentTime] = useState(0);
+  const [audioLoading, setAudioLoading] = useState(false);
+
+  // TTS fallback
+  const { speak, stop, loading: ttsLoading } = useTTS();
   const cancelledRef = useRef(false);
 
   const sentences = module.story.sentences;
   const wordLookup = useMemo(() => buildWordLookup(module), [module]);
 
-  // Sequential playback: speak each sentence one-by-one
-  const playAll = useCallback(async () => {
+  // Create audio element for MP3 playback
+  useEffect(() => {
+    if (!hasAudioFile) return;
+    const audio = new Audio(module.story.audioFile);
+    audio.preload = "metadata";
+    audioRef.current = audio;
+
+    const onLoadedMetadata = () => setAudioDuration(audio.duration);
+    const onTimeUpdate = () => setAudioCurrentTime(audio.currentTime);
+    const onEnded = () => {
+      setIsPlaying(false);
+      setHasFinished(true);
+      setCurrentSentence(-1);
+      onComplete?.();
+    };
+    const onWaiting = () => setAudioLoading(true);
+    const onCanPlay = () => setAudioLoading(false);
+
+    audio.addEventListener("loadedmetadata", onLoadedMetadata);
+    audio.addEventListener("timeupdate", onTimeUpdate);
+    audio.addEventListener("ended", onEnded);
+    audio.addEventListener("waiting", onWaiting);
+    audio.addEventListener("canplay", onCanPlay);
+
+    return () => {
+      audio.pause();
+      audio.removeEventListener("loadedmetadata", onLoadedMetadata);
+      audio.removeEventListener("timeupdate", onTimeUpdate);
+      audio.removeEventListener("ended", onEnded);
+      audio.removeEventListener("waiting", onWaiting);
+      audio.removeEventListener("canplay", onCanPlay);
+      audioRef.current = null;
+    };
+  }, [hasAudioFile, module.story.audioFile, onComplete]);
+
+  // Sync sentence highlighting with MP3 currentTime
+  useEffect(() => {
+    if (!hasAudioFile || !isPlaying) return;
+    const t = audioCurrentTime;
+    let active = -1;
+    for (let i = 0; i < sentences.length; i++) {
+      if (t >= sentences[i].start && t < sentences[i].end) {
+        active = i;
+        break;
+      }
+    }
+    setCurrentSentence(active);
+  }, [hasAudioFile, isPlaying, audioCurrentTime, sentences]);
+
+  // --- MP3 controls ---
+  const togglePlayMp3 = useCallback(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+    if (isPlaying) {
+      audio.pause();
+      setIsPlaying(false);
+    } else {
+      setHasFinished(false);
+      audio.play();
+      setIsPlaying(true);
+    }
+  }, [isPlaying]);
+
+  const restartMp3 = useCallback(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+    audio.pause();
+    audio.currentTime = 0;
+    setIsPlaying(false);
+    setCurrentSentence(-1);
+    setHasFinished(false);
+    setAudioCurrentTime(0);
+  }, []);
+
+  const seekMp3 = useCallback(
+    (e: React.MouseEvent<HTMLDivElement>) => {
+      const audio = audioRef.current;
+      if (!audio || !audioDuration) return;
+      const rect = e.currentTarget.getBoundingClientRect();
+      const pct = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+      audio.currentTime = pct * audioDuration;
+      setAudioCurrentTime(audio.currentTime);
+    },
+    [audioDuration]
+  );
+
+  const seekToSentenceMp3 = useCallback(
+    (idx: number) => {
+      const audio = audioRef.current;
+      if (!audio) return;
+      const s = sentences[idx];
+      if (!s) return;
+      audio.currentTime = s.start;
+      setAudioCurrentTime(s.start);
+      if (!isPlaying) {
+        audio.play();
+        setIsPlaying(true);
+        setHasFinished(false);
+      }
+    },
+    [sentences, isPlaying]
+  );
+
+  // --- TTS fallback controls (no audioFile) ---
+  const playAllTts = useCallback(async () => {
     cancelledRef.current = false;
     setIsPlaying(true);
     setHasFinished(false);
-
     for (let i = 0; i < sentences.length; i++) {
       if (cancelledRef.current) break;
       setCurrentSentence(i);
       await speak(sentences[i].text);
     }
-
     if (!cancelledRef.current) {
       setHasFinished(true);
       onComplete?.();
@@ -72,18 +187,18 @@ export default function StoryPlayer({ module, onComplete }: StoryPlayerProps) {
     setIsPlaying(false);
   }, [sentences, speak, onComplete]);
 
-  const togglePlay = useCallback(() => {
+  const togglePlayTts = useCallback(() => {
     if (isPlaying) {
       cancelledRef.current = true;
       stop();
       setIsPlaying(false);
       setCurrentSentence(-1);
     } else {
-      playAll();
+      playAllTts();
     }
-  }, [isPlaying, stop, playAll]);
+  }, [isPlaying, stop, playAllTts]);
 
-  const restart = useCallback(() => {
+  const restartTts = useCallback(() => {
     cancelledRef.current = true;
     stop();
     setIsPlaying(false);
@@ -91,18 +206,31 @@ export default function StoryPlayer({ module, onComplete }: StoryPlayerProps) {
     setHasFinished(false);
   }, [stop]);
 
-  const speakSentence = useCallback(
+  const speakSentenceTts = useCallback(
     (idx: number) => {
-      if (isPlaying) return; // don't interrupt sequential playback
+      if (isPlaying) return;
       const s = sentences[idx];
       if (!s) return;
       setCurrentSentence(idx);
-      speak(s.text).then(() => {
-        setCurrentSentence(-1);
-      });
+      speak(s.text).then(() => setCurrentSentence(-1));
     },
     [sentences, speak, isPlaying]
   );
+
+  // Unified handlers
+  const togglePlay = hasAudioFile ? togglePlayMp3 : togglePlayTts;
+  const restart = hasAudioFile ? restartMp3 : restartTts;
+  const handleSentenceClick = hasAudioFile ? seekToSentenceMp3 : speakSentenceTts;
+  const loading = hasAudioFile ? audioLoading : ttsLoading;
+
+  // Progress
+  const progressPct = hasAudioFile
+    ? audioDuration > 0
+      ? (audioCurrentTime / audioDuration) * 100
+      : 0
+    : sentences.length > 0 && currentSentence >= 0
+      ? ((currentSentence + 1) / sentences.length) * 100
+      : 0;
 
   const handleWordClick = useCallback(
     (e: React.MouseEvent, word: string) => {
@@ -110,7 +238,6 @@ export default function StoryPlayer({ module, onComplete }: StoryPlayerProps) {
       const clean = word.toLowerCase().replace(/[^a-zäöüß]/g, "");
       const vocab = wordLookup.get(clean);
       if (!vocab) {
-        // Just speak the word even if no vocab entry
         speak(word);
         return;
       }
@@ -124,11 +251,6 @@ export default function StoryPlayer({ module, onComplete }: StoryPlayerProps) {
     },
     [wordLookup, speak]
   );
-
-  const progressPct =
-    sentences.length > 0 && currentSentence >= 0
-      ? ((currentSentence + 1) / sentences.length) * 100
-      : 0;
 
   // Precompute which sentences belong to which paragraph (sequential assignment)
   const sentencesByPara = useMemo(() => {
@@ -159,11 +281,10 @@ export default function StoryPlayer({ module, onComplete }: StoryPlayerProps) {
 
   /** Render a sentence as individually clickable words */
   const renderWords = (text: string, sentenceIdx: number) => {
-    // Strip bold markers then split into words preserving whitespace
     const plain = stripBold(text);
     const words = plain.split(/(\s+)/);
     return words.map((w, wi) => {
-      if (/^\s+$/.test(w)) return w; // preserve whitespace
+      if (/^\s+$/.test(w)) return w;
       const clean = w.toLowerCase().replace(/[^a-zäöüß]/g, "");
       const hasVocab = clean.length > 2 && wordLookup.has(clean);
       return (
@@ -233,13 +354,22 @@ export default function StoryPlayer({ module, onComplete }: StoryPlayerProps) {
         >
           <RotateCcw className="w-4 h-4" />
         </button>
-        <div className="flex-1 h-1.5 bg-navy-700 rounded-full overflow-hidden">
+        <div
+          className="flex-1 h-1.5 bg-navy-700 rounded-full overflow-hidden cursor-pointer"
+          onClick={hasAudioFile ? seekMp3 : undefined}
+        >
           <div
             className="h-full bg-gold-500 rounded-full transition-all duration-150"
             style={{ width: `${progressPct}%` }}
           />
         </div>
-        <Volume2 className="w-4 h-4 text-muted" />
+        {hasAudioFile && audioDuration > 0 ? (
+          <span className="text-xs text-muted tabular-nums min-w-[4rem] text-right">
+            {formatTime(audioCurrentTime)} / {formatTime(audioDuration)}
+          </span>
+        ) : (
+          <Volume2 className="w-4 h-4 text-muted" />
+        )}
       </div>
 
       {/* Story text with sentence highlighting + clickable words */}
@@ -252,7 +382,7 @@ export default function StoryPlayer({ module, onComplete }: StoryPlayerProps) {
               return (
                 <span
                   key={sIdx}
-                  onClick={() => speakSentence(sIdx)}
+                  onClick={() => handleSentenceClick(sIdx)}
                   className={`inline transition-all duration-200 ${
                     isActive
                       ? "bg-gold-500/25 text-gold-300 rounded px-0.5 py-0.5"
