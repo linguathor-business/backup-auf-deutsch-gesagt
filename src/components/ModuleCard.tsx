@@ -52,7 +52,7 @@ export default function ModuleCard({ module }: ModuleCardProps) {
         <div className="flex items-start justify-between mb-3">
           <div className="flex items-center gap-2 text-muted">
             <Lock className="w-4 h-4" />
-            <span className="text-xs uppercase tracking-wider">{isReview ? "Wiederholung" : `Modul ${module.id}`}</span>
+            <span className="text-xs uppercase tracking-wider">{isReview ? "Aktivierung" : `Modul ${module.id}`}</span>
           </div>
         </div>
         <h3 className="text-lg font-semibold text-muted mb-1">{module.title}</h3>
@@ -89,7 +89,7 @@ export default function ModuleCard({ module }: ModuleCardProps) {
             </div>
           )}
           <span className="text-xs uppercase tracking-wider text-muted">
-            {isReview ? "Wiederholung" : `Modul ${module.id}`}
+            {isReview ? "Aktivierung" : `Modul ${module.id}`}
           </span>
         </div>
         <span className="text-xs text-muted">{module.estimatedMinutes} Min.</span>

@@ -48,18 +48,18 @@ const features = [
 ];
 
 const modulePreview = [
-  { num: 1, title: "Unter Strom", verb: "machen" },
-  { num: 2, title: "In der Schwebe", verb: "gehen" },
-  { num: 3, title: "Auf eigene Faust", verb: "nehmen" },
-  { num: 4, title: "Zwischen den Zeilen", verb: "geben" },
-  { num: 5, title: "Auf Messers Schneide", verb: "stehen" },
-  { num: 6, title: "Im Trüben fischen", verb: "kommen" },
-  { num: 7, title: "Den Faden verlieren", verb: "lassen" },
-  { num: 8, title: "Auf Wolke sieben", verb: "fallen" },
-  { num: 9, title: "Mit allen Wassern", verb: "halten" },
-  { num: 10, title: "Ins Schwarze treffen", verb: "bringen" },
-  { num: 11, title: "Gegen den Strom", verb: "ziehen" },
-  { num: 12, title: "Am Ende des Tages", verb: "setzen" },
+  { num: 1, title: "Der Umzug", verb: "ziehen" },
+  { num: 2, title: "Alles mitgebracht?", verb: "bringen" },
+  { num: 3, title: "Man nehme, so man hat", verb: "nehmen" },
+  { num: 4, title: "Genau an diese Stelle", verb: "stellen" },
+  { num: 5, title: "Einfach drüberstehen", verb: "stehen" },
+  { num: 6, title: "Viele Übergaben", verb: "geben" },
+  { num: 7, title: "Setz dich dazu", verb: "setzen" },
+  { num: 8, title: "Liegt alles bereit?", verb: "legen" },
+  { num: 9, title: "Endlich runterkommen", verb: "kommen" },
+  { num: 10, title: "Nerven behalten", verb: "halten" },
+  { num: 11, title: "Im Studio geht es ab", verb: "gehen" },
+  { num: 12, title: "Mach Licht an!", verb: "machen" },
 ];
 
 export default function LandingPage() {

@@ -132,7 +132,7 @@ export default function ModulePage() {
           <div className="flex items-start justify-between mb-2">
             <div>
               <span className="text-xs uppercase tracking-wider text-gold-400 mb-1 block">
-                {courseModule.isReviewModule ? "Wiederholung" : `Modul ${courseModule.id}`}
+                {courseModule.isReviewModule ? "Aktivierung" : `Modul ${courseModule.id}`}
               </span>
               <h1 className="text-2xl md:text-3xl font-bold text-foreground">
                 {courseModule.title}

@@ -8,9 +8,9 @@ import { CourseModule } from "@/types";
 const reviewModule1: CourseModule = {
   id: 101,
   slug: "review-1",
-  title: "Wiederholung 1",
+  title: "Aktivierung 1",
   subtitle: "Module 1–4: ziehen, bringen, nehmen, stellen",
-  focusVerb: "Wiederholung",
+  focusVerb: "Aktivierung",
   learningGoals: [
     "Präfixverben aus Modul 1–4 sicher anwenden",
     "Kollokationen mit ziehen, bringen, nehmen, stellen bilden",
@@ -36,43 +36,41 @@ const reviewModule1: CourseModule = {
       sentences: [
         {
           text: "Ben ___ nächsten Monat in eine neue Wohnung ___.",
-          options: ["zieht … ein", "stellt … auf", "bringt … mit", "nimmt … an"],
-          correctIndex: 0,
+          gaps: [
+            { options: ["zieht", "stellt", "bringt", "nimmt"], correctIndex: 0 },
+            { options: ["ein", "auf", "mit", "an"], correctIndex: 0 },
+          ],
         },
         {
           text: "Kannst du mir bitte ___, wie man das Regal ___?",
-          options: ["beibringen … aufstellt", "mitnehmen … hinstellt", "annehmen … einstellt", "vorstellen … abstellt"],
-          correctIndex: 0,
+          gaps: [
+            { options: ["beibringen", "mitnehmen", "annehmen", "vorstellen"], correctIndex: 0 },
+            { options: ["aufstellt", "hinstellt", "einstellt", "abstellt"], correctIndex: 0 },
+          ],
         },
         {
           text: "Jule hat den Kundentermin auf elf Uhr ___.",
-          options: ["vorgezogen", "aufgestellt", "mitgenommen", "angebracht"],
-          correctIndex: 0,
+          gaps: [{ options: ["vorgezogen", "aufgestellt", "mitgenommen", "angebracht"], correctIndex: 0 }],
         },
         {
           text: "Ich muss ___, dass die Lieferung pünktlich ankommt.",
-          options: ["sicherstellen", "durchziehen", "übernehmen", "unterbringen"],
-          correctIndex: 0,
+          gaps: [{ options: ["sicherstellen", "durchziehen", "übernehmen", "unterbringen"], correctIndex: 0 }],
         },
         {
           text: "Mehmet hat die ganze Torte allein zum Büro ___.",
-          options: ["mitgebracht", "aufgezogen", "eingenommen", "hingestellt"],
-          correctIndex: 0,
+          gaps: [{ options: ["mitgebracht", "aufgezogen", "eingenommen", "hingestellt"], correctIndex: 0 }],
         },
         {
           text: "Ich kann dem Rezept ___, dass man erst die Zwiebeln anbraten muss.",
-          options: ["entnehmen", "vorstellen", "beibringen", "aufbringen"],
-          correctIndex: 0,
+          gaps: [{ options: ["entnehmen", "vorstellen", "beibringen", "aufbringen"], correctIndex: 0 }],
         },
         {
           text: "Er hat sich einer schwierigen Prüfung ___.",
-          options: ["unterzogen", "durchgezogen", "vorgestellt", "aufgebracht"],
-          correctIndex: 0,
+          gaps: [{ options: ["unterzogen", "durchgezogen", "vorgestellt", "aufgebracht"], correctIndex: 0 }],
         },
         {
           text: "Frau Krüger wollte das Problem sofort auf den Punkt ___.",
-          options: ["bringen", "stellen", "ziehen", "nehmen"],
-          correctIndex: 0,
+          gaps: [{ options: ["bringen", "stellen", "ziehen", "nehmen"], correctIndex: 0 }],
         },
       ],
     },
@@ -115,10 +113,15 @@ const reviewModule1: CourseModule = {
       id: "r1-ex4",
       type: "open-writing",
       skill: "schreiben",
-      instruction: "Übung 4 – Offene Fragen: Beantworte die folgenden Fragen in jeweils 2–3 Sätzen. Verwende dabei die angegebenen Präfixverben.",
-      prompt: "1. Was würdest du tun, wenn dein Freund kurzfristig umzieht? (Verwende: ausziehen, einziehen)\n2. Wie bringst du einem Freund etwas Neues bei? (Verwende: beibringen)\n3. Was nimmst du mit, wenn du zu einem Spieleabend gehst? (Verwende: mitnehmen, teilnehmen)\n4. Wie stellst du dich bei neuen Kollegen vor? (Verwende: vorstellen, feststellen)",
+      instruction: "Übung 4 – Offene Fragen: Beantworte jede Frage in 2–3 Sätzen. Verwende die angegebenen Präfixverben.",
+      questions: [
+        { text: "Was würdest du tun, wenn dein Freund kurzfristig umzieht?", mustUseWords: ["ausziehen", "einziehen"] },
+        { text: "Wie bringst du einem Freund etwas Neues bei?", mustUseWords: ["beibringen"] },
+        { text: "Was nimmst du mit, wenn du zu einem Spieleabend gehst?", mustUseWords: ["mitnehmen", "teilnehmen"] },
+        { text: "Wie stellst du dich bei neuen Kollegen vor?", mustUseWords: ["vorstellen", "feststellen"] },
+      ],
       mustUseWords: ["ausziehen", "einziehen", "beibringen", "mitnehmen", "teilnehmen", "vorstellen", "feststellen"],
-      modelAnswer: "1. Wenn mein Freund kurzfristig umzieht, helfe ich ihm, aus der alten Wohnung auszuziehen und in die neue einzuziehen.\n2. Ich bringe meinem Freund etwas bei, indem ich es Schritt für Schritt erkläre und zeige.\n3. Zum Spieleabend nehme ich Snacks und ein Kartenspiel mit. Ich nehme gern an solchen Abenden teil, weil es Spaß macht.\n4. Ich stelle mich neuen Kollegen mit meinem Namen und meiner Rolle vor. Dabei stelle ich oft fest, dass viele ähnliche Interessen haben.",
+      modelAnswer: "1. Wenn mein Freund kurzfristig umzieht, helfe ich ihm, aus der alten Wohnung auszuziehen und in die neue einzuziehen.\n2. Ich bringe meinem Freund etwas bei, indem ich es Schritt für Schritt erkläre und zeige.\n3. Zum Spieleabend nehme ich Snacks und ein Kartenspiel mit. Ich nehme gern an solchen Abenden teil.\n4. Ich stelle mich neuen Kollegen mit meinem Namen vor. Dabei stelle ich oft fest, dass viele ähnliche Interessen haben.",
     },
 
     // ── 5. Chatbot Dialog ──
@@ -144,9 +147,9 @@ const reviewModule1: CourseModule = {
 const reviewModule2: CourseModule = {
   id: 102,
   slug: "review-2",
-  title: "Wiederholung 2",
+  title: "Aktivierung 2",
   subtitle: "Module 5–8: stehen, geben, setzen, legen",
-  focusVerb: "Wiederholung",
+  focusVerb: "Aktivierung",
   learningGoals: [
     "Präfixverben aus Modul 5–8 sicher anwenden",
     "Kollokationen mit stehen, geben, setzen, legen bilden",
@@ -172,43 +175,38 @@ const reviewModule2: CourseModule = {
       sentences: [
         {
           text: "Ben muss morgen um 6 Uhr ___.",
-          options: ["aufstehen", "übergeben", "einsetzen", "auslegen"],
-          correctIndex: 0,
+          gaps: [{ options: ["aufstehen", "übergeben", "einsetzen", "auslegen"], correctIndex: 0 }],
         },
         {
           text: "Der Teamleiter ___ darauf, dass die Deadline eingehalten wird.",
-          options: ["besteht", "nachgibt", "umsetzt", "vorlegt"],
-          correctIndex: 0,
+          gaps: [{ options: ["besteht", "nachgibt", "umsetzt", "vorlegt"], correctIndex: 0 }],
         },
         {
           text: "Jule hat den Bericht gestern bei Frau Krüger ___.",
-          options: ["abgegeben", "drübergestanden", "fortgesetzt", "hingelegt"],
-          correctIndex: 0,
+          gaps: [{ options: ["abgegeben", "drübergestanden", "fortgesetzt", "hingelegt"], correctIndex: 0 }],
         },
         {
           text: "Wir müssen den Plan jetzt endlich ___.",
-          options: ["umsetzen", "zugeben", "bereitlegen", "übersetzen"],
-          correctIndex: 0,
+          gaps: [{ options: ["umsetzen", "zugeben", "bereitlegen", "übersetzen"], correctIndex: 0 }],
         },
         {
           text: "Ich möchte Ihnen ___, die Unterlagen vorher noch einmal zu prüfen.",
-          options: ["nahelegen", "voraussetzen", "aufgeben", "durchsetzen"],
-          correctIndex: 0,
+          gaps: [{ options: ["nahelegen", "voraussetzen", "aufgeben", "durchsetzen"], correctIndex: 0 }],
         },
         {
           text: "Kannst du kurz ___, was er gerade gesagt hat?",
-          options: ["zusammenfassen", "angeben", "bereitlegen", "fortsetzen"],
-          correctIndex: 0,
+          gaps: [{ options: ["zusammenfassen", "angeben", "bereitlegen", "fortsetzen"], correctIndex: 0 }],
         },
         {
           text: "Der Kunde wollte nicht ___ und hat weiter verhandelt.",
-          options: ["nachgeben", "bevorstehen", "festlegen", "sich hinsetzen"],
-          correctIndex: 0,
+          gaps: [{ options: ["nachgeben", "bevorstehen", "festlegen", "hinsetzen"], correctIndex: 0 }],
         },
         {
           text: "Bitte ___ Sie hier Ihre Kontaktdaten ___.",
-          options: ["legen … bereit", "geben … an", "setzen … ein", "stehen … auf"],
-          correctIndex: 1,
+          gaps: [
+            { options: ["geben", "legen", "setzen", "stehen"], correctIndex: 0 },
+            { options: ["an", "bereit", "ein", "auf"], correctIndex: 0 },
+          ],
         },
       ],
     },
@@ -251,10 +249,15 @@ const reviewModule2: CourseModule = {
       id: "r2-ex4",
       type: "open-writing",
       skill: "schreiben",
-      instruction: "Übung 4 – Offene Fragen: Beantworte die folgenden Fragen in jeweils 2–3 Sätzen. Verwende dabei die angegebenen Präfixverben.",
-      prompt: "1. Was steht diese Woche bei dir auf der Arbeit an? (Verwende: bevorstehen, anstehen)\n2. Wie gehst du mit Kritik um? (Verwende: zugeben, nachgeben)\n3. Was würdest du tun, wenn du einen Plan nicht umsetzen kannst? (Verwende: umsetzen, fortsetzen)\n4. Wie legst du Unterlagen für eine Besprechung bereit? (Verwende: bereitlegen, vorlegen)",
+      instruction: "Übung 4 – Offene Fragen: Beantworte jede Frage in 2–3 Sätzen. Verwende die angegebenen Präfixverben.",
+      questions: [
+        { text: "Was steht diese Woche bei dir auf der Arbeit an?", mustUseWords: ["bevorstehen", "anstehen"] },
+        { text: "Wie gehst du mit Kritik um?", mustUseWords: ["zugeben", "nachgeben"] },
+        { text: "Was würdest du tun, wenn du einen Plan nicht umsetzen kannst?", mustUseWords: ["umsetzen", "fortsetzen"] },
+        { text: "Wie legst du Unterlagen für eine Besprechung bereit?", mustUseWords: ["bereitlegen", "vorlegen"] },
+      ],
       mustUseWords: ["bevorstehen", "anstehen", "zugeben", "nachgeben", "umsetzen", "fortsetzen", "bereitlegen", "vorlegen"],
-      modelAnswer: "1. Diese Woche steht ein wichtiger Kundentermin bevor. Außerdem steht noch die Quartalsabrechnung an.\n2. Wenn die Kritik berechtigt ist, gebe ich meinen Fehler zu. Aber ich gebe nicht einfach nach, wenn ich anderer Meinung bin.\n3. Wenn ich einen Plan nicht umsetzen kann, suche ich nach Alternativen und setze die Arbeit in angepasster Form fort.\n4. Ich lege alle Dokumente am Vorabend bereit und lege sie der Chefin am nächsten Morgen vor.",
+      modelAnswer: "1. Diese Woche steht ein wichtiger Kundentermin bevor. Außerdem steht noch die Quartalsabrechnung an.\n2. Wenn die Kritik berechtigt ist, gebe ich meinen Fehler zu. Aber ich gebe nicht einfach nach.\n3. Wenn ich einen Plan nicht umsetzen kann, suche ich nach Alternativen und setze die Arbeit in angepasster Form fort.\n4. Ich lege alle Dokumente am Vorabend bereit und lege sie der Chefin am nächsten Morgen vor.",
     },
 
     // ── 5. Chatbot Dialog ──
@@ -280,9 +283,9 @@ const reviewModule2: CourseModule = {
 const reviewModule3: CourseModule = {
   id: 103,
   slug: "review-3",
-  title: "Wiederholung 3",
+  title: "Aktivierung 3",
   subtitle: "Module 9–12: kommen, halten, gehen, machen",
-  focusVerb: "Wiederholung",
+  focusVerb: "Aktivierung",
   learningGoals: [
     "Präfixverben aus Modul 9–12 sicher anwenden",
     "Kollokationen mit kommen, halten, gehen, machen bilden",
@@ -308,43 +311,35 @@ const reviewModule3: CourseModule = {
       sentences: [
         {
           text: "Nach der stressigen Woche muss ich endlich mal ___.",
-          options: ["runterkommen", "aufhalten", "losgehen", "weitermachen"],
-          correctIndex: 0,
+          gaps: [{ options: ["runterkommen", "aufhalten", "losgehen", "weitermachen"], correctIndex: 0 }],
         },
         {
           text: "Der Spediteur hat die Lieferung im Depot ___.",
-          options: ["aufgehalten", "angekommen", "abgegangen", "kaputtgemacht"],
-          correctIndex: 0,
+          gaps: [{ options: ["aufgehalten", "angekommen", "abgegangen", "kaputtgemacht"], correctIndex: 0 }],
         },
         {
           text: "Bitte ___ Sie sich an die vereinbarten Lieferzeiten.",
-          options: ["halten", "kommen", "gehen", "machen"],
-          correctIndex: 0,
+          gaps: [{ options: ["halten", "kommen", "gehen", "machen"], correctIndex: 0 }],
         },
         {
           text: "Wir mussten alles ___, weil der Strom ausgefallen war.",
-          options: ["fertigmachen", "runterkommen", "durchhalten", "losgehen"],
-          correctIndex: 2,
+          gaps: [{ options: ["fertigmachen", "runterkommen", "durchhalten", "losgehen"], correctIndex: 2 }],
         },
         {
           text: "Können wir einen Termin für nächste Woche ___?",
-          options: ["ausmachen", "ausgehen", "aushalten", "auskommen"],
-          correctIndex: 0,
+          gaps: [{ options: ["ausmachen", "ausgehen", "aushalten", "auskommen"], correctIndex: 0 }],
         },
         {
           text: "Der Trainer ist den Plan Punkt für Punkt ___.",
-          options: ["durchgegangen", "zurückgehalten", "weitergemacht", "angekommen"],
-          correctIndex: 0,
+          gaps: [{ options: ["durchgegangen", "zurückgehalten", "weitergemacht", "angekommen"], correctIndex: 0 }],
         },
         {
           text: "Sie soll sich bitte nicht verrückt ___ lassen.",
-          options: ["machen", "halten", "kommen", "gehen"],
-          correctIndex: 0,
+          gaps: [{ options: ["machen", "halten", "kommen", "gehen"], correctIndex: 0 }],
         },
         {
           text: "Der Hausmeister wollte, dass wir nichts an der Elektrik ___.",
-          options: ["anfassen", "anmachen", "aufhalten", "angehen"],
-          correctIndex: 0,
+          gaps: [{ options: ["anfassen", "anmachen", "aufhalten", "angehen"], correctIndex: 0 }],
         },
       ],
     },
@@ -387,8 +382,13 @@ const reviewModule3: CourseModule = {
       id: "r3-ex4",
       type: "open-writing",
       skill: "schreiben",
-      instruction: "Übung 4 – Offene Fragen: Beantworte die folgenden Fragen in jeweils 2–3 Sätzen. Verwende dabei die angegebenen Präfixverben.",
-      prompt: "1. Wie kommst du nach einem stressigen Tag runter? (Verwende: runterkommen, ankommen)\n2. Was machst du, um bei einer schwierigen Aufgabe die Nerven zu behalten? (Verwende: durchhalten, festhalten)\n3. Wie gehst du mit Problemen um, die du nicht ändern kannst? (Verwende: losgehen, weitermachen)\n4. Was machst du morgens als Erstes im Büro? (Verwende: anmachen, klarmachen)",
+      instruction: "Übung 4 – Offene Fragen: Beantworte jede Frage in 2–3 Sätzen. Verwende die angegebenen Präfixverben.",
+      questions: [
+        { text: "Wie kommst du nach einem stressigen Tag runter?", mustUseWords: ["runterkommen", "ankommen"] },
+        { text: "Was machst du, um bei einer schwierigen Aufgabe die Nerven zu behalten?", mustUseWords: ["durchhalten", "festhalten"] },
+        { text: "Wie gehst du mit Problemen um, die du nicht ändern kannst?", mustUseWords: ["losgehen", "weitermachen"] },
+        { text: "Was machst du morgens als Erstes im Büro?", mustUseWords: ["anmachen", "klarmachen"] },
+      ],
       mustUseWords: ["runterkommen", "ankommen", "durchhalten", "festhalten", "losgehen", "weitermachen", "anmachen", "klarmachen"],
       modelAnswer: "1. Wenn ich nach einem langen Tag zu Hause ankomme, versuche ich, mit einem Spaziergang runterzukommen.\n2. Ich halte an meinem Plan fest und halte durch, auch wenn es schwierig wird.\n3. Wenn etwas schiefgeht, muss ich trotzdem losgehen und weitermachen – aufgeben ist keine Option.\n4. Als Erstes mache ich den Rechner an und mache meinem Team klar, was heute die Prioritäten sind.",
     },

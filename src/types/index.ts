@@ -60,9 +60,15 @@ export interface MatchingExercise extends ExerciseBase {
   }[];
 }
 
+export interface OpenWritingQuestion {
+  text: string;
+  mustUseWords?: string[];
+}
+
 export interface OpenWritingExercise extends ExerciseBase {
   type: "open-writing";
-  prompt: string;
+  prompt?: string;
+  questions?: OpenWritingQuestion[];
   mustUseWords?: string[];
   modelAnswer: string;
 }
@@ -108,12 +114,16 @@ export interface InfoBoxExercise extends ExerciseBase {
   }[];
 }
 
+export interface ClozeSelectGap {
+  options: string[];
+  correctIndex: number;
+}
+
 export interface ClozeSelectExercise extends ExerciseBase {
   type: "cloze-select";
   sentences: {
-    text: string; // use ___ for the gap
-    options: string[];
-    correctIndex: number;
+    text: string; // use ___ for each gap
+    gaps: ClozeSelectGap[];
   }[];
 }
 

@@ -123,8 +123,16 @@ function verbUsedInText(infinitive: string, text: string): boolean {
   const lower = text.toLowerCase();
   const verb = infinitive.toLowerCase();
 
-  // 1. Direct substring match (handles infinitive, present tense "ziehen", base form)
+  // 1. Direct substring match (handles infinitive and most base forms)
   if (lower.includes(verb)) return true;
+
+  // 2. Stem match: remove "-en"/"-n" ending and check if any word starts with that stem
+  // Handles conjugations like "übernehme" from "übernehmen", "bestehe" from "bestehen"
+  const stemForMatch = verb.endsWith("en") ? verb.slice(0, -2) : verb.endsWith("n") ? verb.slice(0, -1) : null;
+  if (stemForMatch && stemForMatch.length >= 4) {
+    const words = lower.replace(/[.,!?;:"»«()[\]]/g, " ").split(/\s+/);
+    if (words.some((w) => w.startsWith(stemForMatch))) return true;
+  }
 
   // Detect separable prefix
   const prefix = SEPARABLE_PREFIXES.find((p) => verb.startsWith(p) && verb.length > p.length + 2);
@@ -132,14 +140,14 @@ function verbUsedInText(infinitive: string, text: string): boolean {
   if (prefix) {
     const stem = verb.slice(prefix.length); // e.g. "ziehen" from "aufziehen"
 
-    // 2. Past participle: prefix + "ge" + stem-root (e.g. "aufgezogen", "umgezogen")
+    // 3. Past participle: prefix + "ge" + stem-root (e.g. "aufgezogen", "umgezogen")
     // Strip infinitive ending (-en / -n) to get root
     const stemRoot = stem.endsWith("en") ? stem.slice(0, -2) : stem.endsWith("n") ? stem.slice(0, -1) : stem;
     const pastParticiple = `${prefix}ge${stemRoot}en`;
     const pastParticipleShort = `${prefix}ge${stemRoot}t`;
     if (lower.includes(pastParticiple) || lower.includes(pastParticipleShort)) return true;
 
-    // 3. Separated form: prefix appears as a word AND a conjugated stem form appears
+    // 4. Separated form: prefix appears as a word AND a conjugated stem form appears
     // Check that the prefix appears as a standalone word boundary match
     const prefixRegex = new RegExp(`\\b${prefix}\\b`);
     if (prefixRegex.test(lower)) {
@@ -802,6 +810,134 @@ function MatchingExercise({
 }
 
 // --- Open Writing ---
+// --- Multi-Question Writing (Übung 4 style) ---
+function MultiQuestionWriting({
+  exercise,
+  onComplete,
+}: {
+  exercise: Extract<Exercise, { type: "open-writing" }>;
+  onComplete?: () => void;
+}) {
+  const questions = exercise.questions!;
+  const [qTexts, setQTexts] = useState<string[]>(questions.map(() => ""));
+  const [submitted, setSubmitted] = useState(false);
+  const [showModel, setShowModel] = useState(false);
+  const { speak } = useTTS();
+  const { aiFeedback, aiFeedbackLoading, getFeedback, resetAIFeedback } = useAIFeedback();
+
+  const allAnswered = qTexts.every((t) => t.trim().length >= 5);
+
+  const handleSubmit = () => {
+    if (!allAnswered) return;
+    setSubmitted(true);
+    onComplete?.();
+    const combinedPrompt = questions
+      .map((q, i) => `${i + 1}. ${q.text}${q.mustUseWords ? ` (Verwende: ${q.mustUseWords.join(", ")})` : ""}`)
+      .join("\n");
+    const combinedAnswer = qTexts.map((t, i) => `${i + 1}. ${t}`).join("\n\n");
+    const allMustUse = questions.flatMap((q) => q.mustUseWords ?? []);
+    getFeedback({
+      exerciseType: "open-writing",
+      instruction: exercise.instruction,
+      prompt: combinedPrompt,
+      mustUseWords: allMustUse,
+      modelAnswer: exercise.modelAnswer,
+      studentAnswer: combinedAnswer,
+    });
+  };
+
+  const handleReset = () => {
+    setQTexts(questions.map(() => ""));
+    setSubmitted(false);
+    setShowModel(false);
+    resetAIFeedback();
+  };
+
+  return (
+    <div className="space-y-5">
+      <p className="text-sm text-muted font-medium">{exercise.instruction}</p>
+      {questions.map((q, idx) => {
+        const text = qTexts[idx];
+        const usedWords = q.mustUseWords?.filter((w) => verbUsedInText(w, text)) ?? [];
+        return (
+          <div key={idx} className="space-y-2">
+            <p className="text-sm text-foreground font-medium">
+              {idx + 1}. {q.text}
+            </p>
+            {q.mustUseWords && q.mustUseWords.length > 0 && (
+              <div className="flex flex-wrap gap-1.5">
+                <span className="text-xs text-muted">Verwende:</span>
+                {q.mustUseWords.map((word, widx) => (
+                  <span
+                    key={widx}
+                    className={`text-xs px-2 py-0.5 rounded border ${
+                      usedWords.includes(word)
+                        ? "border-emerald-500/50 text-emerald-400 bg-emerald-500/10"
+                        : "border-border text-muted"
+                    }`}
+                  >
+                    {word}
+                  </span>
+                ))}
+              </div>
+            )}
+            <textarea
+              value={text}
+              onChange={(e) =>
+                !submitted &&
+                setQTexts((prev) => prev.map((t, i) => (i === idx ? e.target.value : t)))
+              }
+              placeholder="Schreibe hier..."
+              rows={3}
+              readOnly={submitted}
+              className="w-full bg-navy-800 border border-border rounded-lg p-3 text-sm text-foreground placeholder-muted/50 resize-none outline-none focus:border-gold-500 transition-colors"
+            />
+          </div>
+        );
+      })}
+      <AIFeedbackBox feedback={aiFeedback} loading={aiFeedbackLoading} />
+      {submitted && (
+        <SuccessCelebration message="Antworten eingereicht! Vergleiche mit der Musterlösung. ✍️" />
+      )}
+      <div className="flex gap-2 flex-wrap">
+        {!submitted ? (
+          <button
+            onClick={handleSubmit}
+            disabled={!allAnswered}
+            className="bg-gold-500 text-navy-900 px-4 py-2 rounded-lg text-sm font-medium hover:bg-gold-400 disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            Alle abgeben
+          </button>
+        ) : (
+          <button
+            onClick={handleReset}
+            className="bg-navy-700 text-muted px-4 py-2 rounded-lg text-sm hover:text-foreground transition-colors flex items-center gap-2"
+          >
+            <RotateCcw className="w-3.5 h-3.5" /> Nochmal schreiben
+          </button>
+        )}
+        <button
+          onClick={() => setShowModel(!showModel)}
+          className="bg-navy-700 text-muted px-4 py-2 rounded-lg text-sm hover:text-foreground transition-colors"
+        >
+          {showModel ? "Musterlösung ausblenden" : "Musterlösung anzeigen"}
+        </button>
+      </div>
+      {showModel && (
+        <div className="bg-emerald-500/5 border border-emerald-500/20 rounded-lg p-4">
+          <p className="text-xs text-emerald-400 font-medium mb-2">Musterlösung:</p>
+          <p
+            className="text-sm text-foreground/80 cursor-pointer hover:text-gold-400 transition-colors whitespace-pre-line"
+            onClick={() => speak(exercise.modelAnswer)}
+          >
+            🔊 {exercise.modelAnswer}
+          </p>
+        </div>
+      )}
+    </div>
+  );
+}
+
 function WritingExercise({
   exercise,
   onComplete,
@@ -809,6 +945,9 @@ function WritingExercise({
   exercise: Extract<Exercise, { type: "open-writing" }>;
   onComplete?: () => void;
 }) {
+  if (exercise.questions && exercise.questions.length > 0) {
+    return <MultiQuestionWriting exercise={exercise} onComplete={onComplete} />;
+  }
   const [text, setText] = useState("");
   const [showModel, setShowModel] = useState(false);
   const [submitted, setSubmitted] = useState(false);
@@ -1629,15 +1768,24 @@ function ClozeSelectExercise({
   exercise: Extract<Exercise, { type: "cloze-select" }>;
   onComplete?: () => void;
 }) {
-  const [answers, setAnswers] = useState<Record<number, number>>({});
-  const [checkedItems, setCheckedItems] = useState<Set<number>>(new Set());
+  // answers keyed by "sentIdx-gapIdx"
+  const [answers, setAnswers] = useState<Record<string, number>>({});
+  const [checkedSents, setCheckedSents] = useState<Set<number>>(new Set());
   const [successMsg, setSuccessMsg] = useState<string | null>(null);
 
-  const triggerCheck = (indices: number[], currentAnswers: Record<number, number>) => {
-    const next = new Set([...checkedItems, ...indices]);
-    setCheckedItems(next);
+  const setGapAnswer = (sentIdx: number, gapIdx: number, val: number) => {
+    setAnswers((prev) => ({ ...prev, [`${sentIdx}-${gapIdx}`]: val }));
+  };
+
+  const handleCheck = () => {
+    const answeredSentIndices = new Set<number>(
+      Object.keys(answers).map((k) => Number(k.split("-")[0]))
+    );
+    setCheckedSents(answeredSentIndices);
     const allDone = exercise.sentences.every(
-      (s, i) => next.has(i) && currentAnswers[i] === s.correctIndex
+      (s, i) =>
+        answeredSentIndices.has(i) &&
+        s.gaps.every((gap, gIdx) => answers[`${i}-${gIdx}`] === gap.correctIndex)
     );
     if (allDone) {
       setSuccessMsg(getRandomSuccess());
@@ -1647,7 +1795,7 @@ function ClozeSelectExercise({
 
   const handleReset = () => {
     setAnswers({});
-    setCheckedItems(new Set());
+    setCheckedSents(new Set());
     setSuccessMsg(null);
   };
 
@@ -1657,52 +1805,59 @@ function ClozeSelectExercise({
     <div className="space-y-4">
       <p className="text-sm text-muted font-medium">{exercise.instruction}</p>
       {exercise.sentences.map((sent, idx) => {
-        const isItemChecked = checkedItems.has(idx);
-        const selected = answers[idx];
-        const isCorrect = isItemChecked && selected === sent.correctIndex;
-        const isWrong = isItemChecked && selected !== sent.correctIndex;
-
+        const isChecked = checkedSents.has(idx);
         const parts = sent.text.split("___");
+        const hasWrongGap =
+          isChecked &&
+          sent.gaps.some((gap, gIdx) => answers[`${idx}-${gIdx}`] !== gap.correctIndex);
 
         return (
           <div key={idx} className="space-y-1">
             <p className="text-sm text-foreground flex items-center flex-wrap gap-1">
-              {parts.map((part, pIdx) => (
-                <span key={pIdx}>
-                  {part}
-                  {pIdx < parts.length - 1 && (
-                    <select
-                      value={selected ?? ""}
-                      onChange={(e) =>
-                        !isItemChecked &&
-                        setAnswers((prev) => ({ ...prev, [idx]: Number(e.target.value) }))
-                      }
-                      disabled={isItemChecked}
-                      className={`inline-block mx-1 px-2 py-1 rounded border text-sm bg-navy-800 outline-none transition-colors appearance-none cursor-pointer ${
-                        isCorrect
-                          ? "border-emerald-500 text-emerald-400"
-                          : isWrong
-                          ? "border-coral-500 text-coral-400"
-                          : "border-border text-foreground focus:border-gold-500"
-                      }`}
-                    >
-                      <option value="" disabled>
-                        – wählen –
-                      </option>
-                      {sent.options.map((opt, oIdx) => (
-                        <option key={oIdx} value={oIdx}>
-                          {opt}
+              {parts.map((part, pIdx) => {
+                const gap = pIdx < sent.gaps.length ? sent.gaps[pIdx] : undefined;
+                return (
+                  <span key={pIdx}>
+                    {part}
+                    {gap && (
+                      <select
+                        value={answers[`${idx}-${pIdx}`] ?? ""}
+                        onChange={(e) =>
+                          !isChecked && setGapAnswer(idx, pIdx, Number(e.target.value))
+                        }
+                        disabled={isChecked}
+                        className={`inline-block mx-1 px-2 py-1 rounded border text-sm bg-navy-800 outline-none transition-colors appearance-none cursor-pointer ${
+                          isChecked && answers[`${idx}-${pIdx}`] === gap.correctIndex
+                            ? "border-emerald-500 text-emerald-400"
+                            : isChecked && answers[`${idx}-${pIdx}`] !== gap.correctIndex
+                            ? "border-coral-500 text-coral-400"
+                            : "border-border text-foreground focus:border-gold-500"
+                        }`}
+                      >
+                        <option value="" disabled>
+                          – wählen –
                         </option>
-                      ))}
-                    </select>
-                  )}
-                </span>
-              ))}
+                        {gap.options.map((opt, oIdx) => (
+                          <option key={oIdx} value={oIdx}>
+                            {opt}
+                          </option>
+                        ))}
+                      </select>
+                    )}
+                  </span>
+                );
+              })}
             </p>
-            {isWrong && (
-              <p className="text-xs text-coral-400 ml-1">
-                ✗ Richtig wäre: {sent.options[sent.correctIndex]}
-              </p>
+            {hasWrongGap && (
+              <div className="space-y-0.5">
+                {sent.gaps.map((gap, gIdx) =>
+                  answers[`${idx}-${gIdx}`] !== gap.correctIndex ? (
+                    <p key={gIdx} className="text-xs text-coral-400 ml-1">
+                      ✗ Richtig: „{gap.options[gap.correctIndex]}"
+                    </p>
+                  ) : null
+                )}
+              </div>
             )}
           </div>
         );
@@ -1710,12 +1865,7 @@ function ClozeSelectExercise({
       {successMsg && <SuccessCelebration message={successMsg} />}
       <div className="flex gap-2">
         <button
-          onClick={() =>
-            triggerCheck(
-              Object.keys(answers).map(Number),
-              answers
-            )
-          }
+          onClick={handleCheck}
           disabled={!anyAnswered}
           className="bg-gold-500 text-navy-900 px-4 py-2 rounded-lg text-sm font-medium hover:bg-gold-400 flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
         >
@@ -1735,6 +1885,14 @@ function ClozeSelectExercise({
 }
 
 // --- Chatbot Dialog ---
+function stripMarkdown(text: string): string {
+  return text
+    .replace(/\*\*(.+?)\*\*/g, "$1")
+    .replace(/\*(.+?)\*/g, "$1")
+    .replace(/__(.+?)__/g, "$1")
+    .replace(/_(.+?)_/g, "$1");
+}
+
 interface ChatMessage {
   role: "assistant" | "user";
   text: string;
@@ -1801,7 +1959,7 @@ function ChatbotExercise({
       }
 
       const data = await res.json();
-      setMessages((prev) => [...prev, { role: "assistant", text: data.reply }]);
+      setMessages((prev) => [...prev, { role: "assistant", text: stripMarkdown(data.reply) }]);
 
       if (newTurn >= exercise.maxTurns) {
         setFinished(true);
