@@ -1496,185 +1496,367 @@ const module2: CourseModule = {
     }
   ],
   "exercises": [
-    {
-      "id": "m2-mc-1",
-      "type": "multiple-choice",
-      "skill": "lesen",
-      "instruction": "Beantworte die Fragen zur Geschichte «Alles mitgebracht?».",
-      "questions": [
-        {
-          "question": "Wessen Geburtstag ist es?",
-          "options": [
-            "Alex",
-            "Jule",
-            "Ben",
-            "Mehmet"
-          ],
-          "correctIndex": 1
-        },
-        {
-          "question": "Was wollen die Kollegen für Jule machen?",
-          "options": [
-            "Eine große Party organisieren",
-            "Eine nette Geste: Kaffee, Kuchen, zehn Minuten Pause",
-            "Einen Ausflug planen",
-            "Blumen kaufen"
-          ],
-          "correctIndex": 1
-        },
-        {
-          "question": "Was sagt Jule über ihren Geburtstag?",
-          "options": [
-            "Sie freut sich auf die Party.",
-            "Sie will keinen Wirbel.",
-            "Sie hat Urlaub genommen.",
-            "Sie feiert nicht."
-          ],
-          "correctIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "m2-tf-1",
-      "type": "true-false",
-      "skill": "lesen",
-      "instruction": "Richtig oder falsch?",
-      "statements": [
-        {
-          "statement": "Jule will, dass die Kollegen viel Aufwand betreiben.",
-          "correct": false
-        },
-        {
-          "statement": "Die Überraschung beinhaltet Kaffee und Kuchen.",
-          "correct": true
-        },
-        {
-          "statement": "Jule hat seit Tagen gesagt, man soll keinen Wirbel machen.",
-          "correct": true
-        },
-        {
-          "statement": "Die Kollegen ignorieren Jules Wunsch komplett.",
-          "correct": false
-        }
-      ]
-    },
-    {
-      "id": "m2-gf-1",
-      "type": "gap-fill",
-      "skill": "hoeren",
-      "instruction": "Ergänze die Sätze mit dem richtigen Verb mit «bringen».",
-      "sentences": [
-        {
-          "text": "Was hast du zur Party ___?",
-          "answer": "mitgebracht"
-        },
-        {
-          "text": "Wer ___ ihr die Nachricht bei?",
-          "answer": "bringt"
-        },
-        {
-          "text": "Das ___ mich echt auf die Palme.",
-          "answer": "bringt"
-        },
-        {
-          "text": "Kannst du das bitte auf den Punkt ___?",
-          "answer": "bringen"
-        },
-        {
-          "text": "Ben ___ alle zum Lachen.",
-          "answer": "bringt"
-        },
-        {
-          "text": "Wir ___ das schon in Ordnung.",
-          "answer": "bringen"
-        }
-      ]
-    },
-    {
-      "id": "m2-match-1",
-      "type": "matching",
-      "skill": "hoeren",
-      "instruction": "Verbinde die Ausdrücke mit den passenden Erklärungen.",
-      "pairs": [
-        {
-          "left": "auf die Palme bringen",
-          "right": "jemanden sehr wütend machen"
-        },
-        {
-          "left": "auf den Punkt bringen",
-          "right": "etwas klar zusammenfassen"
-        },
-        {
-          "left": "zum Lachen bringen",
-          "right": "jemanden unterhalten"
-        },
-        {
-          "left": "in Ordnung bringen",
-          "right": "ein Problem lösen"
-        },
-        {
-          "left": "durcheinanderbringen",
-          "right": "jemanden verwirren"
-        },
-        {
-          "left": "rüberbringen",
-          "right": "eine Botschaft vermitteln"
-        }
-      ]
-    },
-    {
-      "id": "m2-speak-1",
-      "type": "speaking",
-      "skill": "sprechen",
-      "prompt": "Erzähle in 4–5 Sätzen: Was passiert in der Geschichte? Benutze mindestens 3 Verben mit «bringen».",
-      "mustUseWords": [
-        "mitbringen",
-        "beibringen",
-        "auf die Palme bringen"
-      ],
-      "instruction": "Sprich laut und benutze die Pflicht-Ausdrücke.",
-      "modelAnswer": "Jule hat Geburtstag und die Kollegen bringen Kaffee und Kuchen mit. Niemand weiß, wie man ihr die Überraschung beibringen soll. Als der Plan fast schiefgeht, bringt das alle fast auf die Palme."
-    },
-    {
-      "id": "m2-write-1",
-      "type": "open-writing",
-      "skill": "schreiben",
-      "prompt": "Schreibe 5–7 Sätze über eine Geburtstagsüberraschung. Benutze mindestens 4 Ausdrücke mit «bringen».",
-      "mustUseWords": [
-        "mitbringen",
-        "zum Lachen bringen",
-        "in Ordnung bringen",
-        "auf den Punkt bringen"
-      ],
-      "instruction": "Schreibe deinen Text unten.",
-      "modelAnswer": "Letzte Woche hatten wir eine Geburtstagsüberraschung für Jule geplant. Alle sollten etwas mitbringen. Ben hat versucht, Jule zum Lachen zu bringen, während wir alles vorbereitet haben. Am Ende hat Jule gesagt, wir sollen es auf den Punkt bringen und einfach feiern. Und wir haben alles in Ordnung gebracht."
-    },
-    {
-      "id": "m2-speak-2",
-      "type": "speaking",
-      "skill": "sprechen",
-      "prompt": "Beschreibe eine Situation, in der du jemandem eine Überraschung bereitet hast. Benutze mindestens 3 Redewendungen mit «bringen».",
-      "mustUseWords": [
-        "auf den Punkt bringen",
-        "in Ordnung bringen",
-        "zum Lachen bringen"
-      ],
-      "instruction": "Sprich frei und verwende die Redewendungen.",
-      "modelAnswer": "Letzte Woche wollte ich meiner Freundin eine Überraschung bereiten. Ich habe versucht, sie zum Lachen zu bringen, während ich alles vorbereitete. Am Ende sagte sie: Bring es auf den Punkt, was gibt es? Ich musste noch ein paar Dinge in Ordnung bringen, aber es hat geklappt."
-    },
-    {
-      "id": "m2-write-2",
-      "type": "open-writing",
-      "skill": "schreiben",
-      "prompt": "Schreibe 4–5 Sätze aus Jules Perspektive über ihren Geburtstag im Büro. Benutze mindestens 3 Ausdrücke mit «bringen».",
-      "mustUseWords": [
-        "beibringen",
-        "durcheinanderbringen",
-        "rüberbringen"
-      ],
-      "instruction": "Schreibe deinen Text unten.",
-      "modelAnswer": "Die Kollegen wollten mir etwas Liebes beibringen, das war wirklich süß. Erst hat mich die ganze Aufregung etwas durcheinandergebracht. Aber die Botschaft haben sie gut rübergebracht: Wir schätzen dich. Das war das schönste Geburtstagsgeschenk."
-    }
+      {
+        "id": "m2-ex1",
+        "type": "true-false",
+        "skill": "lesen",
+        "instruction": "Übung 1 – Richtig oder falsch? Lies die Aussagen und entscheide: Stimmt das mit der Geschichte überein?",
+        "statements": [
+          {
+            "statement": "Alex bringt zuerst ein paar Unterlagen zu Frau Krüger rüber.",
+            "correct": true
+          },
+          {
+            "statement": "Die Torte wird direkt ins Büro geliefert.",
+            "correct": false
+          },
+          {
+            "statement": "Nora ist eine Kollegin von Alex.",
+            "correct": false
+          },
+          {
+            "statement": "Der Lieferant versucht mehrfach, sich herauszureden.",
+            "correct": true
+          },
+          {
+            "statement": "Jule ist über die Geburtstagsüberraschung verärgert.",
+            "correct": false
+          }
+        ]
+      },
+      {
+        "id": "m2-ex2",
+        "type": "gap-fill",
+        "skill": "lesen",
+        "instruction": "Übung 2 – Lückentext: Schreibe das passende Verb in der richtigen Form. Achte auf die Verbform.",
+        "sentences": [
+          {
+            "text": "Wir müssen ihm das sanft ___.",
+            "answer": "beibringen"
+          },
+          {
+            "text": "Mehmet hat die Kerzen ___.",
+            "answer": "mitgebracht"
+          },
+          {
+            "text": "Ich muss die Torte so schnell wie möglich ___.",
+            "answer": "herbringen"
+          },
+          {
+            "text": "Wir versuchen, die Torte im Kühlschrank ___.",
+            "answer": "unterzubringen"
+          },
+          {
+            "text": "Alex ___ dem Lieferanten die Infos so ruhig wie möglich.",
+            "answer": "überbringt"
+          },
+          {
+            "text": "Danach ___ ich den Müll ___.",
+            "answer": "bringe ... raus"
+          }
+        ]
+      },
+      {
+        "id": "m2-ex3",
+        "type": "verb-grouping",
+        "skill": "lesen",
+        "instruction": "Übung 3 – Verben in Gruppen: Ordne die bringen-Verben den richtigen Kategorien zu.",
+        "categories": [
+          {
+            "name": "Transport (A → B)",
+            "items": [
+              "rüberbringen",
+              "mitbringen",
+              "herbringen",
+              "wegbringen"
+            ]
+          },
+          {
+            "name": "Einordnung & Platzierung",
+            "items": [
+              "unterbringen",
+              "reinbringen",
+              "rausbringen",
+              "zurückbringen"
+            ]
+          },
+          {
+            "name": "Übertragene Bedeutung",
+            "items": [
+              "beibringen",
+              "überbringen",
+              "einbringen"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "m2-ex4",
+        "type": "gap-fill",
+        "skill": "lesen",
+        "instruction": "Übung 4 – Passendes Verb einsetzen: Ergänze das passende Verb aus dem Kasten.",
+        "wordBank": [
+          "mitgebracht",
+          "hergebracht",
+          "untergebracht",
+          "rausgebracht",
+          "zurückgebracht",
+          "eingebracht"
+        ],
+        "sentences": [
+          {
+            "text": "Mehmet hat die Kerzen ___.",
+            "answer": "mitgebracht"
+          },
+          {
+            "text": "Alex hat die Torte so schnell wie möglich ins Büro ___.",
+            "answer": "hergebracht"
+          },
+          {
+            "text": "Die Torte wurde im Kühlschrank ___.",
+            "answer": "untergebracht"
+          },
+          {
+            "text": "Am Ende hat Alex den Müll ___.",
+            "answer": "rausgebracht"
+          },
+          {
+            "text": "Mehmet hat die Teller in den Schrank ___.",
+            "answer": "zurückgebracht"
+          },
+          {
+            "text": "Die Kollegen haben sich alle irgendwie ___.",
+            "answer": "eingebracht"
+          }
+        ]
+      },
+      {
+        "id": "m2-ex5",
+        "type": "matching",
+        "skill": "lesen",
+        "instruction": "Übung 5 – Redewendungen verbinden: Welcher Ausdruck passt zu welcher Situation?",
+        "pairs": [
+          {
+            "left": "Jemand plant heimlich eine Überraschung.",
+            "right": "etwas im Schilde führen"
+          },
+          {
+            "left": "Die falsche Lieferung hat den Plan durchkreuzt.",
+            "right": "einen Strich durch die Rechnung machen"
+          },
+          {
+            "left": "Frau Krüger sagt: Bitte diplomatisch bleiben.",
+            "right": "den Ball flach halten"
+          },
+          {
+            "left": "Mehmet benutzt LED-Teelichter statt echten Kerzen.",
+            "right": "auf Nummer sicher gehen"
+          },
+          {
+            "left": "Der Lieferant sucht Ausreden.",
+            "right": "sich herausreden"
+          },
+          {
+            "left": "Die Feier soll klein bleiben – nicht übertrieben.",
+            "right": "keinen Wirbel machen"
+          }
+        ]
+      },
+      {
+        "id": "m2-ex6",
+        "type": "sentence-completion",
+        "skill": "schreiben",
+        "instruction": "Übung 6 – Satzergänzungen: Ergänze die Sätze sinnvoll auf Deutsch.",
+        "sentences": [
+          {
+            "prompt": "Du siehst aus, als wäre dir eine Laus über die ___ gelaufen.",
+            "modelAnswer": "Leber"
+          },
+          {
+            "prompt": "Das macht uns jetzt einen Strich durch die ___.",
+            "modelAnswer": "Rechnung"
+          },
+          {
+            "prompt": "Bitte den Ball flach ___.",
+            "modelAnswer": "halten"
+          },
+          {
+            "prompt": "Was führt ihr denn im ___?",
+            "modelAnswer": "Schilde"
+          },
+          {
+            "prompt": "Wir bleiben einfach bei den ___.",
+            "modelAnswer": "Fakten"
+          },
+          {
+            "prompt": "Die Feier war toll – und das ohne großen ___.",
+            "modelAnswer": "Aufriss"
+          }
+        ]
+      },
+      {
+        "id": "m2-ex7",
+        "type": "error-correction",
+        "skill": "schreiben",
+        "instruction": "Übung 7 – Fehler finden: Jeder Satz enthält genau einen Fehler. Schreibe den korrigierten Satz.",
+        "sentences": [
+          {
+            "incorrect": "Ich bringe die Unterlagen zu Frau Krüger mit.",
+            "correct": "Ich bringe die Unterlagen zu Frau Krüger rüber.",
+            "explanation": "rüberbringen = etwas hinüberbringen. mitbringen = etwas dabei haben."
+          },
+          {
+            "incorrect": "Wir müssen ihm das sanft herbringen.",
+            "correct": "Wir müssen ihm das sanft beibringen.",
+            "explanation": "beibringen = jemandem etwas vorsichtig erklären. herbringen = etwas transportieren."
+          },
+          {
+            "incorrect": "Die Torte war so groß, wir konnten sie nicht einbringen.",
+            "correct": "Die Torte war so groß, wir konnten sie nicht unterbringen.",
+            "explanation": "unterbringen = verstauen. einbringen = sich beteiligen."
+          },
+          {
+            "incorrect": "Alex überbringt den Müll nach der Feier.",
+            "correct": "Alex bringt den Müll nach der Feier raus.",
+            "explanation": "rausbringen = nach draußen bringen. überbringen = formell Informationen weitergeben."
+          },
+          {
+            "incorrect": "Alle haben sich irgendwie mitgebracht.",
+            "correct": "Alle haben sich irgendwie eingebracht.",
+            "explanation": "einbringen = sich mit Ideen oder Hilfe beteiligen. mitbringen = etwas dabei haben."
+          }
+        ]
+      },
+      {
+        "id": "m2-ex8",
+        "type": "open-writing",
+        "skill": "schreiben",
+        "instruction": "Übung 8 – Verben erklären: Erkläre die folgenden bringen-Verben mit eigenen Worten auf Deutsch.",
+        "prompt": "Erkläre auf Deutsch, was diese bringen-Verben bedeuten. Schreibe für jedes Verb mindestens einen Satz mit einem eigenen Beispiel:\n\n- mitbringen\n- beibringen\n- unterbringen\n- herbringen\n- einbringen\n- rüberbringen",
+        "mustUseWords": [
+          "mitbringen",
+          "beibringen",
+          "unterbringen",
+          "herbringen",
+          "einbringen",
+          "rüberbringen"
+        ],
+        "modelAnswer": "Mitbringen bedeutet, etwas dabei zu haben und mitzunehmen. Beibringen heißt, jemandem etwas vorsichtig erklären oder lehren. Unterbringen bedeutet, etwas irgendwo passend verstauen. Herbringen heißt, etwas an den eigenen Standort bringen. Einbringen bedeutet, sich mit Ideen oder Hilfe beteiligen. Rüberbringen heißt, etwas zu einer anderen Person hinüberbringen."
+      },
+      {
+        "id": "m2-ex9",
+        "type": "info-box",
+        "skill": "lesen",
+        "instruction": "Übung 9 – Doppelte Bedeutungen: Viele bringen-Verben haben mehr als eine Bedeutung!",
+        "content": "Viele bringen-Verben, die du in der Geschichte kennengelernt hast, haben im Alltag noch eine weitere Bedeutung. Schau dir die Beispiele unten an – erkennst du den Unterschied?",
+        "verbExamples": [
+          {
+            "verb": "beibringen",
+            "meanings": [
+              {
+                "label": "Im Text",
+                "example": "Wir müssen ihm das sanft beibringen. (vorsichtig erklären)"
+              },
+              {
+                "label": "Weitere Bedeutung",
+                "example": "Kannst du mir Gitarre beibringen? (jemandem etwas lehren)"
+              }
+            ]
+          },
+          {
+            "verb": "einbringen",
+            "meanings": [
+              {
+                "label": "Im Text",
+                "example": "Wir haben uns alle irgendwie eingebracht. (sich beteiligen)"
+              },
+              {
+                "label": "Weitere Bedeutung",
+                "example": "Die Investition hat viel Gewinn eingebracht. (Ertrag erzielen)"
+              }
+            ]
+          },
+          {
+            "verb": "unterbringen",
+            "meanings": [
+              {
+                "label": "Im Text",
+                "example": "Die Torte im Kühlschrank unterbringen. (verstauen)"
+              },
+              {
+                "label": "Weitere Bedeutung",
+                "example": "Der Gast wurde im Hotel untergebracht. (Unterkunft geben)"
+              }
+            ]
+          },
+          {
+            "verb": "rüberbringen",
+            "meanings": [
+              {
+                "label": "Im Text",
+                "example": "Unterlagen zu Frau Krüger rüberbringen. (transportieren)"
+              },
+              {
+                "label": "Weitere Bedeutung",
+                "example": "Er bringt seine Ideen gut rüber. (verständlich vermitteln)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "m2-ex10",
+        "type": "multiple-choice",
+        "skill": "lesen",
+        "instruction": "Übung 10 – Welche Bedeutung? Wähle die richtige Bedeutung des Verbs im jeweiligen Satz.",
+        "questions": [
+          {
+            "question": "\"Kannst du mir bitte Schach beibringen?\" – Was bedeutet beibringen hier?",
+            "options": [
+              "jemandem etwas vorsichtig erklären",
+              "jemandem etwas lehren",
+              "etwas transportieren"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "question": "\"Die Firma hat letztes Jahr viel Gewinn eingebracht.\" – Was bedeutet einbringen hier?",
+            "options": [
+              "sich beteiligen",
+              "Ertrag erzielen",
+              "etwas hineintragen"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "question": "\"Im Hotel wurde der Gast im dritten Stock untergebracht.\" – Was bedeutet unterbringen hier?",
+            "options": [
+              "verstauen",
+              "jemandem eine Unterkunft geben",
+              "verstecken"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "question": "\"Er bringt seine Argumente gut rüber.\" – Was bedeutet rüberbringen hier?",
+            "options": [
+              "etwas transportieren",
+              "verständlich vermitteln",
+              "etwas zurückbringen"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "question": "\"Der Botschafter hat die Nachricht offiziell überbracht.\" – Was bedeutet überbringen hier?",
+            "options": [
+              "etwas transportieren",
+              "etwas lehren",
+              "formell eine Information weitergeben"
+            ],
+            "correctIndex": 2
+          }
+        ]
+      }
   ],
   "reviewItems": []
 };
@@ -2543,185 +2725,366 @@ const module3: CourseModule = {
     }
   ],
   "exercises": [
-    {
-      "id": "m3-mc-1",
-      "type": "multiple-choice",
-      "skill": "lesen",
-      "instruction": "Beantworte die Fragen zur Geschichte «Man nehme, so man hat».",
-      "questions": [
-        {
-          "question": "Was ist heute bei Alex geplant?",
-          "options": [
-            "Ein Umzug",
-            "Ein Spieleabend",
-            "Ein Geburtstag",
-            "Ein Meeting"
-          ],
-          "correctIndex": 1
-        },
-        {
-          "question": "Was bringt Ben mit?",
-          "options": [
-            "Pizza und Cola",
-            "Wein und ein Spiel",
-            "Kuchen und Kaffee",
-            "Nichts"
-          ],
-          "correctIndex": 1
-        },
-        {
-          "question": "Warum ist der Abend 'ein Selbstläufer'?",
-          "options": [
-            "Weil das Essen bestellt wird",
-            "Weil man nur kochen, lachen und spielen muss",
-            "Weil Ben alles organisiert",
-            "Weil es eine App gibt"
-          ],
-          "correctIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "m3-tf-1",
-      "type": "true-false",
-      "skill": "lesen",
-      "instruction": "Richtig oder falsch? Entscheide basierend auf der Geschichte.",
-      "statements": [
-        {
-          "statement": "Alex organisiert den Spieleabend.",
-          "correct": true
-        },
-        {
-          "statement": "Niemand bringt etwas zum Essen mit.",
-          "correct": false
-        },
-        {
-          "statement": "Ben nimmt sich kein Blatt vor den Mund.",
-          "correct": true
-        },
-        {
-          "statement": "Das Kochen geht schneller als geplant.",
-          "correct": false
-        },
-        {
-          "statement": "Am Ende ist der Abend ein Selbstläufer.",
-          "correct": true
-        }
-      ]
-    },
-    {
-      "id": "m3-gf-1",
-      "type": "gap-fill",
-      "skill": "hoeren",
-      "instruction": "Ergänze die Sätze mit dem richtigen Verb mit «nehmen».",
-      "sentences": [
-        {
-          "text": "Ich habe mir ___, heute früh zu kochen.",
-          "answer": "vorgenommen"
-        },
-        {
-          "text": "Das Kochen ___ mehr Zeit in ___ als geplant.",
-          "answer": "Anspruch"
-        },
-        {
-          "text": "Ben ___ sich kein Blatt vor den Mund.",
-          "answer": "nimmt"
-        },
-        {
-          "text": "Die Verspätung ___ wir in Kauf.",
-          "answer": "nehmen"
-        },
-        {
-          "text": "Du ___ mich doch auf den Arm!",
-          "answer": "nimmst"
-        }
-      ]
-    },
-    {
-      "id": "m3-match-1",
-      "type": "matching",
-      "skill": "hoeren",
-      "instruction": "Verbinde die Ausdrücke mit den passenden Erklärungen.",
-      "pairs": [
-        {
-          "left": "mitnehmen",
-          "right": "etwas an einen anderen Ort bringen"
-        },
-        {
-          "left": "vornehmen",
-          "right": "sich etwas fest planen"
-        },
-        {
-          "left": "in Kauf nehmen",
-          "right": "einen Nachteil akzeptieren"
-        },
-        {
-          "left": "auf den Arm nehmen",
-          "right": "jemanden scherzhaft veralbern"
-        },
-        {
-          "left": "Rücksicht nehmen",
-          "right": "auf andere achten"
-        },
-        {
-          "left": "kein Blatt vor den Mund nehmen",
-          "right": "direkt sagen, was man denkt"
-        }
-      ]
-    },
-    {
-      "id": "m3-speak-1",
-      "type": "speaking",
-      "skill": "sprechen",
-      "prompt": "Erzähle über einen Spieleabend oder Abend mit Freunden. Benutze mindestens 3 Ausdrücke mit «nehmen».",
-      "mustUseWords": [
-        "mitnehmen",
-        "vornehmen",
-        "in Kauf nehmen"
-      ],
-      "instruction": "Sprich laut und benutze die Pflicht-Ausdrücke.",
-      "modelAnswer": "Letzte Woche habe ich mir vorgenommen, einen Spieleabend zu organisieren. Alle haben etwas zum Essen mitgenommen. Dass es etwas lauter wurde, haben die Nachbarn zum Glück in Kauf genommen."
-    },
-    {
-      "id": "m3-write-1",
-      "type": "open-writing",
-      "skill": "schreiben",
-      "prompt": "Schreibe 5–7 Sätze über einen Abend mit Freunden. Benutze mindestens 4 Ausdrücke mit «nehmen».",
-      "mustUseWords": [
-        "mitnehmen",
-        "vornehmen",
-        "übernehmen",
-        "annehmen"
-      ],
-      "instruction": "Schreibe deinen Text unten.",
-      "modelAnswer": "Ich habe mir vorgenommen, einen Kochabend zu organisieren. Alle sollten eine Zutat mitnehmen. Ben hat angenommen, dass ich alles plane, aber Jule hat das Dessert übernommen. Am Ende war der Abend perfekt."
-    },
-    {
-      "id": "m3-speak-2",
-      "type": "speaking",
-      "skill": "sprechen",
-      "prompt": "Beschreibe einen Abend, an dem etwas mehr Zeit in Anspruch genommen hat als geplant. Benutze mindestens 3 Redewendungen mit «nehmen».",
-      "mustUseWords": [
-        "in Anspruch nehmen",
-        "auf den Arm nehmen",
-        "Rücksicht nehmen"
-      ],
-      "instruction": "Sprich frei und verwende die Redewendungen.",
-      "modelAnswer": "Letzte Woche hat das Kochen viel mehr Zeit in Anspruch genommen als gedacht. Mein Freund hat mich deswegen auf den Arm genommen. Aber er hat auch Rücksicht genommen und mir beim Abwasch geholfen."
-    },
-    {
-      "id": "m3-write-2",
-      "type": "open-writing",
-      "skill": "schreiben",
-      "prompt": "Schreibe 4–5 Sätze über die Planung eines Abends mit Freunden. Benutze mindestens 3 Ausdrücke mit «nehmen».",
-      "mustUseWords": [
-        "vornehmen",
-        "in Kauf nehmen",
-        "übernehmen"
-      ],
-      "instruction": "Schreibe deinen Text unten.",
-      "modelAnswer": "Ich hatte mir vorgenommen, einen Kochabend zu veranstalten. Dass es teurer wird als geplant, habe ich in Kauf genommen. Jule hat freiwillig das Dessert übernommen, und am Ende waren alle begeistert."
-    }
+      {
+        "id": "m3-ex1",
+        "type": "true-false",
+        "skill": "lesen",
+        "instruction": "Übung 1 – Richtig oder falsch? Lies die Aussagen und entscheide: Stimmt das mit der Geschichte überein?",
+        "statements": [
+          {
+            "statement": "Alex organisiert einen Spieleabend bei sich zu Hause.",
+            "correct": true
+          },
+          {
+            "statement": "Ben bringt wie versprochen Wein und ein Spiel mit.",
+            "correct": false
+          },
+          {
+            "statement": "Nora wird von Alex spontan zum Spieleabend eingeladen.",
+            "correct": true
+          },
+          {
+            "statement": "Mehmet spielt von Anfang an begeistert mit.",
+            "correct": false
+          },
+          {
+            "statement": "Am Ende gewinnt Mehmet überraschend die zweite Runde.",
+            "correct": true
+          }
+        ]
+      },
+      {
+        "id": "m3-ex2",
+        "type": "gap-fill",
+        "skill": "lesen",
+        "instruction": "Übung 2 – Lückentext: Schreibe das passende Verb in der richtigen Form.",
+        "sentences": [
+          {
+            "text": "Ich ___ ein Paket für Nora ___.",
+            "answer": "nehme ... an"
+          },
+          {
+            "text": "Dem Rezept ___ ich: erst die Zwiebeln anbraten.",
+            "answer": "entnehme"
+          },
+          {
+            "text": "Plötzlich ___ ich einen verbrannten Geruch ___.",
+            "answer": "nehme ... wahr"
+          },
+          {
+            "text": "Ben ___ die Jacke ___.",
+            "answer": "nimmt ... ab"
+          },
+          {
+            "text": "Jule ___ mir den Kochlöffel aus der Hand.",
+            "answer": "nimmt"
+          },
+          {
+            "text": "Wir ___ die Plätze am Tisch ___.",
+            "answer": "nehmen ... ein"
+          }
+        ]
+      },
+      {
+        "id": "m3-ex3",
+        "type": "verb-grouping",
+        "skill": "lesen",
+        "instruction": "Übung 3 – Verben in Gruppen: Ordne die nehmen-Verben den richtigen Kategorien zu.",
+        "categories": [
+          {
+            "name": "Greifen & Verwenden",
+            "items": [
+              "nehmen",
+              "mitnehmen",
+              "dazunehmen",
+              "abnehmen"
+            ]
+          },
+          {
+            "name": "Sinne & Information",
+            "items": [
+              "wahrnehmen",
+              "entnehmen",
+              "annehmen"
+            ]
+          },
+          {
+            "name": "Rolle & Beteiligung",
+            "items": [
+              "übernehmen",
+              "einnehmen",
+              "teilnehmen"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "m3-ex4",
+        "type": "gap-fill",
+        "skill": "lesen",
+        "instruction": "Übung 4 – Passendes Verb einsetzen: Ergänze das passende Verb aus dem Kasten.",
+        "wordBank": [
+          "angenommen",
+          "entnommen",
+          "wahrgenommen",
+          "mitgenommen",
+          "übernommen",
+          "teilgenommen"
+        ],
+        "sentences": [
+          {
+            "text": "Alex hat das Paket für Nora ___.",
+            "answer": "angenommen"
+          },
+          {
+            "text": "Dem Rezept hat Jule die Anweisungen ___.",
+            "answer": "entnommen"
+          },
+          {
+            "text": "Alex hat plötzlich einen verbrannten Geruch ___.",
+            "answer": "wahrgenommen"
+          },
+          {
+            "text": "Ben hat die Tasche leider nicht aus dem Bus ___.",
+            "answer": "mitgenommen"
+          },
+          {
+            "text": "Jule hat die Rettung des Essens ___.",
+            "answer": "übernommen"
+          },
+          {
+            "text": "Mehmet hat überraschend an der zweiten Runde ___.",
+            "answer": "teilgenommen"
+          }
+        ]
+      },
+      {
+        "id": "m3-ex5",
+        "type": "matching",
+        "skill": "lesen",
+        "instruction": "Übung 5 – Redewendungen verbinden: Welcher Ausdruck passt zu welcher Situation?",
+        "pairs": [
+          {
+            "left": "Alles läuft von allein ohne Probleme.",
+            "right": "ein Selbstläufer"
+          },
+          {
+            "left": "Jemand sagt plötzlich etwas Ungeplantes.",
+            "right": "Aus jemandem platzt es heraus."
+          },
+          {
+            "left": "In der Hektik passiert ein Fehler.",
+            "right": "im Eifer des Gefechts"
+          },
+          {
+            "left": "Man weiß genau, wie bestimmte Leute ticken.",
+            "right": "seine Pappenheimer kennen"
+          },
+          {
+            "left": "Die Zeit vergeht, ohne dass man es bemerkt.",
+            "right": "das Zeitgefühl verlieren"
+          },
+          {
+            "left": "Man ändert seine Meinung noch einmal.",
+            "right": "es sich anders überlegen"
+          }
+        ]
+      },
+      {
+        "id": "m3-ex6",
+        "type": "sentence-completion",
+        "skill": "schreiben",
+        "instruction": "Übung 6 – Satzergänzungen: Ergänze die Sätze sinnvoll auf Deutsch.",
+        "sentences": [
+          {
+            "prompt": "Ben hat die Tasche im Eifer des ___ stehen lassen.",
+            "modelAnswer": "Gefechts"
+          },
+          {
+            "prompt": "Ich kenne doch meine ___.",
+            "modelAnswer": "Pappenheimer"
+          },
+          {
+            "prompt": "Am Spieleabend haben wir das Zeitgefühl komplett ___.",
+            "modelAnswer": "verloren"
+          },
+          {
+            "prompt": "Eigentlich war der Abend ein ___.",
+            "modelAnswer": "Selbstläufer"
+          },
+          {
+            "prompt": "Mehmet hat die Stimmung ___.",
+            "modelAnswer": "gerettet"
+          },
+          {
+            "prompt": "Mach mich jetzt bitte nicht ___.",
+            "modelAnswer": "fertig"
+          }
+        ]
+      },
+      {
+        "id": "m3-ex7",
+        "type": "error-correction",
+        "skill": "schreiben",
+        "instruction": "Übung 7 – Fehler finden: Jeder Satz enthält genau einen Fehler. Schreibe den korrigierten Satz.",
+        "sentences": [
+          {
+            "incorrect": "Ich nehme ein Paket für meine Nachbarin wahr.",
+            "correct": "Ich nehme ein Paket für meine Nachbarin an.",
+            "explanation": "annehmen = entgegennehmen. wahrnehmen = bemerken."
+          },
+          {
+            "incorrect": "Ben nimmt die Jacke ein.",
+            "correct": "Ben nimmt die Jacke ab.",
+            "explanation": "abnehmen = Kleidung ablegen. einnehmen = einen Platz besetzen."
+          },
+          {
+            "incorrect": "Wir entnehmen an der zweiten Runde.",
+            "correct": "Wir nehmen an der zweiten Runde teil.",
+            "explanation": "teilnehmen = mitmachen. entnehmen = herauslesen."
+          },
+          {
+            "incorrect": "Plötzlich habe ich einen Geruch angenommen.",
+            "correct": "Plötzlich habe ich einen Geruch wahrgenommen.",
+            "explanation": "wahrnehmen = bemerken. annehmen = entgegennehmen."
+          },
+          {
+            "incorrect": "Jule hat die Aufgabe eingenommen.",
+            "correct": "Jule hat die Aufgabe übernommen.",
+            "explanation": "übernehmen = Verantwortung an sich nehmen. einnehmen = Platz besetzen."
+          }
+        ]
+      },
+      {
+        "id": "m3-ex8",
+        "type": "open-writing",
+        "skill": "schreiben",
+        "instruction": "Übung 8 – Verben erklären: Erkläre die folgenden nehmen-Verben mit eigenen Worten auf Deutsch.",
+        "prompt": "Erkläre auf Deutsch, was diese nehmen-Verben bedeuten. Schreibe für jedes Verb mindestens einen Satz mit einem eigenen Beispiel:\n\n- annehmen\n- wahrnehmen\n- teilnehmen\n- übernehmen\n- einnehmen\n- mitnehmen",
+        "mustUseWords": [
+          "annehmen",
+          "wahrnehmen",
+          "teilnehmen",
+          "übernehmen",
+          "einnehmen",
+          "mitnehmen"
+        ],
+        "modelAnswer": "Annehmen bedeutet, etwas entgegenzunehmen, z. B. ein Paket. Wahrnehmen heißt, etwas bemerken oder registrieren, z. B. einen Geruch. Teilnehmen bedeutet, bei etwas mitzumachen. Übernehmen heißt, eine Aufgabe oder Verantwortung an sich zu nehmen. Einnehmen bedeutet, einen Platz zu besetzen. Mitnehmen heißt, etwas dabei zu haben."
+      },
+      {
+        "id": "m3-ex9",
+        "type": "info-box",
+        "skill": "lesen",
+        "instruction": "Übung 9 – Doppelte Bedeutungen: Viele nehmen-Verben haben mehr als eine Bedeutung!",
+        "content": "Viele nehmen-Verben, die du in der Geschichte kennengelernt hast, haben im Alltag noch eine weitere Bedeutung. Schau dir die Beispiele unten an – erkennst du den Unterschied?",
+        "verbExamples": [
+          {
+            "verb": "annehmen",
+            "meanings": [
+              {
+                "label": "Im Text",
+                "example": "Ich nehme das Paket für Nora an. (entgegennehmen)"
+              },
+              {
+                "label": "Weitere Bedeutung",
+                "example": "Ich nehme an, dass er bald kommt. (vermuten)"
+              }
+            ]
+          },
+          {
+            "verb": "einnehmen",
+            "meanings": [
+              {
+                "label": "Im Text",
+                "example": "Wir nehmen die Plätze am Tisch ein. (einen Platz besetzen)"
+              },
+              {
+                "label": "Weitere Bedeutung",
+                "example": "Er nimmt dreimal täglich Tabletten ein. (Medizin schlucken)"
+              }
+            ]
+          },
+          {
+            "verb": "abnehmen",
+            "meanings": [
+              {
+                "label": "Im Text",
+                "example": "Er nimmt die Jacke ab. (Kleidung ablegen)"
+              },
+              {
+                "label": "Weitere Bedeutung",
+                "example": "Sie hat fünf Kilo abgenommen. (Gewicht verlieren)"
+              }
+            ]
+          },
+          {
+            "verb": "übernehmen",
+            "meanings": [
+              {
+                "label": "Im Text",
+                "example": "Jule übernimmt die Rettung. (eine Aufgabe an sich nehmen)"
+              },
+              {
+                "label": "Weitere Bedeutung",
+                "example": "Er hat sich auf der Arbeit übernommen. (sich zu viel zumuten)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "m3-ex10",
+        "type": "multiple-choice",
+        "skill": "lesen",
+        "instruction": "Übung 10 – Welche Bedeutung? Wähle die richtige Bedeutung des Verbs im jeweiligen Satz.",
+        "questions": [
+          {
+            "question": "\"Ich nehme an, dass morgen schönes Wetter wird.\" – Was bedeutet annehmen hier?",
+            "options": [
+              "ein Paket entgegennehmen",
+              "vermuten",
+              "akzeptieren"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "question": "\"Er nimmt dreimal täglich seine Tabletten ein.\" – Was bedeutet einnehmen hier?",
+            "options": [
+              "einen Platz besetzen",
+              "etwas kaufen",
+              "Medizin schlucken"
+            ],
+            "correctIndex": 2
+          },
+          {
+            "question": "\"Nach dem Sport hat sie fünf Kilo abgenommen.\" – Was bedeutet abnehmen hier?",
+            "options": [
+              "Kleidung ablegen",
+              "etwas wegnehmen",
+              "Gewicht verlieren"
+            ],
+            "correctIndex": 2
+          },
+          {
+            "question": "\"Er hat sich bei dem Projekt völlig übernommen.\" – Was bedeutet sich übernehmen hier?",
+            "options": [
+              "eine Aufgabe erledigen",
+              "etwas transportieren",
+              "sich zu viel zumuten"
+            ],
+            "correctIndex": 2
+          },
+          {
+            "question": "\"An dem Kurs haben zwanzig Personen teilgenommen.\" – Was bedeutet teilnehmen hier?",
+            "options": [
+              "etwas aufteilen",
+              "mitmachen",
+              "etwas bemerken"
+            ],
+            "correctIndex": 1
+          }
+        ]
+      }
   ],
   "reviewItems": []
 };
@@ -2740,7 +3103,7 @@ const module4: CourseModule = {
   ],
   "estimatedMinutes": 45,
   "story": {
-    "text": "Genau an diese Stelle\nMittwochmorgen, kurz nach acht. Ich bin noch nicht mal ganz im Büro, da sehe ich vor der Tür schon zwei Europaletten, einen Hubwagen und drei Leute in grauen Jacken. Einer der Monteure hat den Hubwagen direkt vor der Tür abgestellt, sodass man kaum noch vorbeikommt.\n\"Was ist denn hier los?\", murmele ich und bleibe erst mal stehen.\nJule hält mir vom Flur aus ein Cuttermesser hin. \"Die neue Büroeinrichtung ist da. Frau Krüger hat das alles vor drei Wochen bestellt und will, dass heute alles an Ort und Stelle steht.\"\n\"Klar\", sage ich. \"Das kriegen wir neben dem Tagesgeschäft auch noch gewuppt.\"\nEiner der Monteure kommt auf mich zu und streckt mir die Hand hin. \"Klaus, guten Morgen. Wir würden zuerst die Tische aufstellen, dann die Stühle einstellen und am Ende alles kurz testen. Wer sagt uns, was wohin kommt?\"\nJule zeigt ohne jede Scham auf mich. \"Alex.\"\n\"Natürlich wieder Alex\", sage ich. \"Wer auch sonst.\"\nIch stelle meinen Rucksack unter die Fensterbank, nehme den Grundriss und gehe mit Klaus einmal durch den Raum. Zwei Schreibtische ans Fenster, einer an die Innenwand, der Drucker in die Nische neben dem Schrank. So jedenfalls der Plan.\n\"Den Drucker bitte nicht wieder so hinstellen, dass man mit dem Rollwagen kaum vorbeikommt\", sagt Mehmet, der gerade aus dem Lager kommt. \"Das war letztes Mal komplett bescheuert.\"\n\"Danke für die diplomatische Formulierung\", sage ich.\n\"Gern geschehen.\"\nWir stellen den ersten Tisch auf, und genau in dem Moment sagt Klaus: \"Da unten ist eine Bodendose.\"\nIch schaue runter. Natürlich. Exakt unter dem Tischfuß.\nJule verschränkt die Arme. \"Super. Dann können wir den ganzen Spaß direkt wieder umstellen.\"\n\"Geht ja gut los\", sage ich.\n\"Nicht jammern, machen\", sagt sie.\nAlso schieben wir alles wieder zehn Zentimeter nach links. Dann noch mal fünf Zentimeter zurück. Dann steht der Tisch endlich so, dass später keiner über Kabel flucht. Beim zweiten Tisch läuft es besser. Beim dritten fehlt plötzlich ein kleines Verbindungsteil für die Kabelwanne.\nKlaus schaut in den Karton, dann in den nächsten. \"Das müsste eigentlich dabei sein.\"\n\"Müsste\", sage ich. \"Das ist im Büro immer ein gefährliches Wort.\"\nJule kniet schon zwischen zwei Kartons. \"Warte. Hier ist nur Verpackung, hier sind Schrauben, hier sind noch mehr Schrauben, die kein Mensch auseinanderhalten kann ... ah, da.\"\n\"Na also\", sage ich.\nWährend die Monteure die Tische fertig montieren, stelle ich die Monitore bereit und sortiere Netzteile, Kabel und Dockingstations. Ich will nur kurz Ordnung reinbringen, aber nach fünf Minuten sieht es auf meinem ehemaligen Schreibtisch aus wie in einer kleinen Elektrowerkstatt.\nDann kommt der Teil mit dem Einstellen. Die neuen Stühle haben ungefähr zwölf Hebel, von denen neun gleich aussehen. Klaus erklärt kurz die Rückenlehne, die Sitzhöhe und die Armlehnen. Ich setze mich auf einen Stuhl, ziehe an einem Hebel, und die Lehne schnellt nach hinten.\nJule grinst. \"Na, bequem?\"\n\"Ich liege fast.\"\n\"Dann hast du's vielleicht ein bisschen zu gut eingestellt.\"\nBeim höhenverstellbaren Tisch läuft erst alles sauber, dann bleibt die Platte auf halber Höhe stehen und piept. Alle schauen gleichzeitig drauf, als würde das helfen.\n\"Was ist nun kaputt?\", frage ich.\nKlaus geht in die Hocke. \"Wahrscheinlich hakt da was.\"\nIch knie mich stöhnend wie ein alter Mann daneben und suche nach dem Problem. Jule stellt den Kaffeebecher aufs Fensterbrett und sagt: \"Jetzt stell dich mal nicht so an. Ein bisschen Bewegung tut dir gut.\"\n\"Ich stelle mich gar nicht an\", sage ich. \"Komm du mal in mein Alter.\"\n\"Ja, ja.\"\nZwei Sekunden später ist der Fehler gefunden. Das Kabel hat sich in der Kabelwanne verhakt, Klaus zieht einmal daran, und der Tisch fährt hoch, runter, hoch. Ganz normal.\n\"Okay\", sage ich. \"Ich stelle fest: Die Technik ist ziemlich empfindlich.\"\n\"Wie manche Kollegen\", sagt Jule.\n\"Wir wollen keine Namen nennen\", sage ich.\nAm Ende schieben wir noch den alten Drucker raus und stellen den neuen an seinen Platz. Diesmal so, dass er wirklich niemandem im Weg steht. Ich drucke eine Testseite, Jule scannt ein Blatt ein, Mehmet probiert, ob er mit dem Wagen noch vernünftig vorbeikommt.\n\"Passt\", sagt er. \"So kann man's lassen.\"\nIch trete einen Schritt zurück und schaue in den Raum. Die Tische stehen, die Stühle sind eingestellt, die Monitore laufen, nichts piept, nichts wackelt.\nJule sagt: \"Na also. War doch halb so wild.\"\nIn genau dem Moment springt der neue Drucker auf Störung.\nMehmet wirft einen Blick auf das Display, nimmt einen Schluck Kaffee und sagt trocken: \"Neue Möbel, dieselben Probleme.\"",
+    "text": "Genau an diese Stelle\nMittwochmorgen, kurz nach acht. Ich bin noch nicht mal ganz im Büro, da sehe ich vor der Tür schon zwei Europaletten, einen Hubwagen und drei Leute in grauen Jacken. Einer der Monteure hat den Hubwagen direkt vor der Tür abgestellt, sodass man kaum noch vorbeikommt.\n\"Was ist denn hier los?\", murmele ich und bleibe erst mal stehen.\nJule hält mir vom Flur aus ein Cuttermesser hin. \"Die neue Büroeinrichtung ist da. Frau Krüger hat das alles vor drei Wochen bestellt und will, dass heute alles an Ort und Stelle steht.\"\n\"Klar\", sage ich. \"Das kriegen wir neben dem Tagesgeschäft auch noch gewuppt.\"\nEiner der Monteure kommt auf mich zu und streckt mir die Hand hin. \"Klaus, guten Morgen. Wir würden zuerst die Tische aufstellen, dann die Stühle einstellen und am Ende alles kurz testen. Wer sagt uns, was wohin kommt?\"\nJule zeigt ohne jede Scham auf mich. \"Alex.\"\n\"Natürlich wieder Alex\", sage ich. \"Wer auch sonst.\"\nIch stelle meinen Rucksack unter die Fensterbank, nehme den Grundriss und gehe mit Klaus einmal durch den Raum. Zwei Schreibtische ans Fenster, einer an die Innenwand, der Drucker in die Nische neben dem Schrank. So jedenfalls der Plan.\n\"Den Drucker bitte nicht wieder so hinstellen, dass man mit dem Rollwagen kaum vorbeikommt\", sagt Mehmet, der gerade aus dem Lager kommt. \"Das war letztes Mal komplett bescheuert.\"\n\"Danke für die diplomatische Formulierung\", sage ich.\n\"Gern geschehen.\"\nWir stellen den ersten Tisch auf, und genau in dem Moment sagt Klaus: \"Da unten ist eine Bodendose.\"\nIch schaue runter. Natürlich. Exakt unter dem Tischfuß.\nJule verschränkt die Arme. \"Super. Dann können wir den ganzen Spaß direkt wieder umstellen.\"\n\"Geht ja gut los\", sage ich.\n\"Nicht jammern, machen\", sagt sie.\nAlso schieben wir alles wieder zehn Zentimeter nach links. Dann noch mal fünf Zentimeter zurück. Dann steht der Tisch endlich so, dass später keiner über Kabel flucht. Beim zweiten Tisch läuft es besser. Beim dritten fehlt plötzlich ein kleines Verbindungsteil für die Kabelwanne.\nKlaus schaut in den Karton, dann in den nächsten. \"Das müsste eigentlich dabei sein.\"\n\"Müsste\", sage ich. \"Das ist im Büro immer ein gefährliches Wort.\"\nJule kniet schon zwischen zwei Kartons. \"Warte. Hier ist nur Verpackung, hier sind Schrauben, hier sind noch mehr Schrauben, die kein Mensch auseinanderhalten kann ... ah, da.\"\n\"Na also\", sage ich.\nWährend die Monteure die Tische fertig montieren, stelle ich die Monitore bereit und sortiere Netzteile, Kabel und Dockingstations. Ich will nur kurz Ordnung reinbringen, aber nach fünf Minuten sieht es auf meinem ehemaligen Schreibtisch aus wie in einer kleinen Elektrowerkstatt.\nDann kommt der Teil mit dem Einstellen. Die neuen Stühle haben ungefähr zwölf Hebel, von denen neun gleich aussehen. Klaus erklärt kurz die Rückenlehne, die Sitzhöhe und die Armlehnen. Ich setze mich auf einen Stuhl, ziehe an einem Hebel, und die Lehne schnellt nach hinten.\nJule grinst. \"Na, bequem?\"\n\"Ich liege fast.\"\n\"Dann hast du's vielleicht ein bisschen zu gut eingestellt.\"\nBeim höhenverstellbaren Tisch läuft erst alles sauber, dann bleibt die Platte auf halber Höhe stehen und piept. Alle schauen gleichzeitig drauf, als würde das helfen.\n\"Was ist nun kaputt?\", frage ich.\nKlaus geht in die Hocke. \"Wahrscheinlich hakt da was.\"\nIch knie mich stöhnend wie ein alter Mann daneben und suche nach dem Problem. Jule stellt den Kaffeebecher aufs Fensterbrett und sagt: \"Jetzt stell dich mal nicht so an. Ein bisschen Bewegung tut dir gut.\"\n\"Ich stelle mich gar nicht an\", sage ich. \"Komm du mal in mein Alter.\"\n\"Ja, ja.\"\nZwei Sekunden später ist der Fehler gefunden. Das Kabel hat sich in der Kabelwanne verhakt, Klaus zieht einmal daran, und der Tisch fährt hoch, runter, hoch. Ganz normal.\n\"Okay\", sage ich. \"Ich stelle fest: Die Technik ist ziemlich empfindlich.\"\n\"Wie manche Kollegen\", sagt Jule.\n\"Wir wollen keine Namen nennen\", sage ich.\nAm Ende schieben wir noch den alten Drucker raus und stellen den neuen an seinen Platz. Diesmal so, dass er wirklich niemandem im Weg steht. Ich drucke eine Testseite, Jule scannt ein Blatt ein, Mehmet probiert, ob er mit dem Wagen noch vernünftig vorbeikommt.\n\"Passt\", sagt er. \"So kann man's lassen.\"\nIch trete einen Schritt zurück und schaue in den Raum. Die Tische stehen, die Stühle sind eingestellt, die Monitore laufen, nichts piept, nichts wackelt.\nJule sagt: \"Na also. War doch halb so wild.\"\nIn genau dem Moment springt der neue Drucker auf Störung.\nMehmet wirft einen Blick auf das Display, nimmt einen Schluck Kaffee und sagt trocken: \"Neue Ausstattung, dieselben Probleme.\"",
     "headerImage": "/images/story-04.svg",
     "paragraphs": [
       "Mittwochmorgen, kurz nach acht. Ich bin noch nicht mal ganz im Büro, da sehe ich vor der Tür schon zwei Europaletten, einen Hubwagen und drei Leute in grauen Jacken. Einer der Monteure hat den Hubwagen direkt vor der Tür abgestellt, sodass man kaum noch vorbeikommt.",
@@ -2784,7 +3147,7 @@ const module4: CourseModule = {
       "Ich trete einen Schritt zurück und schaue in den Raum. Die Tische stehen, die Stühle sind eingestellt, die Monitore laufen, nichts piept, nichts wackelt.",
       "Jule sagt: \"Na also. War doch halb so wild.\"",
       "In genau dem Moment springt der neue Drucker auf Störung.",
-      "Mehmet wirft einen Blick auf das Display, nimmt einen Schluck Kaffee und sagt trocken: \"Neue Möbel, dieselben Probleme.\""
+      "Mehmet wirft einen Blick auf das Display, nimmt einen Schluck Kaffee und sagt trocken: \"Neue Ausstattung, dieselben Probleme.\""
     ],
     "sentences": [
       {
@@ -3310,7 +3673,7 @@ const module4: CourseModule = {
       {
         "start": 350.6,
         "end": 353.1,
-        "text": "Neue Möbel, dieselben Probleme.\""
+        "text": "Neue Ausstattung, dieselben Probleme.\""
       }
     ]
   },
@@ -3385,171 +3748,366 @@ const module4: CourseModule = {
     }
   ],
   "exercises": [
-    {
-      "id": "m4-mc-1",
-      "type": "multiple-choice",
-      "skill": "lesen",
-      "instruction": "Beantworte die Fragen zur Geschichte.",
-      "questions": [
-        {
-          "question": "Was steht vor der Bürotür?",
-          "options": [
-            "Ein LKW",
-            "Zwei Europaletten und ein Hubwagen",
-            "Ein Schreibtisch",
-            "Kartons"
-          ],
-          "correctIndex": 1
-        },
-        {
-          "question": "Wer hat den Hubwagen abgestellt?",
-          "options": [
-            "Alex",
-            "Einer der Monteure",
-            "Der Hausmeister",
-            "Frau Krüger"
-          ],
-          "correctIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "m4-tf-1",
-      "type": "true-false",
-      "skill": "lesen",
-      "instruction": "Richtig oder falsch? Entscheide basierend auf der Geschichte.",
-      "statements": [
-        {
-          "statement": "Zwei Europaletten stehen vor der Bürotür.",
-          "correct": true
-        },
-        {
-          "statement": "Alex hat den Hubwagen selbst abgestellt.",
-          "correct": false
-        },
-        {
-          "statement": "Die Firma hat neue Leute eingestellt.",
-          "correct": true
-        },
-        {
-          "statement": "Die Monteure haben sich vorher angekündigt.",
-          "correct": false
-        },
-        {
-          "statement": "Am Ende wird das Problem gelöst.",
-          "correct": true
-        }
-      ]
-    },
-    {
-      "id": "m4-gf-1",
-      "type": "gap-fill",
-      "skill": "hoeren",
-      "instruction": "Ergänze die Sätze mit dem richtigen Verb mit «stellen».",
-      "sentences": [
-        {
-          "text": "Er hat den Hubwagen vor der Tür ___.",
-          "answer": "abgestellt"
-        },
-        {
-          "text": "Ich ___ fest, dass etwas nicht stimmt.",
-          "answer": "stelle"
-        },
-        {
-          "text": "Wir müssen ___, dass alles rechtzeitig kommt.",
-          "answer": "sicherstellen"
-        },
-        {
-          "text": "Die Firma hat neue Leute ___.",
-          "answer": "eingestellt"
-        },
-        {
-          "text": "Stell dich nicht ___.",
-          "answer": "dumm"
-        }
-      ]
-    },
-    {
-      "id": "m4-match-1",
-      "type": "matching",
-      "skill": "hoeren",
-      "instruction": "Verbinde die Ausdrücke mit den passenden Erklärungen.",
-      "pairs": [
-        {
-          "left": "hinstellen",
-          "right": "an einen bestimmten Platz stellen"
-        },
-        {
-          "left": "feststellen",
-          "right": "bemerken oder herausfinden"
-        },
-        {
-          "left": "sich dumm stellen",
-          "right": "so tun, als ob man nichts weiß"
-        },
-        {
-          "left": "die Weichen stellen",
-          "right": "Grundlagen für die Zukunft legen"
-        },
-        {
-          "left": "vor vollendete Tatsachen stellen",
-          "right": "mit einer fertigen Entscheidung konfrontieren"
-        }
-      ]
-    },
-    {
-      "id": "m4-speak-1",
-      "type": "speaking",
-      "skill": "sprechen",
-      "prompt": "Beschreibe eine Situation bei der Arbeit, in der etwas am falschen Platz war. Benutze «stellen»-Verben.",
-      "mustUseWords": [
-        "hinstellen",
-        "abstellen",
-        "feststellen"
-      ],
-      "instruction": "Sprich laut und benutze die Pflicht-Ausdrücke.",
-      "modelAnswer": "Als ich im Büro ankam, stellte ich fest, dass jemand einen Wagen vor der Tür abgestellt hatte. Ich habe ihn gebeten, den Wagen woanders hinzustellen. Am Ende hat er ihn im Hof abgestellt."
-    },
-    {
-      "id": "m4-write-1",
-      "type": "open-writing",
-      "skill": "schreiben",
-      "prompt": "Schreibe 5–7 Sätze über einen chaotischen Tag im Büro. Benutze mindestens 4 Ausdrücke mit «stellen».",
-      "mustUseWords": [
-        "feststellen",
-        "sicherstellen",
-        "hinstellen",
-        "abstellen"
-      ],
-      "instruction": "Schreibe deinen Text unten.",
-      "modelAnswer": "Heute Morgen habe ich festgestellt, dass vor dem Büro ein Transporter abgestellt wurde. Die Monteure haben alles einfach vor die Tür hingestellt. Ich musste sicherstellen, dass wir trotzdem arbeiten konnten."
-    },
-    {
-      "id": "m4-speak-2",
-      "type": "speaking",
-      "skill": "sprechen",
-      "prompt": "Beschreibe eine Situation, in der du jemanden vor vollendete Tatsachen gestellt hast oder gestellt wurdest. Benutze «stellen»-Redewendungen.",
-      "mustUseWords": [
-        "vor vollendete Tatsachen stellen",
-        "feststellen",
-        "sicherstellen"
-      ],
-      "instruction": "Sprich frei und verwende die Redewendungen.",
-      "modelAnswer": "Einmal hat mein Chef mich vor vollendete Tatsachen gestellt: Wir ziehen nächste Woche um. Ich habe festgestellt, dass nichts vorbereitet war. Ich musste sicherstellen, dass alles rechtzeitig fertig wurde."
-    },
-    {
-      "id": "m4-write-2",
-      "type": "open-writing",
-      "skill": "schreiben",
-      "prompt": "Schreibe 4–5 Sätze aus der Perspektive eines Monteurs. Benutze mindestens 3 Ausdrücke mit «stellen».",
-      "mustUseWords": [
-        "aufstellen",
-        "einstellen",
-        "die Weichen stellen"
-      ],
-      "instruction": "Schreibe deinen Text unten.",
-      "modelAnswer": "Heute mussten wir im Büro neue Regale aufstellen. Die Firma hat mich erst letzte Woche eingestellt. Mit dieser Lieferung stellen wir die Weichen für die neue Büroausstattung."
-    }
+      {
+        "id": "m4-ex1",
+        "type": "true-false",
+        "skill": "lesen",
+        "instruction": "Übung 1 – Richtig oder falsch? Lies die Aussagen und entscheide: Stimmt das mit der Geschichte überein?",
+        "statements": [
+          {
+            "statement": "Frau Krüger hat die neue Büroeinrichtung bestellt.",
+            "correct": true
+          },
+          {
+            "statement": "Der erste Tisch steht sofort perfekt an seinem Platz.",
+            "correct": false
+          },
+          {
+            "statement": "Die neuen Stühle haben ungefähr zwölf Hebel.",
+            "correct": true
+          },
+          {
+            "statement": "Der höhenverstellbare Tisch funktioniert von Anfang an problemlos.",
+            "correct": false
+          },
+          {
+            "statement": "Am Ende springt der neue Drucker auf Störung.",
+            "correct": true
+          }
+        ]
+      },
+      {
+        "id": "m4-ex2",
+        "type": "gap-fill",
+        "skill": "lesen",
+        "instruction": "Übung 2 – Lückentext: Schreibe das passende Verb in der richtigen Form.",
+        "sentences": [
+          {
+            "text": "Frau Krüger will, dass heute alles an Ort und Stelle ___.",
+            "answer": "steht"
+          },
+          {
+            "text": "Zuerst ___ wir die Tische ___.",
+            "answer": "stellen ... auf"
+          },
+          {
+            "text": "Danach müssen die Stühle richtig ___ werden.",
+            "answer": "eingestellt"
+          },
+          {
+            "text": "Der Monteur hat den Hubwagen direkt vor der Tür ___.",
+            "answer": "abgestellt"
+          },
+          {
+            "text": "Ich ___ meinen Rucksack unter die Fensterbank.",
+            "answer": "stelle"
+          },
+          {
+            "text": "Am Ende ___ ich ___: Die Technik ist empfindlich.",
+            "answer": "stelle ... fest"
+          }
+        ]
+      },
+      {
+        "id": "m4-ex3",
+        "type": "verb-grouping",
+        "skill": "lesen",
+        "instruction": "Übung 3 – Verben in Gruppen: Ordne die stellen-Verben den richtigen Kategorien zu.",
+        "categories": [
+          {
+            "name": "Position & Platzierung",
+            "items": [
+              "stellen",
+              "abstellen",
+              "aufstellen",
+              "hinstellen"
+            ]
+          },
+          {
+            "name": "Veränderung & Anpassung",
+            "items": [
+              "einstellen",
+              "umstellen",
+              "bereitstellen"
+            ]
+          },
+          {
+            "name": "Übertragene Bedeutung",
+            "items": [
+              "feststellen",
+              "bestellen",
+              "sich anstellen"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "m4-ex4",
+        "type": "gap-fill",
+        "skill": "lesen",
+        "instruction": "Übung 4 – Passendes Verb einsetzen: Ergänze das passende Verb aus dem Kasten.",
+        "wordBank": [
+          "abgestellt",
+          "aufgestellt",
+          "eingestellt",
+          "umgestellt",
+          "bereitgestellt",
+          "festgestellt"
+        ],
+        "sentences": [
+          {
+            "text": "Die Tische wurden im Büro ___.",
+            "answer": "aufgestellt"
+          },
+          {
+            "text": "Die Stühle wurden passend ___.",
+            "answer": "eingestellt"
+          },
+          {
+            "text": "Der Hubwagen wurde vor der Tür ___.",
+            "answer": "abgestellt"
+          },
+          {
+            "text": "Die Möbel mussten wegen der Bodendose ___ werden.",
+            "answer": "umgestellt"
+          },
+          {
+            "text": "Die Monitore wurden auf den Tischen ___.",
+            "answer": "bereitgestellt"
+          },
+          {
+            "text": "Am Ende wurde ein Fehler am Drucker ___.",
+            "answer": "festgestellt"
+          }
+        ]
+      },
+      {
+        "id": "m4-ex5",
+        "type": "matching",
+        "skill": "lesen",
+        "instruction": "Übung 5 – Redewendungen verbinden: Welcher Ausdruck passt zu welcher Situation?",
+        "pairs": [
+          {
+            "left": "Alles ist genau dort, wo es gebraucht wird.",
+            "right": "an Ort und Stelle"
+          },
+          {
+            "left": "Man schafft eine schwierige Aufgabe trotz Stress.",
+            "right": "etwas gewuppt kriegen"
+          },
+          {
+            "left": "Jemand tut etwas ganz ungeniert.",
+            "right": "ohne jede Scham"
+          },
+          {
+            "left": "Das Projekt fängt gleich mit Problemen an.",
+            "right": "Das geht ja gut los."
+          },
+          {
+            "left": "Etwas blockiert den Durchgang.",
+            "right": "im Weg stehen"
+          },
+          {
+            "left": "Am Ende war alles gar nicht so schlimm.",
+            "right": "halb so wild"
+          }
+        ]
+      },
+      {
+        "id": "m4-ex6",
+        "type": "sentence-completion",
+        "skill": "schreiben",
+        "instruction": "Übung 6 – Satzergänzungen: Ergänze die Sätze sinnvoll auf Deutsch.",
+        "sentences": [
+          {
+            "prompt": "Die neue Einrichtung soll heute an Ort und ___ stehen.",
+            "modelAnswer": "Stelle"
+          },
+          {
+            "prompt": "Das kriegen wir neben dem Tagesgeschäft auch noch ___.",
+            "modelAnswer": "gewuppt"
+          },
+          {
+            "prompt": "Jule zeigt ohne jede ___ auf mich.",
+            "modelAnswer": "Scham"
+          },
+          {
+            "prompt": "Das geht ja gut ___!",
+            "modelAnswer": "los"
+          },
+          {
+            "prompt": "Bitte den Drucker nicht so ___, dass er im Weg steht.",
+            "modelAnswer": "hinstellen"
+          },
+          {
+            "prompt": "Am Ende war alles halb so ___.",
+            "modelAnswer": "wild"
+          }
+        ]
+      },
+      {
+        "id": "m4-ex7",
+        "type": "error-correction",
+        "skill": "schreiben",
+        "instruction": "Übung 7 – Fehler finden: Jeder Satz enthält genau einen Fehler. Schreibe den korrigierten Satz.",
+        "sentences": [
+          {
+            "incorrect": "Ich habe den Fehler eingestellt.",
+            "correct": "Ich habe den Fehler festgestellt.",
+            "explanation": "feststellen = erkennen/bemerken. einstellen = justieren."
+          },
+          {
+            "incorrect": "Alex stellt die Monitore fest.",
+            "correct": "Alex stellt die Monitore bereit.",
+            "explanation": "bereitstellen = vorbereiten. feststellen = erkennen."
+          },
+          {
+            "incorrect": "Frau Krüger hat die Möbel aufgestellt.",
+            "correct": "Frau Krüger hat die Möbel bestellt.",
+            "explanation": "bestellen = ordern. aufstellen = an Platz stellen."
+          },
+          {
+            "incorrect": "Jetzt stell dich mal nicht so bereit.",
+            "correct": "Jetzt stell dich mal nicht so an.",
+            "explanation": "sich anstellen = sich empfindlich verhalten. bereitstellen = vorbereiten."
+          },
+          {
+            "incorrect": "Wir müssen den Drucker feststellen, damit er nicht im Weg steht.",
+            "correct": "Wir müssen den Drucker umstellen, damit er nicht im Weg steht.",
+            "explanation": "umstellen = Anordnung ändern. feststellen = erkennen."
+          }
+        ]
+      },
+      {
+        "id": "m4-ex8",
+        "type": "open-writing",
+        "skill": "schreiben",
+        "instruction": "Übung 8 – Verben erklären: Erkläre die folgenden stellen-Verben mit eigenen Worten auf Deutsch.",
+        "prompt": "Erkläre auf Deutsch, was diese stellen-Verben bedeuten. Schreibe für jedes Verb mindestens einen Satz mit einem eigenen Beispiel:\n\n- aufstellen\n- einstellen\n- umstellen\n- feststellen\n- bereitstellen\n- sich anstellen",
+        "mustUseWords": [
+          "aufstellen",
+          "einstellen",
+          "umstellen",
+          "feststellen",
+          "bereitstellen",
+          "anstellen"
+        ],
+        "modelAnswer": "Aufstellen bedeutet, Möbel an ihren vorgesehenen Platz zu stellen. Einstellen heißt, etwas passend justieren, z. B. einen Stuhl. Umstellen bedeutet, die Anordnung von etwas zu verändern. Feststellen heißt, etwas bemerken oder erkennen. Bereitstellen bedeutet, etwas so vorzubereiten, dass es sofort benutzt werden kann. Sich anstellen heißt, sich unnötig empfindlich oder kompliziert zu verhalten."
+      },
+      {
+        "id": "m4-ex9",
+        "type": "info-box",
+        "skill": "lesen",
+        "instruction": "Übung 9 – Doppelte Bedeutungen: Viele stellen-Verben haben mehr als eine Bedeutung!",
+        "content": "Viele stellen-Verben, die du in der Geschichte kennengelernt hast, haben im Alltag noch eine weitere Bedeutung. Schau dir die Beispiele unten an – erkennst du den Unterschied?",
+        "verbExamples": [
+          {
+            "verb": "einstellen",
+            "meanings": [
+              {
+                "label": "Im Text",
+                "example": "Die Stühle müssen richtig eingestellt werden. (justieren)"
+              },
+              {
+                "label": "Weitere Bedeutung",
+                "example": "Die Firma hat neue Mitarbeiter eingestellt. (anstellen, beschäftigen)"
+              }
+            ]
+          },
+          {
+            "verb": "umstellen",
+            "meanings": [
+              {
+                "label": "Im Text",
+                "example": "Die Möbel müssen umgestellt werden. (Anordnung ändern)"
+              },
+              {
+                "label": "Weitere Bedeutung",
+                "example": "Er muss sich auf die neue Situation umstellen. (sich anpassen)"
+              }
+            ]
+          },
+          {
+            "verb": "bestellen",
+            "meanings": [
+              {
+                "label": "Im Text",
+                "example": "Frau Krüger hat die Möbel bestellt. (kaufen, ordern)"
+              },
+              {
+                "label": "Weitere Bedeutung",
+                "example": "Der Arzt hat ihn für Montag bestellt. (zu einem Termin einladen)"
+              }
+            ]
+          },
+          {
+            "verb": "abstellen",
+            "meanings": [
+              {
+                "label": "Im Text",
+                "example": "Der Hubwagen wurde vor der Tür abgestellt. (hinstellen)"
+              },
+              {
+                "label": "Weitere Bedeutung",
+                "example": "Diese Störung muss abgestellt werden. (beenden, beseitigen)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "m4-ex10",
+        "type": "multiple-choice",
+        "skill": "lesen",
+        "instruction": "Übung 10 – Welche Bedeutung? Wähle die richtige Bedeutung des Verbs im jeweiligen Satz.",
+        "questions": [
+          {
+            "question": "\"Die Firma hat drei neue Mitarbeiter eingestellt.\" – Was bedeutet einstellen hier?",
+            "options": [
+              "etwas justieren",
+              "jemanden beschäftigen",
+              "etwas beenden"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "question": "\"Er muss sich auf die neue Situation umstellen.\" – Was bedeutet umstellen hier?",
+            "options": [
+              "Möbel verrücken",
+              "sich anpassen",
+              "etwas bestellen"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "question": "\"Der Arzt hat mich für 14 Uhr bestellt.\" – Was bedeutet bestellen hier?",
+            "options": [
+              "etwas kaufen",
+              "etwas hinstellen",
+              "jemanden zu einem Termin einladen"
+            ],
+            "correctIndex": 2
+          },
+          {
+            "question": "\"Diese Störung muss sofort abgestellt werden.\" – Was bedeutet abstellen hier?",
+            "options": [
+              "etwas hinstellen",
+              "ein Problem beenden",
+              "etwas vorbereiten"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "question": "\"Stell dich nicht so an – das ist nicht schlimm.\" – Was bedeutet sich anstellen hier?",
+            "options": [
+              "in einer Schlange warten",
+              "sich empfindlich verhalten",
+              "etwas aufstellen"
+            ],
+            "correctIndex": 1
+          }
+        ]
+      }
   ],
   "reviewItems": []
 };
@@ -4245,171 +4803,368 @@ const module5: CourseModule = {
     }
   ],
   "exercises": [
-    {
-      "id": "m5-mc-1",
-      "type": "multiple-choice",
-      "skill": "lesen",
-      "instruction": "Beantworte die Fragen zur Geschichte.",
-      "questions": [
-        {
-          "question": "Wo trifft Alex Ben?",
-          "options": [
-            "Im Büro",
-            "Im Café",
-            "Im Park",
-            "Zu Hause"
-          ],
-          "correctIndex": 1
-        },
-        {
-          "question": "Was macht Ben, als Alex ankommt?",
-          "options": [
-            "Er winkt.",
-            "Er schaut aufs Smartphone.",
-            "Er bestellt Kaffee.",
-            "Er liest ein Buch."
-          ],
-          "correctIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "m5-tf-1",
-      "type": "true-false",
-      "skill": "lesen",
-      "instruction": "Richtig oder falsch? Entscheide basierend auf der Geschichte.",
-      "statements": [
-        {
-          "statement": "Alex und Ben treffen sich im Café.",
-          "correct": true
-        },
-        {
-          "statement": "Ben schaut auf sein Smartphone, als Alex ankommt.",
-          "correct": true
-        },
-        {
-          "statement": "Alex versteht sofort, worum es geht.",
-          "correct": false
-        },
-        {
-          "statement": "Eine schwierige Entscheidung steht bevor.",
-          "correct": true
-        },
-        {
-          "statement": "Am Ende stehen beide auf dem Schlauch.",
-          "correct": false
-        }
-      ]
-    },
-    {
-      "id": "m5-gf-1",
-      "type": "gap-fill",
-      "skill": "hoeren",
-      "instruction": "Ergänze die Sätze mit dem richtigen Verb mit «stehen».",
-      "sentences": [
-        {
-          "text": "Man muss einfach ___.",
-          "answer": "drüberstehen"
-        },
-        {
-          "text": "Ich ___ gerade völlig auf dem Schlauch.",
-          "answer": "stehe"
-        },
-        {
-          "text": "Die Frage ___ im Raum.",
-          "answer": "steht"
-        },
-        {
-          "text": "Eine schwierige Entscheidung ___ bevor.",
-          "answer": "steht"
-        },
-        {
-          "text": "Er ___ darauf, alles selbst zu machen.",
-          "answer": "besteht"
-        }
-      ]
-    },
-    {
-      "id": "m5-match-1",
-      "type": "matching",
-      "skill": "hoeren",
-      "instruction": "Verbinde die Ausdrücke mit den passenden Erklärungen.",
-      "pairs": [
-        {
-          "left": "drüberstehen",
-          "right": "sich nicht ärgern lassen"
-        },
-        {
-          "left": "auf dem Schlauch stehen",
-          "right": "etwas nicht verstehen"
-        },
-        {
-          "left": "im Raum stehen",
-          "right": "ein noch unbesprochenes Thema"
-        },
-        {
-          "left": "anstehen",
-          "right": "in einer Schlange warten"
-        },
-        {
-          "left": "bevorstehen",
-          "right": "bald passieren"
-        }
-      ]
-    },
-    {
-      "id": "m5-speak-1",
-      "type": "speaking",
-      "skill": "sprechen",
-      "prompt": "Beschreibe eine Situation, in der du einfach drüberstehen musstest. Benutze mindestens 3 «stehen»-Ausdrücke.",
-      "mustUseWords": [
-        "drüberstehen",
-        "verstehen",
-        "auf dem Schlauch stehen"
-      ],
-      "instruction": "Sprich laut und benutze die Pflicht-Ausdrücke.",
-      "modelAnswer": "Letzte Woche hat mich ein Kollege kritisiert. Erst stand ich auf dem Schlauch und habe nicht verstanden, warum. Dann habe ich gemerkt, dass ich einfach drüberstehen muss."
-    },
-    {
-      "id": "m5-write-1",
-      "type": "open-writing",
-      "skill": "schreiben",
-      "prompt": "Schreibe 5–7 Sätze über ein Café-Gespräch. Benutze mindestens 4 Ausdrücke mit «stehen».",
-      "mustUseWords": [
-        "anstehen",
-        "drüberstehen",
-        "verstehen",
-        "im Raum stehen"
-      ],
-      "instruction": "Schreibe deinen Text unten.",
-      "modelAnswer": "Als ich ins Café kam, musste ich erst anstehen. Ben war schon da und wir haben über die Arbeit geredet. Eine unangenehme Frage stand im Raum, aber Ben hat gesagt, man muss einfach drüberstehen. Ich habe sofort verstanden, was er meinte."
-    },
-    {
-      "id": "m5-speak-2",
-      "type": "speaking",
-      "skill": "sprechen",
-      "prompt": "Erzähle von einer Situation, in der du auf dem Schlauch standest. Benutze mindestens 3 «stehen»-Redewendungen.",
-      "mustUseWords": [
-        "auf dem Schlauch stehen",
-        "im Raum stehen",
-        "bevorstehen"
-      ],
-      "instruction": "Sprich frei und verwende die Redewendungen.",
-      "modelAnswer": "Letzte Woche stand ich total auf dem Schlauch, als mein Freund mir etwas erklären wollte. Eine wichtige Entscheidung stand im Raum. Mir war klar, dass eine Veränderung bevorstand."
-    },
-    {
-      "id": "m5-write-2",
-      "type": "open-writing",
-      "skill": "schreiben",
-      "prompt": "Schreibe 4–5 Sätze über ein Gespräch unter Freunden. Benutze mindestens 3 Ausdrücke mit «stehen».",
-      "mustUseWords": [
-        "drüberstehen",
-        "Rede und Antwort stehen",
-        "zugestehen"
-      ],
-      "instruction": "Schreibe deinen Text unten.",
-      "modelAnswer": "Ben und ich saßen im Café und er musste mir Rede und Antwort stehen. Ich musste ihm zugestehen, dass er recht hatte. Am Ende sagte Ben, man muss einfach drüberstehen und nach vorne schauen."
-    }
+      {
+        "id": "m5-ex1",
+        "type": "true-false",
+        "skill": "lesen",
+        "instruction": "Übung 1 – Richtig oder falsch? Lies die Aussagen und entscheide: Stimmt das mit der Geschichte überein?",
+        "statements": [
+          {
+            "statement": "Alex und Ben treffen sich in einem Restaurant.",
+            "correct": false
+          },
+          {
+            "statement": "Ben hat vergessen, dass er heute eine Präsentation hat.",
+            "correct": true
+          },
+          {
+            "statement": "Ben kommt gut mit seinem Teamleiter klar.",
+            "correct": false
+          },
+          {
+            "statement": "Alex rät Ben, auf Fakten statt auf Gefühle zu setzen.",
+            "correct": true
+          },
+          {
+            "statement": "Am Ende fühlt sich Ben weniger zuversichtlich als vorher.",
+            "correct": false
+          }
+        ]
+      },
+      {
+        "id": "m5-ex2",
+        "type": "gap-fill",
+        "skill": "lesen",
+        "instruction": "Übung 2 – Lückentext: Schreibe das passende Verb in der richtigen Form.",
+        "sentences": [
+          {
+            "text": "Alex muss erst mal an der Theke ___.",
+            "answer": "anstehen"
+          },
+          {
+            "text": "Für Ben ___ heute Nachmittag ein wichtiger Termin ___.",
+            "answer": "steht ... an"
+          },
+          {
+            "text": "Für Ben ___ ___, dass die Deadline nicht realistisch ist.",
+            "answer": "steht fest"
+          },
+          {
+            "text": "Manchmal kann Ben seinen Teamleiter nicht ___.",
+            "answer": "ausstehen"
+          },
+          {
+            "text": "Er muss den Termin irgendwie ___.",
+            "answer": "überstehen"
+          },
+          {
+            "text": "Alex sagt: Dir ___ jetzt eine ruhige Minute ___.",
+            "answer": "steht ... zu"
+          }
+        ]
+      },
+      {
+        "id": "m5-ex3",
+        "type": "verb-grouping",
+        "skill": "lesen",
+        "instruction": "Übung 3 – Verben in Gruppen: Ordne die stehen-Verben den richtigen Kategorien zu.",
+        "categories": [
+          {
+            "name": "Warten & Planen",
+            "items": [
+              "anstehen",
+              "bevorstehen",
+              "dastehen"
+            ]
+          },
+          {
+            "name": "Haltung & Meinung",
+            "items": [
+              "einstehen",
+              "feststehen",
+              "bestehen",
+              "drüberstehen",
+              "zusammenstehen"
+            ]
+          },
+          {
+            "name": "Emotion & Belastung",
+            "items": [
+              "ausstehen",
+              "überstehen",
+              "zustehen",
+              "verstehen"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "m5-ex4",
+        "type": "gap-fill",
+        "skill": "lesen",
+        "instruction": "Übung 4 – Passendes Verb einsetzen: Ergänze das passende Verb aus dem Kasten.",
+        "wordBank": [
+          "anstehen",
+          "bevorstehen",
+          "feststehen",
+          "überstehen",
+          "ausstehen",
+          "drüberstehen"
+        ],
+        "sentences": [
+          {
+            "text": "An der Theke muss man meistens ___.",
+            "answer": "anstehen"
+          },
+          {
+            "text": "Dir wird ein schwieriger Termin ___.",
+            "answer": "bevorstehen"
+          },
+          {
+            "text": "Das Ergebnis wird bald ___.",
+            "answer": "feststehen"
+          },
+          {
+            "text": "Ben muss die Präsentation irgendwie ___.",
+            "answer": "überstehen"
+          },
+          {
+            "text": "Ben kann seinen Teamleiter manchmal nicht ___.",
+            "answer": "ausstehen"
+          },
+          {
+            "text": "Man soll über Kritik einfach ___.",
+            "answer": "drüberstehen"
+          }
+        ]
+      },
+      {
+        "id": "m5-ex5",
+        "type": "matching",
+        "skill": "lesen",
+        "instruction": "Übung 5 – Redewendungen verbinden: Welcher Ausdruck passt zu welcher Situation?",
+        "pairs": [
+          {
+            "left": "Jemand hat an etwas nicht gedacht.",
+            "right": "etwas nicht auf dem Schirm haben"
+          },
+          {
+            "left": "Eine schwierige Situation trotzdem meistern.",
+            "right": "das Kind schon schaukeln"
+          },
+          {
+            "left": "Plötzlich wird die Atmosphäre negativ.",
+            "right": "Die Stimmung kippt."
+          },
+          {
+            "left": "Etwas lässt sich gar nicht diskutieren.",
+            "right": "Das steht außer Frage."
+          },
+          {
+            "left": "Jemand redet unklar und weicht aus.",
+            "right": "rumdrucksen"
+          },
+          {
+            "left": "Jemanden unfreundlich behandeln.",
+            "right": "jemanden blöd anmachen"
+          }
+        ]
+      },
+      {
+        "id": "m5-ex6",
+        "type": "sentence-completion",
+        "skill": "schreiben",
+        "instruction": "Übung 6 – Satzergänzungen: Ergänze die Sätze sinnvoll auf Deutsch.",
+        "sentences": [
+          {
+            "prompt": "Ich hatte gar nicht auf dem ___, dass das heute ist.",
+            "modelAnswer": "Schirm"
+          },
+          {
+            "prompt": "Keine Sorge – du wirst das Kind schon ___.",
+            "modelAnswer": "schaukeln"
+          },
+          {
+            "prompt": "Ein Satz ist mir im Kopf ___.",
+            "modelAnswer": "hängengeblieben"
+          },
+          {
+            "prompt": "Lass dich nicht provozieren – steh einfach ___.",
+            "modelAnswer": "drüber"
+          },
+          {
+            "prompt": "Ich will niemandem auf die Füße ___.",
+            "modelAnswer": "treten"
+          },
+          {
+            "prompt": "Diese Sache steht außer ___.",
+            "modelAnswer": "Frage"
+          }
+        ]
+      },
+      {
+        "id": "m5-ex7",
+        "type": "error-correction",
+        "skill": "schreiben",
+        "instruction": "Übung 7 – Fehler finden: Jeder Satz enthält genau einen Fehler. Schreibe den korrigierten Satz.",
+        "sentences": [
+          {
+            "incorrect": "Mir besteht morgen ein wichtiger Termin.",
+            "correct": "Mir steht morgen ein wichtiger Termin bevor.",
+            "explanation": "bevorstehen = bald passieren. bestehen = beharren auf."
+          },
+          {
+            "incorrect": "Ich kann diesen Typen nicht überstehen.",
+            "correct": "Ich kann diesen Typen nicht ausstehen.",
+            "explanation": "ausstehen = nicht mögen. überstehen = eine schwierige Situation schaffen."
+          },
+          {
+            "incorrect": "Für mich besteht, dass die Deadline zu eng ist.",
+            "correct": "Für mich steht fest, dass die Deadline zu eng ist.",
+            "explanation": "feststehen = sicher sein. bestehen = beharren oder vorhanden sein."
+          },
+          {
+            "incorrect": "Ben muss für seine Meinung bestehen.",
+            "correct": "Ben muss für seine Meinung einstehen.",
+            "explanation": "einstehen für = sich behaupten. bestehen auf = beharren."
+          },
+          {
+            "incorrect": "Lass dich nicht provozieren – steh einfach drauf.",
+            "correct": "Lass dich nicht provozieren – steh einfach drüber.",
+            "explanation": "drüberstehen = sich nicht provozieren lassen."
+          }
+        ]
+      },
+      {
+        "id": "m5-ex8",
+        "type": "open-writing",
+        "skill": "schreiben",
+        "instruction": "Übung 8 – Verben erklären: Erkläre die folgenden stehen-Verben mit eigenen Worten auf Deutsch.",
+        "prompt": "Erkläre auf Deutsch, was diese stehen-Verben bedeuten. Schreibe für jedes Verb mindestens einen Satz mit einem eigenen Beispiel:\n\n- anstehen\n- bevorstehen\n- ausstehen\n- überstehen\n- einstehen\n- drüberstehen",
+        "mustUseWords": [
+          "anstehen",
+          "bevorstehen",
+          "ausstehen",
+          "überstehen",
+          "einstehen",
+          "drüberstehen"
+        ],
+        "modelAnswer": "Anstehen bedeutet, in einer Schlange zu warten. Bevorstehen heißt, dass etwas bald passiert. Ausstehen bedeutet, jemanden nicht mögen oder nicht ertragen können. Überstehen heißt, eine schwierige Situation zu schaffen. Einstehen bedeutet, für sich selbst einzutreten. Drüberstehen heißt, sich nicht provozieren zu lassen."
+      },
+      {
+        "id": "m5-ex9",
+        "type": "info-box",
+        "skill": "lesen",
+        "instruction": "Übung 9 – Doppelte Bedeutungen: Viele stehen-Verben haben mehr als eine Bedeutung!",
+        "content": "Viele stehen-Verben, die du in der Geschichte kennengelernt hast, haben im Alltag noch eine weitere Bedeutung. Schau dir die Beispiele unten an – erkennst du den Unterschied?",
+        "verbExamples": [
+          {
+            "verb": "anstehen",
+            "meanings": [
+              {
+                "label": "Im Text",
+                "example": "Er muss an der Theke anstehen. (in einer Schlange warten)"
+              },
+              {
+                "label": "Weitere Bedeutung",
+                "example": "Was steht als Nächstes an? (als Nächstes anliegen)"
+              }
+            ]
+          },
+          {
+            "verb": "bestehen",
+            "meanings": [
+              {
+                "label": "Im Text",
+                "example": "Er besteht auf Fakten. (beharren)"
+              },
+              {
+                "label": "Weitere Bedeutung",
+                "example": "Die Prüfung besteht aus drei Teilen. (sich zusammensetzen)"
+              }
+            ]
+          },
+          {
+            "verb": "einstehen",
+            "meanings": [
+              {
+                "label": "Im Text",
+                "example": "Er will stärker für sich einstehen. (sich behaupten)"
+              },
+              {
+                "label": "Weitere Bedeutung",
+                "example": "Er stand für den Schaden ein. (Verantwortung übernehmen)"
+              }
+            ]
+          },
+          {
+            "verb": "stehen",
+            "meanings": [
+              {
+                "label": "Im Text",
+                "example": "Er steht an der Theke. (physisch stehen)"
+              },
+              {
+                "label": "Weitere Bedeutung",
+                "example": "Das steht außer Frage. (ist sicher/klar)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "m5-ex10",
+        "type": "multiple-choice",
+        "skill": "lesen",
+        "instruction": "Übung 10 – Welche Bedeutung? Wähle die richtige Bedeutung des Verbs im jeweiligen Satz.",
+        "questions": [
+          {
+            "question": "\"Was steht als Nächstes an?\" – Was bedeutet anstehen hier?",
+            "options": [
+              "in einer Schlange warten",
+              "als Nächstes anliegen",
+              "stillstehen"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "question": "\"Die Prüfung besteht aus drei Teilen.\" – Was bedeutet bestehen hier?",
+            "options": [
+              "beharren",
+              "sich zusammensetzen aus",
+              "eine Prüfung schaffen"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "question": "\"Er stand für den Schaden ein.\" – Was bedeutet einstehen hier?",
+            "options": [
+              "sich behaupten",
+              "Verantwortung übernehmen",
+              "aufstehen"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "question": "\"Nach dem Sturm steht das Haus noch.\" – Was bedeutet stehen hier?",
+            "options": [
+              "existieren, überdauert haben",
+              "in einer Schlange warten",
+              "klar sein"
+            ],
+            "correctIndex": 0
+          },
+          {
+            "question": "\"Wie stehst du zu diesem Thema?\" – Was bedeutet stehen hier?",
+            "options": [
+              "physisch stehen",
+              "welche Meinung man hat",
+              "beharren"
+            ],
+            "correctIndex": 1
+          }
+        ]
+      }
   ],
   "reviewItems": []
 };
@@ -4977,171 +5732,368 @@ const module6: CourseModule = {
     }
   ],
   "exercises": [
-    {
-      "id": "m6-mc-1",
-      "type": "multiple-choice",
-      "skill": "lesen",
-      "instruction": "Beantworte die Fragen zur Geschichte «Viele Übergaben».",
-      "questions": [
-        {
-          "question": "Wie riecht das Büro am Dienstagmorgen?",
-          "options": [
-            "Nach Essen",
-            "Nach frischem Kaffee",
-            "Nach Farbe",
-            "Nach Rauch"
-          ],
-          "correctIndex": 1
-        },
-        {
-          "question": "Wie ist das Wetter?",
-          "options": [
-            "Es regnet.",
-            "Es scheint die Sonne.",
-            "Es schneit.",
-            "Es ist neblig."
-          ],
-          "correctIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "m6-tf-1",
-      "type": "true-false",
-      "skill": "lesen",
-      "instruction": "Richtig oder falsch? Entscheide basierend auf der Geschichte.",
-      "statements": [
-        {
-          "statement": "Das Büro riecht nach frischem Kaffee.",
-          "correct": true
-        },
-        {
-          "statement": "Es regnet am Dienstagmorgen.",
-          "correct": false
-        },
-        {
-          "statement": "Alex übergibt Aufgaben an Jule.",
-          "correct": true
-        },
-        {
-          "statement": "Frau Krüger gibt den Ton an.",
-          "correct": true
-        },
-        {
-          "statement": "Am Ende gibt Alex auf.",
-          "correct": false
-        }
-      ]
-    },
-    {
-      "id": "m6-gf-1",
-      "type": "gap-fill",
-      "skill": "hoeren",
-      "instruction": "Ergänze die Sätze mit dem richtigen Verb mit «geben».",
-      "sentences": [
-        {
-          "text": "Ich ___ die Aufgabe an Jule.",
-          "answer": "übergebe"
-        },
-        {
-          "text": "Am Ende hat er ___.",
-          "answer": "nachgegeben"
-        },
-        {
-          "text": "Er ___ zu, dass er einen Fehler gemacht hat.",
-          "answer": "gibt"
-        },
-        {
-          "text": "Frau Krüger ___ hier den Ton an.",
-          "answer": "gibt"
-        },
-        {
-          "text": "Wir müssen jetzt Gas ___!",
-          "answer": "geben"
-        }
-      ]
-    },
-    {
-      "id": "m6-match-1",
-      "type": "matching",
-      "skill": "hoeren",
-      "instruction": "Verbinde die Ausdrücke mit den passenden Erklärungen.",
-      "pairs": [
-        {
-          "left": "übergeben",
-          "right": "offiziell an jemanden weitergeben"
-        },
-        {
-          "left": "aufgeben",
-          "right": "nicht mehr weitermachen"
-        },
-        {
-          "left": "zugeben",
-          "right": "eingestehen, dass etwas wahr ist"
-        },
-        {
-          "left": "den Ton angeben",
-          "right": "die Richtung bestimmen"
-        },
-        {
-          "left": "Gas geben",
-          "right": "sich beeilen"
-        }
-      ]
-    },
-    {
-      "id": "m6-speak-1",
-      "type": "speaking",
-      "skill": "sprechen",
-      "prompt": "Erzähle über einen Tag mit vielen Übergaben bei der Arbeit. Benutze mindestens 3 «geben»-Ausdrücke.",
-      "mustUseWords": [
-        "übergeben",
-        "abgeben",
-        "aufgeben"
-      ],
-      "instruction": "Sprich laut und benutze die Pflicht-Ausdrücke.",
-      "modelAnswer": "Letzte Woche musste ich viele Aufgaben übergeben, weil ein Kollege im Urlaub war. Ich habe den Bericht rechtzeitig abgegeben. Obwohl es stressig war, habe ich nicht aufgegeben."
-    },
-    {
-      "id": "m6-write-1",
-      "type": "open-writing",
-      "skill": "schreiben",
-      "prompt": "Schreibe 5–7 Sätze über eine stressige Arbeitsübergabe. Benutze mindestens 4 «geben»-Verben.",
-      "mustUseWords": [
-        "übergeben",
-        "abgeben",
-        "nachgeben",
-        "zugeben"
-      ],
-      "instruction": "Schreibe deinen Text unten.",
-      "modelAnswer": "Am Freitag musste ich alle meine Projekte übergeben. Ich habe die Berichte pünktlich abgegeben. Mein Kollege wollte die Verantwortung nicht übernehmen, aber am Ende hat er nachgegeben. Ich muss zugeben, dass ich erleichtert war."
-    },
-    {
-      "id": "m6-speak-2",
-      "type": "speaking",
-      "skill": "sprechen",
-      "prompt": "Erzähle von einer Situation, in der du eine Aufgabe übergeben oder übernommen hast. Benutze «geben»-Redewendungen.",
-      "mustUseWords": [
-        "den Ton angeben",
-        "Gas geben",
-        "zugeben"
-      ],
-      "instruction": "Sprich frei und verwende die Redewendungen.",
-      "modelAnswer": "In meinem alten Job hat die Chefin immer den Ton angegeben. Wenn es stressig wurde, mussten wir alle Gas geben. Ich muss zugeben, dass es manchmal sehr schwierig war."
-    },
-    {
-      "id": "m6-write-2",
-      "type": "open-writing",
-      "skill": "schreiben",
-      "prompt": "Schreibe 4–5 Sätze über einen geschäftigen Tag. Benutze mindestens 3 Redewendungen mit «geben».",
-      "mustUseWords": [
-        "sich die Klinke in die Hand geben",
-        "aufgeben",
-        "nachgeben"
-      ],
-      "instruction": "Schreibe deinen Text unten.",
-      "modelAnswer": "Heute geben sich die Kunden die Klinke in die Hand. Obwohl der Tag stressig ist, will ich nicht aufgeben. Mein Kollege wollte Pause machen, aber er gibt nach, als er sieht, wie viel noch zu tun ist."
-    }
+      {
+        "id": "m6-ex1",
+        "type": "true-false",
+        "skill": "lesen",
+        "instruction": "Übung 1 – Richtig oder falsch? Lies die Aussagen und entscheide: Stimmt das mit der Geschichte überein?",
+        "statements": [
+          {
+            "statement": "Der Kunde hat die falschen Filter bekommen.",
+            "correct": true
+          },
+          {
+            "statement": "Alex kann das Problem im Portal nicht lösen.",
+            "correct": false
+          },
+          {
+            "statement": "Der Fahrer holt die falschen Filter ab und bringt die richtigen mit.",
+            "correct": true
+          },
+          {
+            "statement": "Alex will nach der Arbeit ein Paket abholen.",
+            "correct": false
+          },
+          {
+            "statement": "Der Kunde bleibt am Ende des Tages immer noch verärgert.",
+            "correct": false
+          }
+        ]
+      },
+      {
+        "id": "m6-ex2",
+        "type": "gap-fill",
+        "skill": "lesen",
+        "instruction": "Übung 2 – Lückentext: Schreibe das passende Verb in der richtigen Form.",
+        "sentences": [
+          {
+            "text": "Der Kunde möchte die falsche Ware ___.",
+            "answer": "zurückgeben"
+          },
+          {
+            "text": "Können Sie mir Ihre Kundennummer ___?",
+            "answer": "angeben"
+          },
+          {
+            "text": "Ich ___ Ihnen direkt ein Abholzeitfenster.",
+            "answer": "vergebe"
+          },
+          {
+            "text": "Bitte ___ Sie die Info an Mehmet ___.",
+            "answer": "geben ... weiter"
+          },
+          {
+            "text": "Nach Feierabend will ich ein Paket ___.",
+            "answer": "aufgeben"
+          },
+          {
+            "text": "Ich muss ___, unser Portal ist nicht intuitiv.",
+            "answer": "zugeben"
+          }
+        ]
+      },
+      {
+        "id": "m6-ex3",
+        "type": "verb-grouping",
+        "skill": "lesen",
+        "instruction": "Übung 3 – Verben in Gruppen: Ordne die geben-Verben den richtigen Kategorien zu.",
+        "categories": [
+          {
+            "name": "Daten & Information",
+            "items": [
+              "angeben",
+              "eingeben",
+              "weitergeben",
+              "zugeben"
+            ]
+          },
+          {
+            "name": "Ware & Handel",
+            "items": [
+              "zurückgeben",
+              "rausgeben",
+              "mitgeben",
+              "übergeben"
+            ]
+          },
+          {
+            "name": "Persönlich & abstrakt",
+            "items": [
+              "vergeben",
+              "ausgeben",
+              "aufgeben",
+              "hergeben"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "m6-ex4",
+        "type": "gap-fill",
+        "skill": "lesen",
+        "instruction": "Übung 4 – Passendes Verb einsetzen: Ergänze das passende Verb aus dem Kasten.",
+        "wordBank": [
+          "zurückgegeben",
+          "angegeben",
+          "eingegeben",
+          "weitergegeben",
+          "übergeben",
+          "aufgegeben"
+        ],
+        "sentences": [
+          {
+            "text": "Die falsche Ware wurde ___.",
+            "answer": "zurückgegeben"
+          },
+          {
+            "text": "Der Kunde hat seine Kundennummer ___.",
+            "answer": "angegeben"
+          },
+          {
+            "text": "Die E-Mail-Adresse wurde ins System ___.",
+            "answer": "eingegeben"
+          },
+          {
+            "text": "Alex hat die Info an Mehmet ___.",
+            "answer": "weitergegeben"
+          },
+          {
+            "text": "Alex hat Mehmet den Ausdruck ___.",
+            "answer": "übergeben"
+          },
+          {
+            "text": "Das Paket wurde bei der Post ___.",
+            "answer": "aufgegeben"
+          }
+        ]
+      },
+      {
+        "id": "m6-ex5",
+        "type": "matching",
+        "skill": "lesen",
+        "instruction": "Übung 5 – Redewendungen verbinden: Welcher Ausdruck passt zu welcher Situation?",
+        "pairs": [
+          {
+            "left": "Jemand ist sehr gestresst und genervt.",
+            "right": "am Rad drehen"
+          },
+          {
+            "left": "Ein Problem bleibt bei einem hängen.",
+            "right": "auf etwas sitzenbleiben"
+          },
+          {
+            "left": "Aufhören, Fragen zu stellen.",
+            "right": "Ruhe geben"
+          },
+          {
+            "left": "Man fragt, was es Neues gibt.",
+            "right": "Was liegt an?"
+          },
+          {
+            "left": "Man schafft eine Aufgabe erfolgreich.",
+            "right": "etwas hinkriegen"
+          },
+          {
+            "left": "Man hat sich den Feierabend verdient.",
+            "right": "wohlverdienter Feierabend"
+          }
+        ]
+      },
+      {
+        "id": "m6-ex6",
+        "type": "sentence-completion",
+        "skill": "schreiben",
+        "instruction": "Übung 6 – Satzergänzungen: Ergänze die Sätze sinnvoll auf Deutsch.",
+        "sentences": [
+          {
+            "prompt": "Ehrlich gesagt, ich drehe langsam am ___.",
+            "modelAnswer": "Rad"
+          },
+          {
+            "prompt": "Wir wollen nicht auf der falschen Ware ___.",
+            "modelAnswer": "sitzenbleiben"
+          },
+          {
+            "prompt": "Der Kunde sagte: Dann gebe ich jetzt auch mal ___.",
+            "modelAnswer": "Ruhe"
+          },
+          {
+            "prompt": "Was ___ heute an?",
+            "modelAnswer": "liegt"
+          },
+          {
+            "prompt": "Das ___ wir schon hin.",
+            "modelAnswer": "kriegen"
+          },
+          {
+            "prompt": "Nach dem Tag freut sich Alex auf seinen wohlverdienten ___.",
+            "modelAnswer": "Feierabend"
+          }
+        ]
+      },
+      {
+        "id": "m6-ex7",
+        "type": "error-correction",
+        "skill": "schreiben",
+        "instruction": "Übung 7 – Fehler finden: Jeder Satz enthält genau einen Fehler. Schreibe den korrigierten Satz.",
+        "sentences": [
+          {
+            "incorrect": "Können Sie mir Ihre Kundennummer hergeben?",
+            "correct": "Können Sie mir Ihre Kundennummer angeben?",
+            "explanation": "angeben = Daten nennen. hergeben = etwas aus der Hand geben."
+          },
+          {
+            "incorrect": "Ich übergebe Ihnen ein Abholzeitfenster.",
+            "correct": "Ich vergebe Ihnen ein Abholzeitfenster.",
+            "explanation": "vergeben = zuteilen. übergeben = direkt aushändigen."
+          },
+          {
+            "incorrect": "Bitte geben Sie die Info an Mehmet zurück.",
+            "correct": "Bitte geben Sie die Info an Mehmet weiter.",
+            "explanation": "weitergeben = übermitteln. zurückgeben = etwas retournieren."
+          },
+          {
+            "incorrect": "Nach Feierabend will ich ein Paket ausgeben.",
+            "correct": "Nach Feierabend will ich ein Paket aufgeben.",
+            "explanation": "aufgeben = bei der Post einliefern. ausgeben = Geld bezahlen."
+          },
+          {
+            "incorrect": "Ich muss eingeben, das Portal ist nicht intuitiv.",
+            "correct": "Ich muss zugeben, das Portal ist nicht intuitiv.",
+            "explanation": "zugeben = eingestehen. eingeben = Daten tippen."
+          }
+        ]
+      },
+      {
+        "id": "m6-ex8",
+        "type": "open-writing",
+        "skill": "schreiben",
+        "instruction": "Übung 8 – Verben erklären: Erkläre die folgenden geben-Verben mit eigenen Worten auf Deutsch.",
+        "prompt": "Erkläre auf Deutsch, was diese geben-Verben bedeuten. Schreibe für jedes Verb mindestens einen Satz mit einem eigenen Beispiel:\n\n- zurückgeben\n- angeben\n- vergeben\n- weitergeben\n- aufgeben\n- ausgeben",
+        "mustUseWords": [
+          "zurückgeben",
+          "angeben",
+          "vergeben",
+          "weitergeben",
+          "aufgeben",
+          "ausgeben"
+        ],
+        "modelAnswer": "Zurückgeben bedeutet, etwas an den Absender oder Verkäufer zurückschicken. Angeben heißt, Daten wie eine Kundennummer nennen. Vergeben bedeutet, ein Zeitfenster oder einen Termin zuteilen. Weitergeben heißt, eine Information an eine andere Person übermitteln. Aufgeben bedeutet, ein Paket bei der Post einliefern. Ausgeben heißt, Geld für etwas bezahlen."
+      },
+      {
+        "id": "m6-ex9",
+        "type": "info-box",
+        "skill": "lesen",
+        "instruction": "Übung 9 – Doppelte Bedeutungen: Viele geben-Verben haben mehr als eine Bedeutung!",
+        "content": "Viele geben-Verben, die du in der Geschichte kennengelernt hast, haben im Alltag noch eine weitere Bedeutung. Schau dir die Beispiele unten an – erkennst du den Unterschied?",
+        "verbExamples": [
+          {
+            "verb": "aufgeben",
+            "meanings": [
+              {
+                "label": "Im Text",
+                "example": "Ich will ein Paket aufgeben. (bei der Post einliefern)"
+              },
+              {
+                "label": "Weitere Bedeutung",
+                "example": "Er hat seinen Traum aufgegeben. (nicht mehr verfolgen)"
+              }
+            ]
+          },
+          {
+            "verb": "ausgeben",
+            "meanings": [
+              {
+                "label": "Im Text",
+                "example": "Er will weniger Geld ausgeben. (Geld bezahlen)"
+              },
+              {
+                "label": "Weitere Bedeutung",
+                "example": "Er gibt sich als Experte aus. (sich als jemand anderes darstellen)"
+              }
+            ]
+          },
+          {
+            "verb": "vergeben",
+            "meanings": [
+              {
+                "label": "Im Text",
+                "example": "Ich vergebe ein Abholzeitfenster. (zuteilen)"
+              },
+              {
+                "label": "Weitere Bedeutung",
+                "example": "Sie hat ihm vergeben. (verzeihen)"
+              }
+            ]
+          },
+          {
+            "verb": "angeben",
+            "meanings": [
+              {
+                "label": "Im Text",
+                "example": "Können Sie Ihre Nummer angeben? (Daten nennen)"
+              },
+              {
+                "label": "Weitere Bedeutung",
+                "example": "Er gibt beim Sport immer so an. (prahlen)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "m6-ex10",
+        "type": "multiple-choice",
+        "skill": "lesen",
+        "instruction": "Übung 10 – Welche Bedeutung? Wähle die richtige Bedeutung des Verbs im jeweiligen Satz.",
+        "questions": [
+          {
+            "question": "\"Er hat seinen Traum nie aufgegeben.\" – Was bedeutet aufgeben hier?",
+            "options": [
+              "bei der Post einliefern",
+              "nicht mehr verfolgen",
+              "eine Aufgabe stellen"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "question": "\"Er gibt sich als Spezialist aus.\" – Was bedeutet sich ausgeben hier?",
+            "options": [
+              "Geld bezahlen",
+              "sich als jemand anderes darstellen",
+              "etwas verteilen"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "question": "\"Sie hat ihm den Fehler schon längst vergeben.\" – Was bedeutet vergeben hier?",
+            "options": [
+              "zuteilen",
+              "verzeihen",
+              "weitergeben"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "question": "\"Er gibt beim Sport immer an.\" – Was bedeutet angeben hier?",
+            "options": [
+              "Daten nennen",
+              "etwas zugeben",
+              "prahlen"
+            ],
+            "correctIndex": 2
+          },
+          {
+            "question": "\"Die Firma gibt viel Geld für Werbung aus.\" – Was bedeutet ausgeben hier?",
+            "options": [
+              "Geld bezahlen",
+              "sich als jemand darstellen",
+              "etwas verteilen"
+            ],
+            "correctIndex": 0
+          }
+        ]
+      }
   ],
   "reviewItems": []
 };
@@ -5704,171 +6656,366 @@ const module7: CourseModule = {
     }
   ],
   "exercises": [
-    {
-      "id": "m7-mc-1",
-      "type": "multiple-choice",
-      "skill": "lesen",
-      "instruction": "Beantworte die Fragen zur Geschichte «Setz dich dazu».",
-      "questions": [
-        {
-          "question": "Was will Alex am Samstagabend machen?",
-          "options": [
-            "Arbeiten",
-            "Einen Spaziergang machen",
-            "Fernsehen",
-            "Kochen"
-          ],
-          "correctIndex": 1
-        },
-        {
-          "question": "Wie war die Woche im Büro?",
-          "options": [
-            "Entspannt",
-            "Langweilig",
-            "Zäh und stressig",
-            "Es gab keine Arbeit"
-          ],
-          "correctIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "m7-tf-1",
-      "type": "true-false",
-      "skill": "lesen",
-      "instruction": "Richtig oder falsch? Entscheide basierend auf der Geschichte.",
-      "statements": [
-        {
-          "statement": "Alex will am Samstagabend spazieren gehen.",
-          "correct": true
-        },
-        {
-          "statement": "Die Woche im Büro war entspannt.",
-          "correct": false
-        },
-        {
-          "statement": "Jule setzt sich am Ende durch.",
-          "correct": true
-        },
-        {
-          "statement": "Niemand legt Wert auf Erholung.",
-          "correct": false
-        },
-        {
-          "statement": "Die Arbeit setzt Alex ganz schön zu.",
-          "correct": true
-        }
-      ]
-    },
-    {
-      "id": "m7-gf-1",
-      "type": "gap-fill",
-      "skill": "hoeren",
-      "instruction": "Ergänze die Sätze mit dem richtigen Verb mit «setzen».",
-      "sentences": [
-        {
-          "text": "___ dich doch hin.",
-          "answer": "Setz"
-        },
-        {
-          "text": "Wir müssen den Plan ___.",
-          "answer": "umsetzen"
-        },
-        {
-          "text": "Am Ende hat sich Jule ___.",
-          "answer": "durchgesetzt"
-        },
-        {
-          "text": "Die Arbeit ___ mir ganz schön zu.",
-          "answer": "setzt"
-        },
-        {
-          "text": "Er ___ alles auf eine Karte.",
-          "answer": "setzt"
-        }
-      ]
-    },
-    {
-      "id": "m7-match-1",
-      "type": "matching",
-      "skill": "hoeren",
-      "instruction": "Verbinde die Ausdrücke mit den passenden Erklärungen.",
-      "pairs": [
-        {
-          "left": "umsetzen",
-          "right": "eine Idee in die Tat umsetzen"
-        },
-        {
-          "left": "sich durchsetzen",
-          "right": "seine Meinung erfolgreich vertreten"
-        },
-        {
-          "left": "einsetzen",
-          "right": "gezielt verwenden"
-        },
-        {
-          "left": "sich in die Nesseln setzen",
-          "right": "sich in eine schwierige Lage bringen"
-        },
-        {
-          "left": "jemandem zusetzen",
-          "right": "jemanden belasten"
-        }
-      ]
-    },
-    {
-      "id": "m7-speak-1",
-      "type": "speaking",
-      "skill": "sprechen",
-      "prompt": "Erzähle von einer Situation, in der du dich durchsetzen musstest. Benutze «setzen»-Verben.",
-      "mustUseWords": [
-        "sich durchsetzen",
-        "umsetzen",
-        "einsetzen"
-      ],
-      "instruction": "Sprich laut und benutze die Pflicht-Ausdrücke.",
-      "modelAnswer": "Bei einem Projekt musste ich mich durchsetzen, weil ich eine bessere Idee hatte. Wir haben sie dann gemeinsam umgesetzt. Dabei haben wir auch neue Tools eingesetzt."
-    },
-    {
-      "id": "m7-write-1",
-      "type": "open-writing",
-      "skill": "schreiben",
-      "prompt": "Schreibe 5–7 Sätze über eine Begegnung an einem öffentlichen Ort. Benutze mindestens 4 «setzen»-Ausdrücke.",
-      "mustUseWords": [
-        "sich hinsetzen",
-        "fortsetzen",
-        "umsetzen",
-        "durchsetzen"
-      ],
-      "instruction": "Schreibe deinen Text unten.",
-      "modelAnswer": "Am Samstagabend bin ich spazieren gegangen und habe mich auf eine Bank hingesetzt. Neben mir saß jemand, und wir haben angefangen zu reden. Wir haben das Gespräch lange fortgesetzt. Er hat mir erzählt, wie er seine Ideen im Job umsetzt und sich dabei immer durchsetzt."
-    },
-    {
-      "id": "m7-speak-2",
-      "type": "speaking",
-      "skill": "sprechen",
-      "prompt": "Beschreibe eine Situation, in der du dich in die Nesseln gesetzt hast. Benutze «setzen»-Redewendungen.",
-      "mustUseWords": [
-        "sich in die Nesseln setzen",
-        "fortsetzen",
-        "voraussetzen"
-      ],
-      "instruction": "Sprich frei und verwende die Redewendungen.",
-      "modelAnswer": "Einmal habe ich mich ganz schön in die Nesseln gesetzt, als ich im Meeting einen Fehler machte. Das setzte voraus, dass ich mich sofort entschuldigte. Danach konnte ich die Arbeit ohne Probleme fortsetzen."
-    },
-    {
-      "id": "m7-write-2",
-      "type": "open-writing",
-      "skill": "schreiben",
-      "prompt": "Schreibe 4–5 Sätze über ein Wochenende mit einem sozialen Treffen. Benutze mindestens 3 «setzen»-Ausdrücke.",
-      "mustUseWords": [
-        "sich hinsetzen",
-        "alles auf eine Karte setzen",
-        "übersetzen"
-      ],
-      "instruction": "Schreibe deinen Text unten.",
-      "modelAnswer": "Am Samstag habe ich mich auf eine Parkbank hingesetzt. Neben mir saß ein Tourist und ich habe ihm etwas übersetzt. Er hat alles auf eine Karte gesetzt und einen Neuanfang in Deutschland gewagt."
-    }
+      {
+        "id": "m7-ex1",
+        "type": "true-false",
+        "skill": "lesen",
+        "instruction": "Übung 1 – Richtig oder falsch? Lies die Aussagen und entscheide: Stimmt das mit der Geschichte überein?",
+        "statements": [
+          {
+            "statement": "Alex wollte am Samstagabend eigentlich seine Ruhe haben.",
+            "correct": true
+          },
+          {
+            "statement": "Ben hat das Kneipenquiz langfristig geplant.",
+            "correct": false
+          },
+          {
+            "statement": "Der Wirt erlaubt dem Team, am reservierten Tisch sitzen zu bleiben.",
+            "correct": false
+          },
+          {
+            "statement": "Tobi notiert am Ende die richtigen Antworten.",
+            "correct": true
+          },
+          {
+            "statement": "Am Ende wird das Team Erste im Quiz.",
+            "correct": false
+          }
+        ]
+      },
+      {
+        "id": "m7-ex2",
+        "type": "gap-fill",
+        "skill": "lesen",
+        "instruction": "Übung 2 – Lückentext: Schreibe das passende Verb in der richtigen Form.",
+        "sentences": [
+          {
+            "text": "Kaum bin ich an der Ecke, ___ auch noch Regen ___.",
+            "answer": "setzt ... ein"
+          },
+          {
+            "text": "Fast alle Tische sind schon ___.",
+            "answer": "besetzt"
+          },
+          {
+            "text": "Ich ___ mich zu Ben.",
+            "answer": "setze"
+          },
+          {
+            "text": "Ben ___ ein völlig unschuldiges Gesicht ___.",
+            "answer": "setzt ... auf"
+          },
+          {
+            "text": "Die Plätze sind reserviert – ihr müsst euch ___.",
+            "answer": "umsetzen"
+          },
+          {
+            "text": "In dieser Kneipe werden Regeln konsequent ___.",
+            "answer": "durchgesetzt"
+          }
+        ]
+      },
+      {
+        "id": "m7-ex3",
+        "type": "verb-grouping",
+        "skill": "lesen",
+        "instruction": "Übung 3 – Verben in Gruppen: Ordne die setzen-Verben den richtigen Kategorien zu.",
+        "categories": [
+          {
+            "name": "Sitzen & Position",
+            "items": [
+              "sich hinsetzen",
+              "sich zu jemandem setzen",
+              "absetzen"
+            ]
+          },
+          {
+            "name": "Veränderung & Aktion",
+            "items": [
+              "umsetzen",
+              "einsetzen",
+              "fortsetzen"
+            ]
+          },
+          {
+            "name": "Kontrolle & Regeln",
+            "items": [
+              "durchsetzen",
+              "besetzen",
+              "aufsetzen",
+              "aussetzen"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "m7-ex4",
+        "type": "gap-fill",
+        "skill": "lesen",
+        "instruction": "Übung 4 – Passendes Verb einsetzen: Ergänze das passende Verb aus dem Kasten.",
+        "wordBank": [
+          "eingesetzt",
+          "besetzt",
+          "aufgesetzt",
+          "durchgesetzt",
+          "fortgesetzt",
+          "ausgesetzt"
+        ],
+        "sentences": [
+          {
+            "text": "Der Regen hat plötzlich ___.",
+            "answer": "eingesetzt"
+          },
+          {
+            "text": "Alle Tische im Lokal waren ___.",
+            "answer": "besetzt"
+          },
+          {
+            "text": "Ben hat ein unschuldiges Gesicht ___.",
+            "answer": "aufgesetzt"
+          },
+          {
+            "text": "Die Regeln werden in der Kneipe ___.",
+            "answer": "durchgesetzt"
+          },
+          {
+            "text": "Nach der Pause wird das Quiz ___.",
+            "answer": "fortgesetzt"
+          },
+          {
+            "text": "Alex wollte eigentlich eine Runde ___.",
+            "answer": "ausgesetzt"
+          }
+        ]
+      },
+      {
+        "id": "m7-ex5",
+        "type": "matching",
+        "skill": "lesen",
+        "instruction": "Übung 5 – Redewendungen verbinden: Welcher Ausdruck passt zu welcher Situation?",
+        "pairs": [
+          {
+            "left": "Man kann einer unangenehmen Situation nicht entkommen.",
+            "right": "aus der Nummer nicht rauskommen"
+          },
+          {
+            "left": "Man braucht gerade genau das nicht.",
+            "right": "das Letzte, was man jetzt braucht"
+          },
+          {
+            "left": "Man soll kein großes Drama machen.",
+            "right": "kein Fass aufmachen"
+          },
+          {
+            "left": "Ohne Hilfe nicht weiterwissen.",
+            "right": "aufgeschmissen sein"
+          },
+          {
+            "left": "Etwas nervt oder stört.",
+            "right": "auf die Nerven gehen"
+          },
+          {
+            "left": "Es war zwar nicht perfekt, aber akzeptabel.",
+            "right": "kein kompletter Reinfall"
+          }
+        ]
+      },
+      {
+        "id": "m7-ex6",
+        "type": "sentence-completion",
+        "skill": "schreiben",
+        "instruction": "Übung 6 – Satzergänzungen: Ergänze die Sätze sinnvoll auf Deutsch.",
+        "sentences": [
+          {
+            "prompt": "Aus dieser ___ komme ich nicht mehr raus.",
+            "modelAnswer": "Nummer"
+          },
+          {
+            "prompt": "Mach jetzt kein ___ auf.",
+            "modelAnswer": "Fass"
+          },
+          {
+            "prompt": "Besser wird's ___.",
+            "modelAnswer": "nicht"
+          },
+          {
+            "prompt": "Die ganze Sache geht mir auf die ___.",
+            "modelAnswer": "Nerven"
+          },
+          {
+            "prompt": "Ohne dich wäre ich völlig ___ gewesen.",
+            "modelAnswer": "aufgeschmissen"
+          },
+          {
+            "prompt": "Am Ende war es kein kompletter ___.",
+            "modelAnswer": "Reinfall"
+          }
+        ]
+      },
+      {
+        "id": "m7-ex7",
+        "type": "error-correction",
+        "skill": "schreiben",
+        "instruction": "Übung 7 – Fehler finden: Jeder Satz enthält genau einen Fehler. Schreibe den korrigierten Satz.",
+        "sentences": [
+          {
+            "incorrect": "Der Regen hat plötzlich abgesetzt.",
+            "correct": "Der Regen hat plötzlich eingesetzt.",
+            "explanation": "einsetzen = beginnen. absetzen = abstellen."
+          },
+          {
+            "incorrect": "Ben setzt ein unschuldiges Gesicht ein.",
+            "correct": "Ben setzt ein unschuldiges Gesicht auf.",
+            "explanation": "aufsetzen = demonstrativ zeigen. einsetzen = verwenden."
+          },
+          {
+            "incorrect": "Die Regeln werden in der Kneipe eingesetzt.",
+            "correct": "Die Regeln werden in der Kneipe durchgesetzt.",
+            "explanation": "durchsetzen = erreichen, dass Regeln befolgt werden. einsetzen = verwenden."
+          },
+          {
+            "incorrect": "Alex wollte eine Runde absetzen.",
+            "correct": "Alex wollte eine Runde aussetzen.",
+            "explanation": "aussetzen = pausieren. absetzen = abstellen."
+          },
+          {
+            "incorrect": "Das Quiz wird nach der Pause eingesetzt.",
+            "correct": "Das Quiz wird nach der Pause fortgesetzt.",
+            "explanation": "fortsetzen = weitermachen. einsetzen = beginnen."
+          }
+        ]
+      },
+      {
+        "id": "m7-ex8",
+        "type": "open-writing",
+        "skill": "schreiben",
+        "instruction": "Übung 8 – Verben erklären: Erkläre die folgenden setzen-Verben mit eigenen Worten auf Deutsch.",
+        "prompt": "Erkläre auf Deutsch, was diese setzen-Verben bedeuten. Schreibe für jedes Verb mindestens einen Satz mit einem eigenen Beispiel:\n\n- einsetzen\n- aufsetzen\n- umsetzen\n- durchsetzen\n- fortsetzen\n- aussetzen",
+        "mustUseWords": [
+          "einsetzen",
+          "aufsetzen",
+          "umsetzen",
+          "durchsetzen",
+          "fortsetzen",
+          "aussetzen"
+        ],
+        "modelAnswer": "Einsetzen bedeutet, dass etwas beginnt, z. B. der Regen. Aufsetzen heißt, etwas demonstrativ auf das Gesicht oder den Kopf zu setzen. Umsetzen bedeutet, den Platz zu wechseln oder eine Idee zu realisieren. Durchsetzen heißt, dafür zu sorgen, dass eine Regel befolgt wird. Fortsetzen bedeutet, mit etwas weiterzumachen. Aussetzen heißt, eine Runde zu pausieren."
+      },
+      {
+        "id": "m7-ex9",
+        "type": "info-box",
+        "skill": "lesen",
+        "instruction": "Übung 9 – Doppelte Bedeutungen: Viele setzen-Verben haben mehr als eine Bedeutung!",
+        "content": "Viele setzen-Verben, die du in der Geschichte kennengelernt hast, haben im Alltag noch eine weitere Bedeutung. Schau dir die Beispiele unten an – erkennst du den Unterschied?",
+        "verbExamples": [
+          {
+            "verb": "einsetzen",
+            "meanings": [
+              {
+                "label": "Im Text",
+                "example": "Der Regen setzt ein. (beginnen)"
+              },
+              {
+                "label": "Weitere Bedeutung",
+                "example": "Die Firma setzt neue Technologie ein. (verwenden)"
+              }
+            ]
+          },
+          {
+            "verb": "aufsetzen",
+            "meanings": [
+              {
+                "label": "Im Text",
+                "example": "Er setzt ein unschuldiges Gesicht auf. (demonstrativ zeigen)"
+              },
+              {
+                "label": "Weitere Bedeutung",
+                "example": "Sie setzt einen Vertrag auf. (schriftlich formulieren)"
+              }
+            ]
+          },
+          {
+            "verb": "umsetzen",
+            "meanings": [
+              {
+                "label": "Im Text",
+                "example": "Wir müssen uns umsetzen. (Platz wechseln)"
+              },
+              {
+                "label": "Weitere Bedeutung",
+                "example": "Wir setzen die Idee um. (praktisch realisieren)"
+              }
+            ]
+          },
+          {
+            "verb": "absetzen",
+            "meanings": [
+              {
+                "label": "Im Text",
+                "example": "Ich setze mein Glas ab. (abstellen)"
+              },
+              {
+                "label": "Weitere Bedeutung",
+                "example": "Der Trainer wurde abgesetzt. (von seiner Position entfernen)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "m7-ex10",
+        "type": "multiple-choice",
+        "skill": "lesen",
+        "instruction": "Übung 10 – Welche Bedeutung? Wähle die richtige Bedeutung des Verbs im jeweiligen Satz.",
+        "questions": [
+          {
+            "question": "\"Die Firma setzt neue Software ein.\" – Was bedeutet einsetzen hier?",
+            "options": [
+              "beginnen",
+              "verwenden",
+              "besetzen"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "question": "\"Sie setzt einen Vertrag auf.\" – Was bedeutet aufsetzen hier?",
+            "options": [
+              "etwas auf den Kopf setzen",
+              "schriftlich formulieren",
+              "demonstrativ zeigen"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "question": "\"Wir setzen die Idee nächste Woche um.\" – Was bedeutet umsetzen hier?",
+            "options": [
+              "den Platz wechseln",
+              "praktisch realisieren",
+              "etwas verkaufen"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "question": "\"Das Produkt wurde gut abgesetzt.\" – Was bedeutet absetzen hier?",
+            "options": [
+              "abstellen",
+              "verkaufen",
+              "von einer Position entfernen"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "question": "\"Der Trainer wurde nach der Niederlage abgesetzt.\" – Was bedeutet absetzen hier?",
+            "options": [
+              "verkaufen",
+              "abstellen",
+              "von seiner Position entfernen"
+            ],
+            "correctIndex": 2
+          }
+        ]
+      }
   ],
   "reviewItems": []
 };
@@ -6531,171 +7678,365 @@ const module8: CourseModule = {
     }
   ],
   "exercises": [
-    {
-      "id": "m8-mc-1",
-      "type": "multiple-choice",
-      "skill": "lesen",
-      "instruction": "Beantworte die Fragen zur Geschichte.",
-      "questions": [
-        {
-          "question": "Wo spielt die Geschichte?",
-          "options": [
-            "Im Büro",
-            "Auf einer Messe",
-            "Im Café",
-            "Zu Hause"
-          ],
-          "correctIndex": 1
-        },
-        {
-          "question": "Was machen die Menschen auf der Messe?",
-          "options": [
-            "Sie feiern.",
-            "Sie gehen mit Kaffeebechern und Stofftaschen vorbei.",
-            "Sie schlafen.",
-            "Sie kochen."
-          ],
-          "correctIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "m8-tf-1",
-      "type": "true-false",
-      "skill": "lesen",
-      "instruction": "Richtig oder falsch? Entscheide basierend auf der Geschichte.",
-      "statements": [
-        {
-          "statement": "Die Geschichte spielt auf einer Messe.",
-          "correct": true
-        },
-        {
-          "statement": "Die Menschen tragen Stofftaschen.",
-          "correct": true
-        },
-        {
-          "statement": "Das Team legt sich nicht richtig ins Zeug.",
-          "correct": false
-        },
-        {
-          "statement": "Der Messetermin wurde kurzfristig festgelegt.",
-          "correct": false
-        },
-        {
-          "statement": "Am Stand werden Broschüren ausgelegt.",
-          "correct": true
-        }
-      ]
-    },
-    {
-      "id": "m8-gf-1",
-      "type": "gap-fill",
-      "skill": "hoeren",
-      "instruction": "Ergänze die Sätze mit dem richtigen Verb mit «legen».",
-      "sentences": [
-        {
-          "text": "___ alles bereit?",
-          "answer": "Liegt"
-        },
-        {
-          "text": "Wir haben den Termin ___.",
-          "answer": "festgelegt"
-        },
-        {
-          "text": "Wir ___ die Broschüren aus.",
-          "answer": "legen"
-        },
-        {
-          "text": "Wir ___ uns heute richtig ins Zeug.",
-          "answer": "legen"
-        },
-        {
-          "text": "Ich muss mich kurz ___.",
-          "answer": "hinlegen"
-        }
-      ]
-    },
-    {
-      "id": "m8-match-1",
-      "type": "matching",
-      "skill": "hoeren",
-      "instruction": "Verbinde die Ausdrücke mit den passenden Erklärungen.",
-      "pairs": [
-        {
-          "left": "festlegen",
-          "right": "verbindlich bestimmen"
-        },
-        {
-          "left": "auslegen",
-          "right": "zur Ansicht hinlegen oder interpretieren"
-        },
-        {
-          "left": "sich ins Zeug legen",
-          "right": "sich sehr anstrengen"
-        },
-        {
-          "left": "das Handwerk legen",
-          "right": "jemanden stoppen"
-        },
-        {
-          "left": "nahelegen",
-          "right": "empfehlen oder vorschlagen"
-        }
-      ]
-    },
-    {
-      "id": "m8-speak-1",
-      "type": "speaking",
-      "skill": "sprechen",
-      "prompt": "Beschreibe Vorbereitungen für eine Messe oder Veranstaltung. Benutze «legen»-Ausdrücke.",
-      "mustUseWords": [
-        "bereitlegen",
-        "auslegen",
-        "sich ins Zeug legen"
-      ],
-      "instruction": "Sprich laut und benutze die Pflicht-Ausdrücke.",
-      "modelAnswer": "Für die Messe haben wir alles bereitgelegt. Die Broschüren haben wir am Stand ausgelegt. Das ganze Team hat sich richtig ins Zeug gelegt."
-    },
-    {
-      "id": "m8-write-1",
-      "type": "open-writing",
-      "skill": "schreiben",
-      "prompt": "Schreibe 5–7 Sätze über die Vorbereitung einer Veranstaltung. Benutze mindestens 4 «legen»-Ausdrücke.",
-      "mustUseWords": [
-        "bereitlegen",
-        "festlegen",
-        "auslegen",
-        "vorlegen"
-      ],
-      "instruction": "Schreibe deinen Text unten.",
-      "modelAnswer": "Die Messe steht vor der Tür und wir haben alles bereitgelegt. Der Termin war schon vor Wochen festgelegt. Am Stand haben wir Flyer und Broschüren ausgelegt. Den fertigen Messebericht lege ich nächste Woche vor."
-    },
-    {
-      "id": "m8-speak-2",
-      "type": "speaking",
-      "skill": "sprechen",
-      "prompt": "Erzähle von einer Situation, in der du dich richtig ins Zeug legen musstest. Benutze «legen»-Redewendungen.",
-      "mustUseWords": [
-        "sich ins Zeug legen",
-        "nahelegen",
-        "festlegen"
-      ],
-      "instruction": "Sprich frei und verwende die Redewendungen.",
-      "modelAnswer": "Letzte Woche war eine wichtige Präsentation und ich musste mich richtig ins Zeug legen. Mein Chef hat mir nahegelegt, alles doppelt zu prüfen. Den Termin hatte er schon Wochen vorher festgelegt."
-    },
-    {
-      "id": "m8-write-2",
-      "type": "open-writing",
-      "skill": "schreiben",
-      "prompt": "Schreibe 4–5 Sätze über die Vorbereitung auf ein wichtiges Event. Benutze mindestens 3 Redewendungen mit «legen».",
-      "mustUseWords": [
-        "bereitlegen",
-        "den Finger in die Wunde legen",
-        "sich hinlegen"
-      ],
-      "instruction": "Schreibe deinen Text unten.",
-      "modelAnswer": "Am Abend vor der Messe habe ich alles bereitgelegt. Mein Kollege hat den Finger in die Wunde gelegt und gesagt, dass unsere Broschüren veraltet sind. Nach dem ganzen Stress wollte ich mich nur noch hinlegen."
-    }
+      {
+        "id": "m8-ex1",
+        "type": "true-false",
+        "skill": "lesen",
+        "instruction": "Übung 1 – Richtig oder falsch? Lies die Aussagen und entscheide: Stimmt das mit der Geschichte überein?",
+        "statements": [
+          {
+            "statement": "Die Messe ist perfekt vorbereitet und nichts ist improvisiert.",
+            "correct": false
+          },
+          {
+            "statement": "Frau Krüger will, dass Alex eine vollständige Mappe für Nordtech zurücklegt.",
+            "correct": true
+          },
+          {
+            "statement": "Die neuen Produktblätter waren die ganze Zeit hinter dem Monitor.",
+            "correct": true
+          },
+          {
+            "statement": "Frau Weber von Nordtech kommt wie geplant um elf Uhr.",
+            "correct": false
+          },
+          {
+            "statement": "Alex kann die Frage zur Lieferzeit souverän beantworten.",
+            "correct": true
+          }
+        ]
+      },
+      {
+        "id": "m8-ex2",
+        "type": "gap-fill",
+        "skill": "lesen",
+        "instruction": "Übung 2 – Lückentext: Schreibe das passende Verb in der richtigen Form.",
+        "sentences": [
+          {
+            "text": "Die Broschüren sind ordentlich am Stand ___.",
+            "answer": "ausgelegt"
+          },
+          {
+            "text": "Jule hat die Kugelschreiber akkurat ___.",
+            "answer": "hingelegt"
+          },
+          {
+            "text": "Gleich wird sicher eine neue Aufgabe ___ .",
+            "answer": "festgelegt"
+          },
+          {
+            "text": "Bitte ___ eine vollständige Mappe für Nordtech ___.",
+            "answer": "leg ... zurück"
+          },
+          {
+            "text": "Bitte nichts Falsches ___.",
+            "answer": "beilegen"
+          },
+          {
+            "text": "Die Datenblätter wurden tatsächlich ___.",
+            "answer": "verlegt"
+          }
+        ]
+      },
+      {
+        "id": "m8-ex3",
+        "type": "verb-grouping",
+        "skill": "lesen",
+        "instruction": "Übung 3 – Verben in Gruppen: Ordne die legen-Verben den richtigen Kategorien zu.",
+        "categories": [
+          {
+            "name": "Physisch platzieren",
+            "items": [
+              "auslegen",
+              "hinlegen",
+              "beilegen",
+              "ablegen"
+            ]
+          },
+          {
+            "name": "Organisation & Planung",
+            "items": [
+              "festlegen",
+              "zurücklegen",
+              "verlegen"
+            ]
+          },
+          {
+            "name": "Kommunikation & Nachweis",
+            "items": [
+              "belegen",
+              "darlegen"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "m8-ex4",
+        "type": "gap-fill",
+        "skill": "lesen",
+        "instruction": "Übung 4 – Passendes Verb einsetzen: Ergänze das passende Verb aus dem Kasten.",
+        "wordBank": [
+          "ausgelegt",
+          "hingelegt",
+          "festgelegt",
+          "beigelegt",
+          "verlegt",
+          "dargelegt"
+        ],
+        "sentences": [
+          {
+            "text": "Die Broschüren wurden ordentlich ___.",
+            "answer": "ausgelegt"
+          },
+          {
+            "text": "Jule hat die Kugelschreiber akkurat ___.",
+            "answer": "hingelegt"
+          },
+          {
+            "text": "Die Aufgabe wurde verbindlich ___.",
+            "answer": "festgelegt"
+          },
+          {
+            "text": "Alex hat der Mappe die Referenzen ___.",
+            "answer": "beigelegt"
+          },
+          {
+            "text": "Die Datenblätter wurden versehentlich ___.",
+            "answer": "verlegt"
+          },
+          {
+            "text": "Alex hat die Lieferzeiten klar ___.",
+            "answer": "dargelegt"
+          }
+        ]
+      },
+      {
+        "id": "m8-ex5",
+        "type": "matching",
+        "skill": "lesen",
+        "instruction": "Übung 5 – Redewendungen verbinden: Welcher Ausdruck passt zu welcher Situation?",
+        "pairs": [
+          {
+            "left": "Alles passiert im allerletzten Moment.",
+            "right": "auf den letzten Drücker"
+          },
+          {
+            "left": "Ruhig bleiben und sich nichts anmerken lassen.",
+            "right": "die Fassung bewahren"
+          },
+          {
+            "left": "Sich besserwisserisch verhalten.",
+            "right": "den Klugscheißer spielen"
+          },
+          {
+            "left": "Gereizt oder unfair mit jemandem reden.",
+            "right": "jemanden blöd anmachen"
+          },
+          {
+            "left": "Eine Situation kontrollieren.",
+            "right": "etwas im Griff haben"
+          },
+          {
+            "left": "Etwas scheitert oder verschlechtert sich stark.",
+            "right": "den Bach runtergehen"
+          }
+        ]
+      },
+      {
+        "id": "m8-ex6",
+        "type": "sentence-completion",
+        "skill": "schreiben",
+        "instruction": "Übung 6 – Satzergänzungen: Ergänze die Sätze sinnvoll auf Deutsch.",
+        "sentences": [
+          {
+            "prompt": "Alles passierte wieder auf den letzten ___.",
+            "modelAnswer": "Drücker"
+          },
+          {
+            "prompt": "Ich versuche, die ___ zu bewahren.",
+            "modelAnswer": "Fassung"
+          },
+          {
+            "prompt": "Du musst jetzt nicht den ___ spielen.",
+            "modelAnswer": "Klugscheißer"
+          },
+          {
+            "prompt": "Von außen sieht es aus, als hätten wir alles im ___.",
+            "modelAnswer": "Griff"
+          },
+          {
+            "prompt": "Hier geht alles den Bach ___, wenn man nicht aufpasst.",
+            "modelAnswer": "runter"
+          },
+          {
+            "prompt": "Frau Krüger hatte keine Zeit für ___.",
+            "modelAnswer": "Höflichkeiten"
+          }
+        ]
+      },
+      {
+        "id": "m8-ex7",
+        "type": "error-correction",
+        "skill": "schreiben",
+        "instruction": "Übung 7 – Fehler finden: Jeder Satz enthält genau einen Fehler. Schreibe den korrigierten Satz.",
+        "sentences": [
+          {
+            "incorrect": "Die Broschüren wurden am Stand hingelegt.",
+            "correct": "Die Broschüren wurden am Stand ausgelegt.",
+            "explanation": "auslegen = sichtbar verteilen. hinlegen = an einen bestimmten Platz legen."
+          },
+          {
+            "incorrect": "Bitte legen Sie die Referenzen fest.",
+            "correct": "Bitte legen Sie die Referenzen bei.",
+            "explanation": "beilegen = hinzufügen. festlegen = verbindlich bestimmen."
+          },
+          {
+            "incorrect": "Kannst du das mit Zahlen darlegen?",
+            "correct": "Kannst du das mit Zahlen belegen?",
+            "explanation": "belegen = nachweisen. darlegen = erklären."
+          },
+          {
+            "incorrect": "Die Produktblätter wurden leider abgelegt.",
+            "correct": "Die Produktblätter wurden leider verlegt.",
+            "explanation": "verlegen = an den falschen Ort legen. ablegen = geordnet aufbewahren."
+          },
+          {
+            "incorrect": "Die Mappe wurde für den Kunden ausgelegt.",
+            "correct": "Die Mappe wurde für den Kunden zurückgelegt.",
+            "explanation": "zurücklegen = reservieren. auslegen = sichtbar verteilen."
+          }
+        ]
+      },
+      {
+        "id": "m8-ex8",
+        "type": "open-writing",
+        "skill": "schreiben",
+        "instruction": "Übung 8 – Verben erklären: Erkläre die folgenden legen-Verben mit eigenen Worten auf Deutsch.",
+        "prompt": "Erkläre auf Deutsch, was diese legen-Verben bedeuten. Schreibe für jedes Verb mindestens einen Satz mit einem eigenen Beispiel:\n\n- auslegen\n- verlegen\n- beilegen\n- belegen\n- darlegen\n- zurücklegen",
+        "mustUseWords": [
+          "auslegen",
+          "verlegen",
+          "beilegen",
+          "belegen",
+          "darlegen",
+          "zurücklegen"
+        ],
+        "modelAnswer": "Auslegen bedeutet, Materialien sichtbar zu verteilen. Verlegen heißt, etwas an den falschen Ort zu legen und nicht mehr zu finden. Beilegen bedeutet, Unterlagen zu einer Mappe hinzuzufügen. Belegen heißt, eine Aussage mit Beweisen zu unterstützen. Darlegen bedeutet, etwas klar und sachlich zu erklären. Zurücklegen heißt, etwas für jemanden zu reservieren."
+      },
+      {
+        "id": "m8-ex9",
+        "type": "info-box",
+        "skill": "lesen",
+        "instruction": "Übung 9 – Doppelte Bedeutungen: Viele legen-Verben haben mehr als eine Bedeutung!",
+        "content": "Viele legen-Verben, die du in der Geschichte kennengelernt hast, haben im Alltag noch eine weitere Bedeutung. Schau dir die Beispiele unten an – erkennst du den Unterschied?",
+        "verbExamples": [
+          {
+            "verb": "verlegen",
+            "meanings": [
+              {
+                "label": "Im Text",
+                "example": "Die Datenblätter wurden verlegt. (an den falschen Ort gelegt)"
+              },
+              {
+                "label": "Weitere Bedeutung",
+                "example": "Der Termin wurde auf nächste Woche verlegt. (zeitlich verschieben)"
+              }
+            ]
+          },
+          {
+            "verb": "ablegen",
+            "meanings": [
+              {
+                "label": "Im Text",
+                "example": "Die Unterlagen wurden geordnet abgelegt. (ordentlich aufbewahren)"
+              },
+              {
+                "label": "Weitere Bedeutung",
+                "example": "Er hat vor Gericht ein Geständnis abgelegt. (formal aussagen)"
+              }
+            ]
+          },
+          {
+            "verb": "auslegen",
+            "meanings": [
+              {
+                "label": "Im Text",
+                "example": "Die Broschüren sind ausgelegt. (sichtbar verteilen)"
+              },
+              {
+                "label": "Weitere Bedeutung",
+                "example": "Man kann seine Worte verschieden auslegen. (interpretieren)"
+              }
+            ]
+          },
+          {
+            "verb": "belegen",
+            "meanings": [
+              {
+                "label": "Im Text",
+                "example": "Kannst du das belegen? (nachweisen)"
+              },
+              {
+                "label": "Weitere Bedeutung",
+                "example": "Sie belegt dieses Semester drei Kurse. (einen Kurs besuchen)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "m8-ex10",
+        "type": "multiple-choice",
+        "skill": "lesen",
+        "instruction": "Übung 10 – Welche Bedeutung? Wähle die richtige Bedeutung des Verbs im jeweiligen Satz.",
+        "questions": [
+          {
+            "question": "\"Der Termin wurde auf nächste Woche verlegt.\" – Was bedeutet verlegen hier?",
+            "options": [
+              "an den falschen Ort legen",
+              "zeitlich verschieben",
+              "Material befestigen"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "question": "\"Er hat vor Gericht ein Geständnis abgelegt.\" – Was bedeutet ablegen hier?",
+            "options": [
+              "ordentlich aufbewahren",
+              "Kleidung ausziehen",
+              "formal eine Aussage machen"
+            ],
+            "correctIndex": 2
+          },
+          {
+            "question": "\"Man kann seine Worte verschieden auslegen.\" – Was bedeutet auslegen hier?",
+            "options": [
+              "sichtbar verteilen",
+              "interpretieren",
+              "erklären"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "question": "\"Sie belegt dieses Semester drei Kurse an der Uni.\" – Was bedeutet belegen hier?",
+            "options": [
+              "nachweisen",
+              "einen Kurs besuchen",
+              "etwas beilegen"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "question": "\"Der Boden wurde mit neuem Laminat verlegt.\" – Was bedeutet verlegen hier?",
+            "options": [
+              "etwas nicht finden",
+              "zeitlich verschieben",
+              "Material am Boden befestigen"
+            ],
+            "correctIndex": 2
+          }
+        ]
+      }
   ],
   "reviewItems": []
 };
@@ -7296,181 +8637,370 @@ const module9: CourseModule = {
     }
   ],
   "exercises": [
-    {
-      "id": "m9-mc-1",
-      "type": "multiple-choice",
-      "skill": "lesen",
-      "instruction": "Beantworte die Fragen zur Geschichte.",
-      "questions": [
-        {
-          "question": "Wann spielt die Geschichte?",
-          "options": [
-            "Montagmorgen",
-            "Freitagnachmittag kurz vor Feierabend",
-            "Sonntagabend",
-            "Mittwochmittag"
-          ],
-          "correctIndex": 1
-        },
-        {
-          "question": "Was hat Alex sich für das Wochenende vorgenommen?",
-          "options": [
-            "Zu arbeiten",
-            "Wirklich runterzukommen",
-            "Einen Ausflug zu machen",
-            "Ben zu besuchen"
-          ],
-          "correctIndex": 1
-        },
-        {
-          "question": "Was passiert genau vor Feierabend?",
-          "options": [
-            "Ein Anruf kommt rein.",
-            "Eine dringende E-Mail kommt rein.",
-            "Das Licht geht aus.",
-            "Ein Meeting wird angesetzt."
-          ],
-          "correctIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "m9-tf-1",
-      "type": "true-false",
-      "skill": "lesen",
-      "instruction": "Richtig oder falsch? Entscheide basierend auf der Geschichte.",
-      "statements": [
-        {
-          "statement": "Die Geschichte spielt am Freitagnachmittag.",
-          "correct": true
-        },
-        {
-          "statement": "Alex will am Wochenende arbeiten.",
-          "correct": false
-        },
-        {
-          "statement": "Kurz vor Feierabend kommt eine dringende E-Mail.",
-          "correct": true
-        },
-        {
-          "statement": "Die Freizeit kommt bei Alex nicht zu kurz.",
-          "correct": false
-        },
-        {
-          "statement": "Alex will endlich runterkommen.",
-          "correct": true
-        }
-      ]
-    },
-    {
-      "id": "m9-gf-1",
-      "type": "gap-fill",
-      "skill": "hoeren",
-      "instruction": "Ergänze die Sätze mit dem richtigen Verb mit «kommen».",
-      "sentences": [
-        {
-          "text": "Ich will dieses Wochenende wirklich ___.",
-          "answer": "runterkommen"
-        },
-        {
-          "text": "Genau in dem Moment ___ eine E-Mail rein.",
-          "answer": "kommt"
-        },
-        {
-          "text": "Die Freizeit ___ bei mir zu kurz.",
-          "answer": "kommt"
-        },
-        {
-          "text": "Er ist mir ___.",
-          "answer": "entgegengekommen"
-        },
-        {
-          "text": "Das ___ mir komisch vor.",
-          "answer": "kommt"
-        }
-      ]
-    },
-    {
-      "id": "m9-match-1",
-      "type": "matching",
-      "skill": "hoeren",
-      "instruction": "Verbinde die Ausdrücke mit den passenden Erklärungen.",
-      "pairs": [
-        {
-          "left": "runterkommen",
-          "right": "sich entspannen"
-        },
-        {
-          "left": "zurechtkommen",
-          "right": "mit etwas klarkommen"
-        },
-        {
-          "left": "zu kurz kommen",
-          "right": "weniger bekommen als verdient"
-        },
-        {
-          "left": "auf den Geschmack kommen",
-          "right": "anfangen, etwas zu mögen"
-        },
-        {
-          "left": "vorkommen",
-          "right": "geschehen oder jemandem so erscheinen"
-        }
-      ]
-    },
-    {
-      "id": "m9-speak-1",
-      "type": "speaking",
-      "skill": "sprechen",
-      "prompt": "Beschreibe, wie du nach einer stressigen Woche runterkommst. Benutze mindestens 3 «kommen»-Ausdrücke.",
-      "mustUseWords": [
-        "runterkommen",
-        "zurechtkommen",
-        "zu kurz kommen"
-      ],
-      "instruction": "Sprich laut und benutze die Pflicht-Ausdrücke.",
-      "modelAnswer": "Am Freitagabend will ich endlich runterkommen. Unter der Woche komme ich mit dem Stress zurecht, aber die Erholung kommt zu kurz. Am Wochenende mache ich keinen Finger krumm."
-    },
-    {
-      "id": "m9-write-1",
-      "type": "open-writing",
-      "skill": "schreiben",
-      "prompt": "Schreibe 5–7 Sätze über einen stressigen Freitag. Benutze mindestens 4 «kommen»-Ausdrücke.",
-      "mustUseWords": [
-        "runterkommen",
-        "ankommen",
-        "dazukommen",
-        "zu kurz kommen"
-      ],
-      "instruction": "Schreibe deinen Text unten.",
-      "modelAnswer": "Am Freitag bin ich im Büro angekommen und hatte schon zehn E-Mails. Dann kam noch ein Meeting dazu. Die Mittagspause kam wie immer zu kurz. Am Abend wollte ich nur noch runterkommen."
-    },
-    {
-      "id": "m9-speak-2",
-      "type": "speaking",
-      "skill": "sprechen",
-      "prompt": "Beschreibe, wie du auf den Geschmack für ein neues Hobby gekommen bist. Benutze «kommen»-Redewendungen.",
-      "mustUseWords": [
-        "auf den Geschmack kommen",
-        "mitkommen",
-        "rauskommen"
-      ],
-      "instruction": "Sprich frei und verwende die Redewendungen.",
-      "modelAnswer": "Letztes Jahr bin ich auf den Geschmack gekommen, regelmäßig zu joggen. Ein Freund hat gefragt, ob ich mitkommen will. Am Ende ist dabei rausgekommen, dass ich jetzt dreimal pro Woche laufe."
-    },
-    {
-      "id": "m9-write-2",
-      "type": "open-writing",
-      "skill": "schreiben",
-      "prompt": "Schreibe 4–5 Sätze über einen typischen Freitagabend. Benutze mindestens 3 «kommen»-Redewendungen.",
-      "mustUseWords": [
-        "runterkommen",
-        "auf keinen grünen Zweig kommen",
-        "entgegenkommen"
-      ],
-      "instruction": "Schreibe deinen Text unten.",
-      "modelAnswer": "Am Freitagabend will ich endlich runterkommen. Mit dem Haushalt komme ich unter der Woche auf keinen grünen Zweig. Mein Partner kommt mir entgegen und übernimmt das Kochen am Wochenende."
-    }
+      {
+        "id": "m9-ex1",
+        "type": "true-false",
+        "skill": "lesen",
+        "instruction": "Übung 1 – Richtig oder falsch? Lies die Aussagen und entscheide: Stimmt das mit der Geschichte überein?",
+        "statements": [
+          {
+            "statement": "Alex will am Wochenende keine Mails auf dem Sofa beantworten.",
+            "correct": true
+          },
+          {
+            "statement": "Der Kunde braucht die Angebote am Montagmorgen.",
+            "correct": true
+          },
+          {
+            "statement": "Alex schickt dem Kunden am Freitag die komplette Berechnung.",
+            "correct": false
+          },
+          {
+            "statement": "Ben und Alex fahren am Samstag gemeinsam an den See.",
+            "correct": true
+          },
+          {
+            "statement": "Am Sonntagabend geht Alex noch einmal ins Büro.",
+            "correct": false
+          }
+        ]
+      },
+      {
+        "id": "m9-ex2",
+        "type": "gap-fill",
+        "skill": "lesen",
+        "instruction": "Übung 2 – Lückentext: Schreibe das passende Verb in der richtigen Form.",
+        "sentences": [
+          {
+            "text": "Am Montag sollen die Angebote beim Kunden ___.",
+            "answer": "ankommen"
+          },
+          {
+            "text": "Ich habe mir fest vorgenommen, dieses Wochenende wirklich ___.",
+            "answer": "runterzukommen"
+          },
+          {
+            "text": "Ich ___ dem Kunden ___ und schicke eine Kurzübersicht.",
+            "answer": "komme ... entgegen"
+          },
+          {
+            "text": "Ben fragt: ___ du morgen mit zum See?",
+            "answer": "Kommst"
+          },
+          {
+            "text": "Am See ___ wir mit einem kleinen Rucksack ___.",
+            "answer": "kommen ... aus"
+          },
+          {
+            "text": "Nora ___ am Nachmittag noch kurz ___.",
+            "answer": "kommt ... vorbei"
+          }
+        ]
+      },
+      {
+        "id": "m9-ex3",
+        "type": "verb-grouping",
+        "skill": "lesen",
+        "instruction": "Übung 3 – Verben in Gruppen: Ordne die kommen-Verben den richtigen Kategorien zu.",
+        "categories": [
+          {
+            "name": "Ankunft & Bewegung",
+            "items": [
+              "ankommen",
+              "mitkommen",
+              "zurückkommen",
+              "vorbeikommen",
+              "wegkommen",
+              "dazukommen"
+            ]
+          },
+          {
+            "name": "Zustand & Empfinden",
+            "items": [
+              "runterkommen",
+              "hochkommen",
+              "klarkommen",
+              "auskommen"
+            ]
+          },
+          {
+            "name": "Fortschritt & Lösung",
+            "items": [
+              "weiterkommen",
+              "durchkommen",
+              "entgegenkommen",
+              "zukommen"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "m9-ex4",
+        "type": "gap-fill",
+        "skill": "lesen",
+        "instruction": "Übung 4 – Passendes Verb einsetzen: Ergänze das passende Verb aus dem Kasten.",
+        "wordBank": [
+          "angekommen",
+          "runtergekommen",
+          "durchgekommen",
+          "vorbeigekommen",
+          "zurückgekommen",
+          "klargekommen"
+        ],
+        "sentences": [
+          {
+            "text": "Um halb sieben ist Alex endlich zu Hause ___.",
+            "answer": "angekommen"
+          },
+          {
+            "text": "Am See ist Alex endlich ___.",
+            "answer": "runtergekommen"
+          },
+          {
+            "text": "Trotz Baustellen sind sie gut ___.",
+            "answer": "durchgekommen"
+          },
+          {
+            "text": "Nora ist am Nachmittag noch kurz ___.",
+            "answer": "vorbeigekommen"
+          },
+          {
+            "text": "Am Sonntag sind Alex und Ben vom Ausflug ___.",
+            "answer": "zurückgekommen"
+          },
+          {
+            "text": "Der Kunde ist mit der Kurzübersicht erst mal ___.",
+            "answer": "klargekommen"
+          }
+        ]
+      },
+      {
+        "id": "m9-ex5",
+        "type": "matching",
+        "skill": "lesen",
+        "instruction": "Übung 5 – Redewendungen verbinden: Welcher Ausdruck passt zu welcher Situation?",
+        "pairs": [
+          {
+            "left": "Die Arbeit war anstrengend und unangenehm.",
+            "right": "kein Zuckerschlecken"
+          },
+          {
+            "left": "Man braucht Abstand vom Stress.",
+            "right": "den Kopf freibekommen"
+          },
+          {
+            "left": "Wer ruhig bleibt, handelt besser.",
+            "right": "In der Ruhe liegt die Kraft."
+          },
+          {
+            "left": "Man prüft, ob etwas Dringendes passiert ist.",
+            "right": "sichergehen, dass nichts brennt"
+          },
+          {
+            "left": "Eine kurze ruhige Phase vor neuem Stress.",
+            "right": "die Ruhe vor dem Sturm"
+          },
+          {
+            "left": "Etwas akzeptieren, obwohl es nicht perfekt ist.",
+            "right": "mit etwas leben können"
+          }
+        ]
+      },
+      {
+        "id": "m9-ex6",
+        "type": "sentence-completion",
+        "skill": "schreiben",
+        "instruction": "Übung 6 – Satzergänzungen: Ergänze die Sätze sinnvoll auf Deutsch.",
+        "sentences": [
+          {
+            "prompt": "Diese Woche war echt kein ___.",
+            "modelAnswer": "Zuckerschlecken"
+          },
+          {
+            "prompt": "Ich muss mal raus, um den Kopf ___.",
+            "modelAnswer": "freizubekommen"
+          },
+          {
+            "prompt": "In der Ruhe liegt die ___.",
+            "modelAnswer": "Kraft"
+          },
+          {
+            "prompt": "Das ist wohl die Ruhe vor dem ___.",
+            "modelAnswer": "Sturm"
+          },
+          {
+            "prompt": "Ich sehe kurz nach, ob nichts ___.",
+            "modelAnswer": "brennt"
+          },
+          {
+            "prompt": "Damit kann ich ___.",
+            "modelAnswer": "leben"
+          }
+        ]
+      },
+      {
+        "id": "m9-ex7",
+        "type": "error-correction",
+        "skill": "schreiben",
+        "instruction": "Übung 7 – Fehler finden: Jeder Satz enthält genau einen Fehler. Schreibe den korrigierten Satz.",
+        "sentences": [
+          {
+            "incorrect": "Ich komme dem Kunden vor und schicke eine Übersicht.",
+            "correct": "Ich komme dem Kunden entgegen und schicke eine Übersicht.",
+            "explanation": "entgegenkommen = einen Kompromiss anbieten. vorkommen = passieren."
+          },
+          {
+            "incorrect": "Am Wochenende will ich endlich hochkommen.",
+            "correct": "Am Wochenende will ich endlich runterkommen.",
+            "explanation": "runterkommen = entspannen. hochkommen = aus dem Bett kommen."
+          },
+          {
+            "incorrect": "Trotz Baustellen kommen wir gut raus.",
+            "correct": "Trotz Baustellen kommen wir gut durch.",
+            "explanation": "durchkommen = hindurchkommen. rauskommen = herauskommen."
+          },
+          {
+            "incorrect": "Nora kommt am Nachmittag kurz rüber.",
+            "correct": "Nora kommt am Nachmittag kurz vorbei.",
+            "explanation": "vorbeikommen = jemanden kurz besuchen."
+          },
+          {
+            "incorrect": "Wir kommen mit einem kleinen Rucksack durch.",
+            "correct": "Wir kommen mit einem kleinen Rucksack aus.",
+            "explanation": "auskommen = zurechtkommen mit wenig. durchkommen = hindurchkommen."
+          }
+        ]
+      },
+      {
+        "id": "m9-ex8",
+        "type": "open-writing",
+        "skill": "schreiben",
+        "instruction": "Übung 8 – Verben erklären: Erkläre die folgenden kommen-Verben mit eigenen Worten auf Deutsch.",
+        "prompt": "Erkläre auf Deutsch, was diese kommen-Verben bedeuten. Schreibe für jedes Verb mindestens einen Satz mit einem eigenen Beispiel:\n\n- ankommen\n- runterkommen\n- entgegenkommen\n- auskommen\n- vorbeikommen\n- durchkommen",
+        "mustUseWords": [
+          "ankommen",
+          "runterkommen",
+          "entgegenkommen",
+          "auskommen",
+          "vorbeikommen",
+          "durchkommen"
+        ],
+        "modelAnswer": "Ankommen bedeutet, irgendwo eintreffen. Runterkommen heißt, sich zu entspannen und Stress loszulassen. Entgegenkommen bedeutet, jemandem einen Kompromiss anzubieten. Auskommen heißt, mit wenig zurechtzukommen. Vorbeikommen bedeutet, jemanden kurz zu besuchen. Durchkommen heißt, ohne große Probleme hindurchzukommen."
+      },
+      {
+        "id": "m9-ex9",
+        "type": "info-box",
+        "skill": "lesen",
+        "instruction": "Übung 9 – Doppelte Bedeutungen: Viele kommen-Verben haben mehr als eine Bedeutung!",
+        "content": "Viele kommen-Verben, die du in der Geschichte kennengelernt hast, haben im Alltag noch eine weitere Bedeutung. Schau dir die Beispiele unten an – erkennst du den Unterschied?",
+        "verbExamples": [
+          {
+            "verb": "ankommen",
+            "meanings": [
+              {
+                "label": "Im Text",
+                "example": "Die Mail ist angekommen. (eintreffen)"
+              },
+              {
+                "label": "Weitere Bedeutung",
+                "example": "Es kommt auf die Qualität an. (wichtig sein)"
+              }
+            ]
+          },
+          {
+            "verb": "auskommen",
+            "meanings": [
+              {
+                "label": "Im Text",
+                "example": "Wir kommen mit wenig aus. (zurechtkommen)"
+              },
+              {
+                "label": "Weitere Bedeutung",
+                "example": "Sie kommen gut miteinander aus. (sich verstehen)"
+              }
+            ]
+          },
+          {
+            "verb": "runterkommen",
+            "meanings": [
+              {
+                "label": "Im Text",
+                "example": "Am See komme ich runter. (sich entspannen)"
+              },
+              {
+                "label": "Weitere Bedeutung",
+                "example": "Das Haus ist ganz schön runtergekommen. (verwahrlost)"
+              }
+            ]
+          },
+          {
+            "verb": "durchkommen",
+            "meanings": [
+              {
+                "label": "Im Text",
+                "example": "Wir sind gut durchgekommen. (es schaffen)"
+              },
+              {
+                "label": "Weitere Bedeutung",
+                "example": "Ich komme telefonisch nicht durch. (keine Verbindung)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "m9-ex10",
+        "type": "multiple-choice",
+        "skill": "lesen",
+        "instruction": "Übung 10 – Welche Bedeutung? Wähle die richtige Bedeutung des Verbs im jeweiligen Satz.",
+        "questions": [
+          {
+            "question": "\"Es kommt jetzt auf die Details an.\" – Was bedeutet ankommen hier?",
+            "options": [
+              "eintreffen",
+              "wichtig sein",
+              "erscheinen"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "question": "\"Die beiden kommen gut miteinander aus.\" – Was bedeutet auskommen hier?",
+            "options": [
+              "mit wenig zurechtkommen",
+              "sich gut verstehen",
+              "herauskommen"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "question": "\"Das Gebäude ist ziemlich runtergekommen.\" – Was bedeutet runterkommen hier?",
+            "options": [
+              "sich entspannen",
+              "verwahrlost sein",
+              "herunterfallen"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "question": "\"Ich komme telefonisch nicht durch.\" – Was bedeutet durchkommen hier?",
+            "options": [
+              "es schaffen",
+              "keine Verbindung bekommen",
+              "verstehen"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "question": "\"Da kommt noch einiges auf uns zu.\" – Was bedeutet zukommen hier?",
+            "options": [
+              "zurechtkommen",
+              "in Zukunft auf jemanden warten",
+              "ankommen"
+            ],
+            "correctIndex": 1
+          }
+        ]
+      }
   ],
   "reviewItems": []
 };
@@ -7742,171 +9272,366 @@ const module10: CourseModule = {
     }
   ],
   "exercises": [
-    {
-      "id": "m10-mc-1",
-      "type": "multiple-choice",
-      "skill": "lesen",
-      "instruction": "Beantworte die Fragen zur Geschichte «Nerven behalten».",
-      "questions": [
-        {
-          "question": "Wo steht Alex in der Geschichte?",
-          "options": [
-            "Im Bus",
-            "In der Straßenbahn",
-            "Im Zug",
-            "Im Auto"
-          ],
-          "correctIndex": 1
-        },
-        {
-          "question": "Warum halten sie an?",
-          "options": [
-            "Eine Haltestelle",
-            "Ein Lieferwagen im Gleisbereich",
-            "Eine rote Ampel",
-            "Ein Unfall"
-          ],
-          "correctIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "m10-tf-1",
-      "type": "true-false",
-      "skill": "lesen",
-      "instruction": "Richtig oder falsch? Entscheide basierend auf der Geschichte.",
-      "statements": [
-        {
-          "statement": "Alex steht in der Straßenbahn.",
-          "correct": true
-        },
-        {
-          "statement": "Ein Lieferwagen steht im Gleisbereich.",
-          "correct": true
-        },
-        {
-          "statement": "Alex kann sich leicht zurückhalten.",
-          "correct": false
-        },
-        {
-          "statement": "Der Fahrer hält an, weil der Weg blockiert ist.",
-          "correct": true
-        },
-        {
-          "statement": "Alle Fahrgäste bleiben entspannt.",
-          "correct": false
-        }
-      ]
-    },
-    {
-      "id": "m10-gf-1",
-      "type": "gap-fill",
-      "skill": "hoeren",
-      "instruction": "Ergänze die Sätze mit dem richtigen Verb mit «halten».",
-      "sentences": [
-        {
-          "text": "Der Fahrer ___ erst mal an.",
-          "answer": "hält"
-        },
-        {
-          "text": "Ein Lieferwagen hat uns ___.",
-          "answer": "aufgehalten"
-        },
-        {
-          "text": "Man muss die Nerven ___.",
-          "answer": "behalten"
-        },
-        {
-          "text": "Ich konnte mich kaum ___.",
-          "answer": "zurückhalten"
-        },
-        {
-          "text": "___ dich bitte an die Regeln.",
-          "answer": "Halt"
-        }
-      ]
-    },
-    {
-      "id": "m10-match-1",
-      "type": "matching",
-      "skill": "hoeren",
-      "instruction": "Verbinde die Ausdrücke mit den passenden Erklärungen.",
-      "pairs": [
-        {
-          "left": "aushalten",
-          "right": "etwas Unangenehmes ertragen"
-        },
-        {
-          "left": "aufhalten",
-          "right": "jemanden verzögern"
-        },
-        {
-          "left": "die Nerven behalten",
-          "right": "ruhig bleiben"
-        },
-        {
-          "left": "den Rücken freihalten",
-          "right": "jemanden schützen"
-        },
-        {
-          "left": "sich an etwas halten",
-          "right": "Regeln beachten"
-        }
-      ]
-    },
-    {
-      "id": "m10-speak-1",
-      "type": "speaking",
-      "skill": "sprechen",
-      "prompt": "Beschreibe eine Situation, in der du die Nerven behalten musstest. Benutze «halten»-Ausdrücke.",
-      "mustUseWords": [
-        "die Nerven behalten",
-        "aushalten",
-        "zurückhalten"
-      ],
-      "instruction": "Sprich laut und benutze die Pflicht-Ausdrücke.",
-      "modelAnswer": "Letzte Woche war die Straßenbahn total voll. Ich musste die Nerven behalten, obwohl es kaum auszuhalten war. Ich habe mich zurückgehalten und nichts gesagt."
-    },
-    {
-      "id": "m10-write-1",
-      "type": "open-writing",
-      "skill": "schreiben",
-      "prompt": "Schreibe 5–7 Sätze über eine Situation im Verkehr. Benutze mindestens 4 «halten»-Ausdrücke.",
-      "mustUseWords": [
-        "anhalten",
-        "aufhalten",
-        "die Nerven behalten",
-        "aushalten"
-      ],
-      "instruction": "Schreibe deinen Text unten.",
-      "modelAnswer": "Der Bus hat plötzlich angehalten. Ein Lieferwagen hat den ganzen Verkehr aufgehalten. Die Fahrgäste mussten die Nerven behalten. Die Hitze im Bus war kaum auszuhalten."
-    },
-    {
-      "id": "m10-speak-2",
-      "type": "speaking",
-      "skill": "sprechen",
-      "prompt": "Erzähle von einer Situation im öffentlichen Verkehr, die deine Geduld auf die Probe stellte. Benutze «halten»-Redewendungen.",
-      "mustUseWords": [
-        "aushalten",
-        "einhalten",
-        "den Rücken freihalten"
-      ],
-      "instruction": "Sprich frei und verwende die Redewendungen.",
-      "modelAnswer": "Letzte Woche war der Bus so voll, dass es kaum auszuhalten war. Trotzdem musste ich meinen Termin einhalten. Mein Kollege hat mir den Rücken freigehalten und die Kunden informiert."
-    },
-    {
-      "id": "m10-write-2",
-      "type": "open-writing",
-      "skill": "schreiben",
-      "prompt": "Schreibe 4–5 Sätze über eine Situation, in der du die Nerven behalten musstest. Benutze mindestens 3 «halten»-Redewendungen.",
-      "mustUseWords": [
-        "die Nerven behalten",
-        "festhalten",
-        "dagegenhalten"
-      ],
-      "instruction": "Schreibe deinen Text unten.",
-      "modelAnswer": "In einer stressigen Besprechung musste ich die Nerven behalten. Mein Chef hat an seiner Meinung festgehalten, obwohl sie falsch war. Ich musste dagegenhalten und ihm klar erklären, warum sein Plan nicht funktioniert."
-    }
+      {
+        "id": "m10-ex1",
+        "type": "true-false",
+        "skill": "lesen",
+        "instruction": "Übung 1 – Richtig oder falsch? Lies die Aussagen und entscheide: Stimmt das mit der Geschichte überein?",
+        "statements": [
+          {
+            "statement": "Alex wird morgens in der Straßenbahn durch einen Lieferwagen aufgehalten.",
+            "correct": true
+          },
+          {
+            "statement": "Die Sendung für Lichtenberg hängt wegen eines falschen Produkts fest.",
+            "correct": false
+          },
+          {
+            "statement": "Mehmet will sich aktiv um das Lichtenberg-Problem kümmern.",
+            "correct": false
+          },
+          {
+            "statement": "Die Hausnummer im System stimmt nicht mit der Kundenmail überein.",
+            "correct": true
+          },
+          {
+            "statement": "Am Ende des Tages hat Alex keine neuen Aufgaben mehr.",
+            "correct": false
+          }
+        ]
+      },
+      {
+        "id": "m10-ex2",
+        "type": "gap-fill",
+        "skill": "lesen",
+        "instruction": "Übung 2 – Lückentext: Schreibe das passende Verb in der richtigen Form.",
+        "sentences": [
+          {
+            "text": "Die Straßenbahn wird gerade ___.",
+            "answer": "aufgehalten"
+          },
+          {
+            "text": "Ich ___ mich am Griff ___.",
+            "answer": "halte ... fest"
+          },
+          {
+            "text": "Der Kunde besteht darauf, dass wir den Termin ___.",
+            "answer": "einhalten"
+          },
+          {
+            "text": "Die Ware wurde im Depot ___.",
+            "answer": "zurückgehalten"
+          },
+          {
+            "text": "Ich ___ mich da lieber ___.",
+            "answer": "halte ... raus"
+          },
+          {
+            "text": "Ich frage mich, wie lange ich das noch ___.",
+            "answer": "aushalte"
+          }
+        ]
+      },
+      {
+        "id": "m10-ex3",
+        "type": "verb-grouping",
+        "skill": "lesen",
+        "instruction": "Übung 3 – Verben in Gruppen: Ordne die halten-Verben den richtigen Kategorien zu.",
+        "categories": [
+          {
+            "name": "Stoppen & Verzögern",
+            "items": [
+              "anhalten",
+              "aufhalten",
+              "zurückhalten"
+            ]
+          },
+          {
+            "name": "Durchhalten & Ertragen",
+            "items": [
+              "durchhalten",
+              "aushalten",
+              "einhalten"
+            ]
+          },
+          {
+            "name": "Distanz & Dokumentation",
+            "items": [
+              "sich raushalten",
+              "stillhalten",
+              "festhalten",
+              "abhalten"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "m10-ex4",
+        "type": "gap-fill",
+        "skill": "lesen",
+        "instruction": "Übung 4 – Passendes Verb einsetzen: Ergänze das passende Verb aus dem Kasten.",
+        "wordBank": [
+          "angehalten",
+          "aufgehalten",
+          "festgehalten",
+          "eingehalten",
+          "zurückgehalten",
+          "durchgehalten"
+        ],
+        "sentences": [
+          {
+            "text": "Die Straßenbahn hat kurz vor der Haltestelle ___.",
+            "answer": "angehalten"
+          },
+          {
+            "text": "Die Sendung wurde im Depot ___.",
+            "answer": "aufgehalten"
+          },
+          {
+            "text": "Die Adressdaten wurden letzte Woche schriftlich ___.",
+            "answer": "festgehalten"
+          },
+          {
+            "text": "Der Liefertermin muss unbedingt ___ werden.",
+            "answer": "eingehalten"
+          },
+          {
+            "text": "Die Ware wurde vorübergehend ___.",
+            "answer": "zurückgehalten"
+          },
+          {
+            "text": "Alex hat den ganzen stressigen Tag ___.",
+            "answer": "durchgehalten"
+          }
+        ]
+      },
+      {
+        "id": "m10-ex5",
+        "type": "matching",
+        "skill": "lesen",
+        "instruction": "Übung 5 – Redewendungen verbinden: Welcher Ausdruck passt zu welcher Situation?",
+        "pairs": [
+          {
+            "left": "Man bleibt ruhig und kontrolliert.",
+            "right": "die Nerven behalten"
+          },
+          {
+            "left": "Der übliche alltägliche Stress.",
+            "right": "der ganz normale Wahnsinn"
+          },
+          {
+            "left": "Es wird anstrengend oder chaotisch.",
+            "right": "Heute wird's sportlich."
+          },
+          {
+            "left": "Man wartet endlos am Telefon.",
+            "right": "in der Schleife warten"
+          },
+          {
+            "left": "Man ist knapp und nicht besonders gesprächig.",
+            "right": "kurz angebunden sein"
+          },
+          {
+            "left": "Resigniert-ironisch: Natürlich passiert genau das.",
+            "right": "War ja klar."
+          }
+        ]
+      },
+      {
+        "id": "m10-ex6",
+        "type": "sentence-completion",
+        "skill": "schreiben",
+        "instruction": "Übung 6 – Satzergänzungen: Ergänze die Sätze sinnvoll auf Deutsch.",
+        "sentences": [
+          {
+            "prompt": "Immer ruhig ___.",
+            "modelAnswer": "Blut"
+          },
+          {
+            "prompt": "Der ganz normale ___ in den Öffis.",
+            "modelAnswer": "Wahnsinn"
+          },
+          {
+            "prompt": "Heute wird's ___.",
+            "modelAnswer": "sportlich"
+          },
+          {
+            "prompt": "Bitte ___ Sie sich an die Vereinbarung.",
+            "modelAnswer": "halten"
+          },
+          {
+            "prompt": "Das darf doch wohl nicht wahr ___!",
+            "modelAnswer": "sein"
+          },
+          {
+            "prompt": "Die Situation habe ich im ___.",
+            "modelAnswer": "Griff"
+          }
+        ]
+      },
+      {
+        "id": "m10-ex7",
+        "type": "error-correction",
+        "skill": "schreiben",
+        "instruction": "Übung 7 – Fehler finden: Jeder Satz enthält genau einen Fehler. Schreibe den korrigierten Satz.",
+        "sentences": [
+          {
+            "incorrect": "Die Straßenbahn wird gerade festgehalten.",
+            "correct": "Die Straßenbahn wird gerade aufgehalten.",
+            "explanation": "aufhalten = verzögern. festhalten = sich klammern oder dokumentieren."
+          },
+          {
+            "incorrect": "Ich halte mich am Griff auf.",
+            "correct": "Ich halte mich am Griff fest.",
+            "explanation": "festhalten = sich klammern. aufhalten = verzögern."
+          },
+          {
+            "incorrect": "Der Termin muss unbedingt durchgehalten werden.",
+            "correct": "Der Termin muss unbedingt eingehalten werden.",
+            "explanation": "einhalten = eine Frist schaffen. durchhalten = weitermachen trotz Stress."
+          },
+          {
+            "incorrect": "Ich will mich nicht einhalten.",
+            "correct": "Ich will mich raushalten.",
+            "explanation": "sich raushalten = sich nicht beteiligen. einhalten = Frist/Termin schaffen."
+          },
+          {
+            "incorrect": "Ich weiß nicht, wie lange ich das noch anhalte.",
+            "correct": "Ich weiß nicht, wie lange ich das noch aushalte.",
+            "explanation": "aushalten = ertragen. anhalten = stoppen."
+          }
+        ]
+      },
+      {
+        "id": "m10-ex8",
+        "type": "open-writing",
+        "skill": "schreiben",
+        "instruction": "Übung 8 – Verben erklären: Erkläre die folgenden halten-Verben mit eigenen Worten auf Deutsch.",
+        "prompt": "Erkläre auf Deutsch, was diese halten-Verben bedeuten. Schreibe für jedes Verb mindestens einen Satz mit einem eigenen Beispiel:\n\n- aufhalten\n- festhalten\n- einhalten\n- durchhalten\n- aushalten\n- sich raushalten",
+        "mustUseWords": [
+          "aufhalten",
+          "festhalten",
+          "einhalten",
+          "durchhalten",
+          "aushalten",
+          "raushalten"
+        ],
+        "modelAnswer": "Aufhalten bedeutet, etwas zu verzögern. Festhalten heißt, sich irgendwo zu klammern, oder etwas schriftlich zu dokumentieren. Einhalten bedeutet, einen Termin oder eine Frist zu schaffen. Durchhalten heißt, weiterzumachen, obwohl etwas anstrengend ist. Aushalten bedeutet, etwas Belastendes zu ertragen. Sich raushalten heißt, sich nicht in etwas einzumischen."
+      },
+      {
+        "id": "m10-ex9",
+        "type": "info-box",
+        "skill": "lesen",
+        "instruction": "Übung 9 – Doppelte Bedeutungen: Viele halten-Verben haben mehr als eine Bedeutung!",
+        "content": "Viele halten-Verben, die du in der Geschichte kennengelernt hast, haben im Alltag noch eine weitere Bedeutung. Schau dir die Beispiele unten an – erkennst du den Unterschied?",
+        "verbExamples": [
+          {
+            "verb": "festhalten",
+            "meanings": [
+              {
+                "label": "Im Text",
+                "example": "Ich halte mich am Griff fest. (sich klammern)"
+              },
+              {
+                "label": "Weitere Bedeutung",
+                "example": "Wir haben alles schriftlich festgehalten. (dokumentieren)"
+              }
+            ]
+          },
+          {
+            "verb": "aufhalten",
+            "meanings": [
+              {
+                "label": "Im Text",
+                "example": "Die Sendung wird aufgehalten. (verzögern)"
+              },
+              {
+                "label": "Weitere Bedeutung",
+                "example": "Wo hältst du dich gerade auf? (sich befinden)"
+              }
+            ]
+          },
+          {
+            "verb": "anhalten",
+            "meanings": [
+              {
+                "label": "Im Text",
+                "example": "Die Bahn hält an. (stoppen)"
+              },
+              {
+                "label": "Weitere Bedeutung",
+                "example": "Der Regen hält schon den ganzen Tag an. (andauern)"
+              }
+            ]
+          },
+          {
+            "verb": "zurückhalten",
+            "meanings": [
+              {
+                "label": "Im Text",
+                "example": "Die Ware wurde zurückgehalten. (nicht freigeben)"
+              },
+              {
+                "label": "Weitere Bedeutung",
+                "example": "Er hält sich mit Kritik zurück. (sich bremsen)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "m10-ex10",
+        "type": "multiple-choice",
+        "skill": "lesen",
+        "instruction": "Übung 10 – Welche Bedeutung? Wähle die richtige Bedeutung des Verbs im jeweiligen Satz.",
+        "questions": [
+          {
+            "question": "\"Wir haben das Ergebnis schriftlich festgehalten.\" – Was bedeutet festhalten hier?",
+            "options": [
+              "sich klammern",
+              "dokumentieren",
+              "stoppen"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "question": "\"Wo hältst du dich gerade auf?\" – Was bedeutet sich aufhalten hier?",
+            "options": [
+              "verzögert werden",
+              "sich befinden",
+              "warten"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "question": "\"Der Regen hält schon den ganzen Tag an.\" – Was bedeutet anhalten hier?",
+            "options": [
+              "stoppen",
+              "andauern",
+              "festhalten"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "question": "\"Er hält sich mit seiner Meinung zurück.\" – Was bedeutet sich zurückhalten hier?",
+            "options": [
+              "etwas nicht freigeben",
+              "sich bremsen",
+              "etwas behalten"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "question": "\"Nichts konnte ihn davon abhalten.\" – Was bedeutet abhalten hier?",
+            "options": [
+              "jemanden hindern",
+              "etwas ertragen",
+              "etwas stoppen"
+            ],
+            "correctIndex": 0
+          }
+        ]
+      }
   ],
   "reviewItems": []
 };
@@ -8370,181 +10095,370 @@ const module11: CourseModule = {
     }
   ],
   "exercises": [
-    {
-      "id": "m11-mc-1",
-      "type": "multiple-choice",
-      "skill": "lesen",
-      "instruction": "Beantworte die Fragen zur Geschichte.",
-      "questions": [
-        {
-          "question": "Wann spielt die Geschichte?",
-          "options": [
-            "Am Montagmorgen",
-            "Am Mittwochabend",
-            "Am Freitagabend",
-            "Am Sonntagmittag"
-          ],
-          "correctIndex": 1
-        },
-        {
-          "question": "Was würde Alex normalerweise machen?",
-          "options": [
-            "Ins Fitnessstudio gehen",
-            "Direkt nach Hause fahren und eine Serie schauen",
-            "Überstunden machen",
-            "Freunde treffen"
-          ],
-          "correctIndex": 1
-        },
-        {
-          "question": "Warum geht Alex trotzdem ins Studio?",
-          "options": [
-            "Sein Arzt hat es empfohlen.",
-            "Die Firma nimmt an einer Fitness-Challenge teil.",
-            "Ben hat ihn überredet.",
-            "Das Studio hat ein Sonderangebot."
-          ],
-          "correctIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "m11-tf-1",
-      "type": "true-false",
-      "skill": "lesen",
-      "instruction": "Richtig oder falsch? Entscheide basierend auf der Geschichte.",
-      "statements": [
-        {
-          "statement": "Die Geschichte spielt am Mittwochabend.",
-          "correct": true
-        },
-        {
-          "statement": "Alex würde normalerweise direkt nach Hause fahren.",
-          "correct": true
-        },
-        {
-          "statement": "Die Firma nimmt an einer Fitness-Challenge teil.",
-          "correct": true
-        },
-        {
-          "statement": "Die Zeit im Studio vergeht langsam.",
-          "correct": false
-        },
-        {
-          "statement": "Alex bereut den Besuch im Studio.",
-          "correct": false
-        }
-      ]
-    },
-    {
-      "id": "m11-gf-1",
-      "type": "gap-fill",
-      "skill": "hoeren",
-      "instruction": "Ergänze die Sätze mit dem richtigen Verb mit «gehen».",
-      "sentences": [
-        {
-          "text": "Im Studio ___ es richtig ab.",
-          "answer": "geht"
-        },
-        {
-          "text": "Jetzt ___ es los!",
-          "answer": "geht"
-        },
-        {
-          "text": "Die Zeit ___ wie im Flug.",
-          "answer": "vergeht"
-        },
-        {
-          "text": "So ein Verhalten – das ___ gar nicht.",
-          "answer": "geht"
-        },
-        {
-          "text": "Wir ___ das Problem direkt an.",
-          "answer": "gehen"
-        }
-      ]
-    },
-    {
-      "id": "m11-match-1",
-      "type": "matching",
-      "skill": "hoeren",
-      "instruction": "Verbinde die Ausdrücke mit den passenden Erklärungen.",
-      "pairs": [
-        {
-          "left": "abgehen",
-          "right": "richtig loslegen, Stimmung machen"
-        },
-        {
-          "left": "angehen",
-          "right": "ein Problem direkt anpacken"
-        },
-        {
-          "left": "vergehen",
-          "right": "die Zeit verstreicht"
-        },
-        {
-          "left": "das geht gar nicht",
-          "right": "das ist absolut nicht akzeptabel"
-        },
-        {
-          "left": "in sich gehen",
-          "right": "über sich selbst nachdenken"
-        }
-      ]
-    },
-    {
-      "id": "m11-speak-1",
-      "type": "speaking",
-      "skill": "sprechen",
-      "prompt": "Erzähle von einem Sporterlebnis oder einem Fitnessprogramm. Benutze «gehen»-Ausdrücke.",
-      "mustUseWords": [
-        "losgehen",
-        "abgehen",
-        "vergehen"
-      ],
-      "instruction": "Sprich laut und benutze die Pflicht-Ausdrücke.",
-      "modelAnswer": "Letzte Woche bin ich endlich ins Fitnessstudio losgegangen. Im Kurs ist es richtig abgegangen. Die Stunde ist vergangen wie im Flug."
-    },
-    {
-      "id": "m11-write-1",
-      "type": "open-writing",
-      "skill": "schreiben",
-      "prompt": "Schreibe 5–7 Sätze über einen sportlichen Abend. Benutze mindestens 4 «gehen»-Ausdrücke.",
-      "mustUseWords": [
-        "abgehen",
-        "losgehen",
-        "angehen",
-        "vergehen"
-      ],
-      "instruction": "Schreibe deinen Text unten.",
-      "modelAnswer": "Am Mittwoch bin ich nach der Arbeit direkt ins Fitnessstudio losgegangen. Im Kurs ist es richtig abgegangen. Ich wollte mein Fitnessproblem endlich angehen. Die Zeit ist vergangen wie im Flug und am Ende fühlte ich mich großartig."
-    },
-    {
-      "id": "m11-speak-2",
-      "type": "speaking",
-      "skill": "sprechen",
-      "prompt": "Beschreibe, warum du eine neue sportliche Aktivität ausprobiert hast. Benutze «gehen»-Redewendungen.",
-      "mustUseWords": [
-        "einen Schritt weitergehen",
-        "in sich gehen",
-        "eingehen"
-      ],
-      "instruction": "Sprich frei und verwende die Redewendungen.",
-      "modelAnswer": "Letzten Monat bin ich in mich gegangen und habe gemerkt, dass ich mehr Sport brauche. Ich bin auf das Angebot meines Kollegen eingegangen und bin mitgekommen. Jetzt will ich einen Schritt weitergehen und mich für einen Lauf anmelden."
-    },
-    {
-      "id": "m11-write-2",
-      "type": "open-writing",
-      "skill": "schreiben",
-      "prompt": "Schreibe 4–5 Sätze über einen Abend im Fitnessstudio. Benutze mindestens 3 «gehen»-Redewendungen.",
-      "mustUseWords": [
-        "das geht gar nicht",
-        "übergehen",
-        "mitgehen"
-      ],
-      "instruction": "Schreibe deinen Text unten.",
-      "modelAnswer": "Im Fitnessstudio ging die Energie der Gruppe total mit. Der Trainer wollte keine Pause machen – das geht eigentlich gar nicht! Aber er ist schnell zur nächsten Übung übergegangen und am Ende haben sich alle großartig gefühlt."
-    }
+      {
+        "id": "m11-ex1",
+        "type": "true-false",
+        "skill": "lesen",
+        "instruction": "Übung 1 – Richtig oder falsch? Lies die Aussagen und entscheide: Stimmt das mit der Geschichte überein?",
+        "statements": [
+          {
+            "statement": "Alex geht normalerweise nach der Arbeit direkt ins Fitnessstudio.",
+            "correct": false
+          },
+          {
+            "statement": "Das Marketing-Team liegt in der Challenge vorn.",
+            "correct": true
+          },
+          {
+            "statement": "Tom, der Trainer, geht den Plan strukturiert durch.",
+            "correct": true
+          },
+          {
+            "statement": "Am Ende des Trainings liegt das Vertriebs-Team auf Platz eins.",
+            "correct": false
+          },
+          {
+            "statement": "Alex plant, die Trainingszeiten in der kommenden Woche zu priorisieren.",
+            "correct": true
+          }
+        ]
+      },
+      {
+        "id": "m11-ex2",
+        "type": "gap-fill",
+        "skill": "lesen",
+        "instruction": "Übung 2 – Lückentext: Schreibe das passende Verb in der richtigen Form.",
+        "sentences": [
+          {
+            "text": "Die aus dem Marketing ___ gerade richtig ___.",
+            "answer": "gehen ... ab"
+          },
+          {
+            "text": "Heute ___ wir das Training härter ___.",
+            "answer": "gehen ... an"
+          },
+          {
+            "text": "Tom ___ den Plan Punkt für Punkt ___.",
+            "answer": "geht ... durch"
+          },
+          {
+            "text": "Auf dem Laufband ___ Alex langsam ins Laufen ___.",
+            "answer": "geht ... über"
+          },
+          {
+            "text": "Am Ende ___ den anderen Teams die Kraft ___.",
+            "answer": "geht ... aus"
+          },
+          {
+            "text": "Die Punktzahl ist ___.",
+            "answer": "hochgegangen"
+          }
+        ]
+      },
+      {
+        "id": "m11-ex3",
+        "type": "verb-grouping",
+        "skill": "lesen",
+        "instruction": "Übung 3 – Verben in Gruppen: Ordne die gehen-Verben den richtigen Kategorien zu.",
+        "categories": [
+          {
+            "name": "Bewegung & Richtung",
+            "items": [
+              "gehen",
+              "vorbeigehen",
+              "hochgehen",
+              "mitgehen"
+            ]
+          },
+          {
+            "name": "Anfangen & Handeln",
+            "items": [
+              "angehen",
+              "vorgehen",
+              "durchgehen",
+              "weitergehen"
+            ]
+          },
+          {
+            "name": "Intensität & Ergebnis",
+            "items": [
+              "abgehen",
+              "untergehen",
+              "ausgehen",
+              "übergehen",
+              "rangehen",
+              "zusammengehen"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "m11-ex4",
+        "type": "gap-fill",
+        "skill": "lesen",
+        "instruction": "Übung 4 – Passendes Verb einsetzen: Ergänze das passende Verb aus dem Kasten.",
+        "wordBank": [
+          "untergegangen",
+          "angegangen",
+          "durchgegangen",
+          "ausgegangen",
+          "vorbeigegangen",
+          "hochgegangen"
+        ],
+        "sentences": [
+          {
+            "text": "Die Trainingszeiten sind im Alltag fast ___.",
+            "answer": "untergegangen"
+          },
+          {
+            "text": "Das Team hat das Training hart ___.",
+            "answer": "angegangen"
+          },
+          {
+            "text": "Tom hat den Plan mit dem Team ___.",
+            "answer": "durchgegangen"
+          },
+          {
+            "text": "Den anderen Teams ist am Ende die Kraft ___.",
+            "answer": "ausgegangen"
+          },
+          {
+            "text": "Sie sind an der Tafel beim Eingang ___.",
+            "answer": "vorbeigegangen"
+          },
+          {
+            "text": "Die Punktzahl ist ___.",
+            "answer": "hochgegangen"
+          }
+        ]
+      },
+      {
+        "id": "m11-ex5",
+        "type": "matching",
+        "skill": "lesen",
+        "instruction": "Übung 5 – Redewendungen verbinden: Welcher Ausdruck passt zu welcher Situation?",
+        "pairs": [
+          {
+            "left": "Es ist viel los und die Stimmung ist energiegeladen.",
+            "right": "Es geht ab."
+          },
+          {
+            "left": "Jemanden sehr nerven.",
+            "right": "jemandem auf den Sack gehen"
+          },
+          {
+            "left": "Alles riskieren oder maximal reinhängen.",
+            "right": "aufs Ganze gehen"
+          },
+          {
+            "left": "Nichts bekommen.",
+            "right": "leer ausgehen"
+          },
+          {
+            "left": "Sich maximal anstrengen.",
+            "right": "an seine Grenze gehen"
+          },
+          {
+            "left": "Vor Erschöpfung fast zusammenbrechen.",
+            "right": "in die Knie gehen"
+          }
+        ]
+      },
+      {
+        "id": "m11-ex6",
+        "type": "sentence-completion",
+        "skill": "schreiben",
+        "instruction": "Übung 6 – Satzergänzungen: Ergänze die Sätze sinnvoll auf Deutsch.",
+        "sentences": [
+          {
+            "prompt": "Im Fitnessstudio geht es richtig ___.",
+            "modelAnswer": "ab"
+          },
+          {
+            "prompt": "Das geht mir auf den ___.",
+            "modelAnswer": "Sack"
+          },
+          {
+            "prompt": "Jule geht sofort aufs ___.",
+            "modelAnswer": "Ganze"
+          },
+          {
+            "prompt": "Am Ende gehen die anderen Teams leer ___.",
+            "modelAnswer": "aus"
+          },
+          {
+            "prompt": "Am Ende muss Alex in die Knie ___.",
+            "modelAnswer": "gehen"
+          },
+          {
+            "prompt": "An uns kommt niemand mehr ___!",
+            "modelAnswer": "vorbei"
+          }
+        ]
+      },
+      {
+        "id": "m11-ex7",
+        "type": "error-correction",
+        "skill": "schreiben",
+        "instruction": "Übung 7 – Fehler finden: Jeder Satz enthält genau einen Fehler. Schreibe den korrigierten Satz.",
+        "sentences": [
+          {
+            "incorrect": "Die anderen Teams gehen am Ende leer durch.",
+            "correct": "Die anderen Teams gehen am Ende leer aus.",
+            "explanation": "leer ausgehen = nichts bekommen. durchgehen = Schritt für Schritt besprechen."
+          },
+          {
+            "incorrect": "Tom geht den Plan Punkt für Punkt an.",
+            "correct": "Tom geht den Plan Punkt für Punkt durch.",
+            "explanation": "durchgehen = besprechen. angehen = in Angriff nehmen."
+          },
+          {
+            "incorrect": "Die Trainingszeiten dürfen nicht vorbeigehen.",
+            "correct": "Die Trainingszeiten dürfen nicht untergehen.",
+            "explanation": "untergehen = verloren gehen. vorbeigehen = vorbeilaufen."
+          },
+          {
+            "incorrect": "Unsere Punktzahl ist mitgegangen.",
+            "correct": "Unsere Punktzahl ist hochgegangen.",
+            "explanation": "hochgehen = steigen. mitgehen = parallel ansteigen (Puls)."
+          },
+          {
+            "incorrect": "Nach dem Training geht Alex in die Grenze.",
+            "correct": "Nach dem Training geht Alex an seine Grenze.",
+            "explanation": "an seine Grenze gehen = sich maximal anstrengen."
+          }
+        ]
+      },
+      {
+        "id": "m11-ex8",
+        "type": "open-writing",
+        "skill": "schreiben",
+        "instruction": "Übung 8 – Verben erklären: Erkläre die folgenden gehen-Verben mit eigenen Worten auf Deutsch.",
+        "prompt": "Erkläre auf Deutsch, was diese gehen-Verben bedeuten. Schreibe für jedes Verb mindestens einen Satz mit einem eigenen Beispiel:\n\n- abgehen\n- angehen\n- durchgehen\n- ausgehen\n- untergehen\n- vorbeigehen",
+        "mustUseWords": [
+          "abgehen",
+          "angehen",
+          "durchgehen",
+          "ausgehen",
+          "untergehen",
+          "vorbeigehen"
+        ],
+        "modelAnswer": "Abgehen bedeutet, dass viel Energie da ist und es viel Action gibt. Angehen heißt, etwas in Angriff zu nehmen oder zu beginnen. Durchgehen bedeutet, etwas Schritt für Schritt zu besprechen. Ausgehen heißt, dass etwas zu Ende geht, z. B. die Kraft. Untergehen bedeutet, dass etwas im Gesamtbild verloren geht. Vorbeigehen heißt, an etwas vorbeilaufen."
+      },
+      {
+        "id": "m11-ex9",
+        "type": "info-box",
+        "skill": "lesen",
+        "instruction": "Übung 9 – Doppelte Bedeutungen: Viele gehen-Verben haben mehr als eine Bedeutung!",
+        "content": "Viele gehen-Verben, die du in der Geschichte kennengelernt hast, haben im Alltag noch eine weitere Bedeutung. Schau dir die Beispiele unten an – erkennst du den Unterschied?",
+        "verbExamples": [
+          {
+            "verb": "ausgehen",
+            "meanings": [
+              {
+                "label": "Im Text",
+                "example": "Den anderen geht die Kraft aus. (zu Ende sein)"
+              },
+              {
+                "label": "Weitere Bedeutung",
+                "example": "Wir gehen heute Abend aus. (abends weggehen)"
+              }
+            ]
+          },
+          {
+            "verb": "angehen",
+            "meanings": [
+              {
+                "label": "Im Text",
+                "example": "Wir gehen das Training hart an. (in Angriff nehmen)"
+              },
+              {
+                "label": "Weitere Bedeutung",
+                "example": "Das geht dich nichts an. (jemanden betreffen)"
+              }
+            ]
+          },
+          {
+            "verb": "untergehen",
+            "meanings": [
+              {
+                "label": "Im Text",
+                "example": "Die Trainingszeiten gehen unter. (verloren gehen)"
+              },
+              {
+                "label": "Weitere Bedeutung",
+                "example": "Die Sonne geht unter. (Sonnenuntergang)"
+              }
+            ]
+          },
+          {
+            "verb": "durchgehen",
+            "meanings": [
+              {
+                "label": "Im Text",
+                "example": "Tom geht den Plan durch. (Schritt für Schritt besprechen)"
+              },
+              {
+                "label": "Weitere Bedeutung",
+                "example": "Das Pferd ist durchgegangen. (die Kontrolle verlieren)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "m11-ex10",
+        "type": "multiple-choice",
+        "skill": "lesen",
+        "instruction": "Übung 10 – Welche Bedeutung? Wähle die richtige Bedeutung des Verbs im jeweiligen Satz.",
+        "questions": [
+          {
+            "question": "\"Wir gehen heute Abend schick aus.\" – Was bedeutet ausgehen hier?",
+            "options": [
+              "zu Ende sein",
+              "abends weggehen",
+              "leer ausgehen"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "question": "\"Das geht dich überhaupt nichts an!\" – Was bedeutet angehen hier?",
+            "options": [
+              "beginnen",
+              "in Angriff nehmen",
+              "jemanden betreffen"
+            ],
+            "correctIndex": 2
+          },
+          {
+            "question": "\"Die Sonne geht gerade unter.\" – Was bedeutet untergehen hier?",
+            "options": [
+              "verloren gehen",
+              "Sonnenuntergang",
+              "scheitern"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "question": "\"Der Gaul ist mit ihm durchgegangen.\" – Was bedeutet durchgehen hier?",
+            "options": [
+              "Schritt für Schritt besprechen",
+              "die Kontrolle verlieren",
+              "hindurchgehen"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "question": "\"Es geht nicht an, dass er immer zu spät kommt.\" – Was bedeutet angehen hier?",
+            "options": [
+              "beginnen",
+              "es ist nicht akzeptabel",
+              "jemanden betreffen"
+            ],
+            "correctIndex": 1
+          }
+        ]
+      }
   ],
   "reviewItems": []
 };
@@ -9204,235 +11118,365 @@ const module12: CourseModule = {
     }
   ],
   "exercises": [
-    {
-      "id": "m12-mc-1",
-      "type": "multiple-choice",
-      "skill": "lesen",
-      "instruction": "Beantworte die Fragen zur Geschichte «Mach Licht an!».",
-      "questions": [
-        {
-          "question": "Warum funktioniert am Montagmorgen nichts im Büro?",
-          "options": [
-            "Der Computer ist kaputt.",
-            "Es gibt einen lokalen Stromausfall.",
-            "Die Kaffeemaschine ist defekt.",
-            "Mehmet hat den Strom abgestellt."
-          ],
-          "correctIndex": 1
-        },
-        {
-          "question": "Was hatten Alex und der Kunde letzte Woche ausgemacht?",
-          "options": [
-            "Dass der Kunde ins Büro kommt.",
-            "Dass die Lieferung am Montag rausgeht.",
-            "Dass die Bestellung storniert wird.",
-            "Dass der Preis gesenkt wird."
-          ],
-          "correctIndex": 1
-        },
-        {
-          "question": "Was sagt Jule, als sie den Lichtschalter drückt?",
-          "options": [
-            "«Das ist doch nicht möglich!»",
-            "«Heute ist echt der Wurm drin.»",
-            "«Ich stehe unter Strom.»",
-            "«Das muss der Hausmeister reparieren.»"
-          ],
-          "correctIndex": 1
-        },
-        {
-          "question": "Wer repariert am Ende den Strom?",
-          "options": [
-            "Mehmet",
-            "Alex",
-            "Frau Krüger",
-            "Der Hausmeister"
-          ],
-          "correctIndex": 3
-        },
-        {
-          "question": "Was macht Alex abends zu Hause als Erstes?",
-          "options": [
-            "Er macht den Fernseher an.",
-            "Er macht die Wohnungstür auf und das Handy aus.",
-            "Er ruft einen Kunden an.",
-            "Er macht sich etwas zu essen."
-          ],
-          "correctIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "m12-tf-1",
-      "type": "true-false",
-      "skill": "lesen",
-      "instruction": "Richtig oder falsch?",
-      "statements": [
-        {
-          "statement": "Am Montagmorgen funktioniert das Licht im Büro sofort.",
-          "correct": false
-        },
-        {
-          "statement": "Mehmet sagt, er steht unter Strom.",
-          "correct": true
-        },
-        {
-          "statement": "Die Lieferung sollte um neun Uhr rausgehen.",
-          "correct": true
-        },
-        {
-          "statement": "Frau Krüger sagt, alle sollen nach Hause gehen.",
-          "correct": false
-        },
-        {
-          "statement": "Der Hausmeister findet heraus, dass Handwerker am Wochenende am Sicherungskasten gepfuscht haben.",
-          "correct": true
-        },
-        {
-          "statement": "Alex konnte die Kunden nicht erreichen, weil sein Handy keinen Akku hatte.",
-          "correct": false
-        },
-        {
-          "statement": "Alex macht abends sein Handy konsequent aus.",
-          "correct": true
-        }
-      ]
-    },
-    {
-      "id": "m12-gf-1",
-      "type": "gap-fill",
-      "skill": "hoeren",
-      "instruction": "Ergänze die Sätze mit dem richtigen Verb mit «machen».",
-      "sentences": [
-        {
-          "text": "Ich will das Licht im Büro ___, aber es passiert nichts.",
-          "answer": "anmachen"
-        },
-        {
-          "text": "Ich mache erst mal das Fenster weit ___.",
-          "answer": "auf"
-        },
-        {
-          "text": "Die Jungs können nichts mehr ___.",
-          "answer": "fertigmachen"
-        },
-        {
-          "text": "Mit dem Kunden haben wir letzte Woche ___, dass heute alles auf dem Lkw ist.",
-          "answer": "ausgemacht"
-        },
-        {
-          "text": "Wir versuchen, so gut es geht ___.",
-          "answer": "weiterzumachen"
-        },
-        {
-          "text": "Ich mache ihnen ___, dass wir nichts dafür können.",
-          "answer": "klar"
-        },
-        {
-          "text": "Mein Kopf fühlt sich an, als hätte ihn jemand ___.",
-          "answer": "kaputtgemacht"
-        },
-        {
-          "text": "Abends mache ich das Handy konsequent ___.",
-          "answer": "aus"
-        }
-      ]
-    },
-    {
-      "id": "m12-match-1",
-      "type": "matching",
-      "skill": "hoeren",
-      "instruction": "Verbinde die Redewendungen mit den passenden Erklärungen.",
-      "pairs": [
-        {
-          "left": "unter Strom stehen",
-          "right": "sehr gestresst und angespannt sein"
-        },
-        {
-          "left": "der Wurm ist drin",
-          "right": "es geht vieles schief"
-        },
-        {
-          "left": "auf dem Schlauch stehen",
-          "right": "etwas nicht verstehen"
-        },
-        {
-          "left": "jemanden kirre machen",
-          "right": "jemanden nervlich fertig machen"
-        },
-        {
-          "left": "auf eigene Faust",
-          "right": "allein, ohne Erlaubnis"
-        },
-        {
-          "left": "im Eimer sein",
-          "right": "kaputt, nicht funktionsfähig"
-        },
-        {
-          "left": "auf der Matte stehen",
-          "right": "plötzlich vor der Tür stehen"
-        },
-        {
-          "left": "an etwas rumpfuschen",
-          "right": "unsauber / unprofessionell arbeiten"
-        }
-      ]
-    },
-    {
-      "id": "m12-speak-1",
-      "type": "speaking",
-      "skill": "sprechen",
-      "prompt": "Erzähle in 4–5 Sätzen: Was passiert in der Geschichte «Mach Licht an!»? Benutze mindestens 4 Verben mit «machen».",
-      "mustUseWords": [
-        "anmachen",
-        "fertigmachen",
-        "ausmachen",
-        "weitermachen"
-      ],
-      "instruction": "Sprich laut und benutze die Pflicht-Ausdrücke.",
-      "modelAnswer": "Am Montagmorgen will Alex das Licht anmachen, aber es gibt keinen Strom. Die Kollegen können im Lager nichts fertigmachen. Alex ruft die Kunden an und macht neue Liefertermine aus. Nachdem der Hausmeister den Strom repariert hat, können alle weitermachen."
-    },
-    {
-      "id": "m12-speak-2",
-      "type": "speaking",
-      "skill": "sprechen",
-      "prompt": "Beschreibe eine stressige Situation bei der Arbeit. Benutze mindestens 3 Redewendungen.",
-      "mustUseWords": [
-        "unter Strom stehen",
-        "der Wurm ist drin",
-        "sich nicht verrückt machen"
-      ],
-      "instruction": "Sprich frei und verwende die Redewendungen.",
-      "modelAnswer": "Letzte Woche stand ich total unter Strom, weil wir eine wichtige Präsentation hatten. Am Morgen war der Wurm drin – erst hatte ich verschlafen, dann war mein Laptop leer. Mein Kollege hat gesagt, ich soll mich nicht verrückt machen, und am Ende hat alles geklappt."
-    },
-    {
-      "id": "m12-write-1",
-      "type": "open-writing",
-      "skill": "schreiben",
-      "prompt": "Schreibe einen kurzen Absatz (5–7 Sätze) über einen chaotischen Tag bei der Arbeit. Benutze mindestens 5 Verben mit «machen».",
-      "mustUseWords": [
-        "anmachen",
-        "aufmachen",
-        "fertigmachen",
-        "ausmachen",
-        "kaputtmachen"
-      ],
-      "instruction": "Schreibe deinen Text unten.",
-      "modelAnswer": "Heute Morgen wollte ich den Computer anmachen, aber er ging nicht. Ich habe das Fenster aufgemacht. Die Kollegen konnten ihre Arbeit nicht fertigmachen. Wir haben mit dem Chef einen neuen Termin ausgemacht. Am Abend war ich total kaputtgemacht."
-    },
-    {
-      "id": "m12-write-2",
-      "type": "open-writing",
-      "skill": "schreiben",
-      "prompt": "Schreibe 4–5 Sätze aus der Perspektive des Hausmeisters. Benutze mindestens 3 Redewendungen.",
-      "mustUseWords": [
-        "rumpfuschen",
-        "im Eimer sein",
-        "auf eigene Faust"
-      ],
-      "instruction": "Schreibe deinen Text unten.",
-      "modelAnswer": "Ich fahre zum Büro und sehe, dass alles im Eimer ist. Die Handwerker haben wieder an der Elektronik rumgepfuscht. Kein Wunder! Ich hoffe nur, dass niemand auf eigene Faust versucht hat, den Kasten zu öffnen."
-    }
+      {
+        "id": "m12-ex1",
+        "type": "true-false",
+        "skill": "lesen",
+        "instruction": "Übung 1 – Richtig oder falsch? Lies die Aussagen und entscheide: Stimmt das mit der Geschichte überein?",
+        "statements": [
+          {
+            "statement": "Am Montagmorgen funktioniert das Licht im Büro nicht.",
+            "correct": true
+          },
+          {
+            "statement": "Der Stromausfall betrifft nur das Büro, nicht das Lager.",
+            "correct": false
+          },
+          {
+            "statement": "Alex ruft die Kunden mit dem Diensthandy an.",
+            "correct": true
+          },
+          {
+            "statement": "Der Hausmeister findet heraus, dass die Handwerker am Wochenende gepfuscht haben.",
+            "correct": true
+          },
+          {
+            "statement": "Am Ende des Tages fühlt sich Alex voller Energie.",
+            "correct": false
+          }
+        ]
+      },
+      {
+        "id": "m12-ex2",
+        "type": "gap-fill",
+        "skill": "lesen",
+        "instruction": "Übung 2 – Lückentext: Schreibe das passende Verb in der richtigen Form.",
+        "sentences": [
+          {
+            "text": "Ich will das Licht im Büro ___, aber nichts passiert.",
+            "answer": "anmachen"
+          },
+          {
+            "text": "Alex ___ das Fenster ___, damit Tageslicht reinkommt.",
+            "answer": "macht ... auf"
+          },
+          {
+            "text": "Im Lager können die Jungs nichts mehr ___.",
+            "answer": "fertigmachen"
+          },
+          {
+            "text": "Wir hatten mit dem Kunden ___, dass die Ware heute rausgeht.",
+            "answer": "ausgemacht"
+          },
+          {
+            "text": "Ich rufe an und ___ ihnen ___, dass wir nichts dafür können.",
+            "answer": "mache ... klar"
+          },
+          {
+            "text": "Am Ende macht Alex konsequent das Handy ___.",
+            "answer": "aus"
+          }
+        ]
+      },
+      {
+        "id": "m12-ex3",
+        "type": "verb-grouping",
+        "skill": "lesen",
+        "instruction": "Übung 3 – Verben in Gruppen: Ordne die machen-Verben den richtigen Kategorien zu.",
+        "categories": [
+          {
+            "name": "An/Aus & Öffnen",
+            "items": [
+              "anmachen",
+              "ausmachen",
+              "aufmachen"
+            ]
+          },
+          {
+            "name": "Arbeit & Erledigung",
+            "items": [
+              "fertigmachen",
+              "weitermachen",
+              "abmachen"
+            ]
+          },
+          {
+            "name": "Kommunikation & Wirkung",
+            "items": [
+              "klarmachen",
+              "kaputtmachen",
+              "sich aufmachen"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "m12-ex4",
+        "type": "gap-fill",
+        "skill": "lesen",
+        "instruction": "Übung 4 – Passendes Verb einsetzen: Ergänze das passende Verb aus dem Kasten.",
+        "wordBank": [
+          "angemacht",
+          "ausgemacht",
+          "aufgemacht",
+          "fertiggemacht",
+          "weitergemacht",
+          "klargemacht"
+        ],
+        "sentences": [
+          {
+            "text": "Das Licht konnte nicht ___ werden.",
+            "answer": "angemacht"
+          },
+          {
+            "text": "Der Termin war mit dem Kunden fest ___.",
+            "answer": "ausgemacht"
+          },
+          {
+            "text": "Alex hat als Erstes das Fenster ___.",
+            "answer": "aufgemacht"
+          },
+          {
+            "text": "Ohne Strom konnte im Lager nichts ___ werden.",
+            "answer": "fertiggemacht"
+          },
+          {
+            "text": "Nach der Stromreparatur wurde sofort ___.",
+            "answer": "weitergemacht"
+          },
+          {
+            "text": "Alex hat den Kunden ___, dass sie nichts dafür können.",
+            "answer": "klargemacht"
+          }
+        ]
+      },
+      {
+        "id": "m12-ex5",
+        "type": "matching",
+        "skill": "lesen",
+        "instruction": "Übung 5 – Redewendungen verbinden: Welcher Ausdruck passt zu welcher Situation?",
+        "pairs": [
+          {
+            "left": "Man ist sehr gestresst und angespannt.",
+            "right": "unter Strom stehen"
+          },
+          {
+            "left": "Vieles geht schief, nichts funktioniert.",
+            "right": "Es ist der Wurm drin."
+          },
+          {
+            "left": "Man versteht etwas gerade nicht.",
+            "right": "auf dem Schlauch stehen"
+          },
+          {
+            "left": "Etwas allein tun, ohne Rücksprache.",
+            "right": "auf eigene Faust"
+          },
+          {
+            "left": "Etwas ist kaputt und funktioniert nicht mehr.",
+            "right": "im Eimer sein"
+          },
+          {
+            "left": "Plötzlich und unangemeldet auftauchen.",
+            "right": "bei jemandem auf der Matte stehen"
+          }
+        ]
+      },
+      {
+        "id": "m12-ex6",
+        "type": "sentence-completion",
+        "skill": "schreiben",
+        "instruction": "Übung 6 – Satzergänzungen: Ergänze die Sätze sinnvoll auf Deutsch.",
+        "sentences": [
+          {
+            "prompt": "Heute ist echt der ___ drin.",
+            "modelAnswer": "Wurm"
+          },
+          {
+            "prompt": "Ich stehe total unter ___.",
+            "modelAnswer": "Strom"
+          },
+          {
+            "prompt": "Vor zehn Jahren hätte mich das komplett ___ gemacht.",
+            "modelAnswer": "kirre"
+          },
+          {
+            "prompt": "Der Hausmeister hat gesagt: nicht auf eigene ___!",
+            "modelAnswer": "Faust"
+          },
+          {
+            "prompt": "Die Elektronik war komplett im ___.",
+            "modelAnswer": "Eimer"
+          },
+          {
+            "prompt": "Macht euch bloß nicht ___.",
+            "modelAnswer": "verrückt"
+          }
+        ]
+      },
+      {
+        "id": "m12-ex7",
+        "type": "error-correction",
+        "skill": "schreiben",
+        "instruction": "Übung 7 – Fehler finden: Jeder Satz enthält genau einen Fehler. Schreibe den korrigierten Satz.",
+        "sentences": [
+          {
+            "incorrect": "Ich will das Licht aufmachen.",
+            "correct": "Ich will das Licht anmachen.",
+            "explanation": "anmachen = einschalten. aufmachen = öffnen."
+          },
+          {
+            "incorrect": "Wir hatten mit dem Kunden angemacht, dass die Ware heute rausgeht.",
+            "correct": "Wir hatten mit dem Kunden ausgemacht, dass die Ware heute rausgeht.",
+            "explanation": "ausmachen/abmachen = vereinbaren. anmachen = einschalten."
+          },
+          {
+            "incorrect": "Alex macht den Kunden auf, dass es einen Stromausfall gibt.",
+            "correct": "Alex macht den Kunden klar, dass es einen Stromausfall gibt.",
+            "explanation": "klarmachen = erklären. aufmachen = öffnen."
+          },
+          {
+            "incorrect": "Am Ende des Tages hat Alex das Handy fertiggemacht.",
+            "correct": "Am Ende des Tages hat Alex das Handy ausgemacht.",
+            "explanation": "ausmachen = ausschalten. fertigmachen = etwas abschließen oder jemanden erschöpfen."
+          },
+          {
+            "incorrect": "Der Hausmeister machte sich erst mal an die Tür.",
+            "correct": "Der Hausmeister machte sich erst mal auf den Weg.",
+            "explanation": "sich aufmachen = sich auf den Weg machen."
+          }
+        ]
+      },
+      {
+        "id": "m12-ex8",
+        "type": "open-writing",
+        "skill": "schreiben",
+        "instruction": "Übung 8 – Verben erklären: Erkläre die folgenden machen-Verben mit eigenen Worten auf Deutsch.",
+        "prompt": "Erkläre auf Deutsch, was diese machen-Verben bedeuten. Schreibe für jedes Verb mindestens einen Satz mit einem eigenen Beispiel:\n\n- anmachen\n- ausmachen\n- aufmachen\n- fertigmachen\n- klarmachen\n- sich aufmachen",
+        "mustUseWords": [
+          "anmachen",
+          "ausmachen",
+          "aufmachen",
+          "fertigmachen",
+          "klarmachen",
+          "aufmachen"
+        ],
+        "modelAnswer": "Anmachen bedeutet, etwas einzuschalten, z. B. das Licht. Ausmachen heißt, etwas ausschalten oder etwas vereinbaren. Aufmachen bedeutet, etwas zu öffnen, z. B. ein Fenster. Fertigmachen heißt, eine Aufgabe komplett abzuschließen. Klarmachen bedeutet, jemandem etwas deutlich zu erklären. Sich aufmachen heißt, sich auf den Weg machen."
+      },
+      {
+        "id": "m12-ex9",
+        "type": "info-box",
+        "skill": "lesen",
+        "instruction": "Übung 9 – Doppelte Bedeutungen: Viele machen-Verben haben mehr als eine Bedeutung!",
+        "content": "Viele machen-Verben, die du in der Geschichte kennengelernt hast, haben im Alltag noch eine weitere Bedeutung. Schau dir die Beispiele unten an – erkennst du den Unterschied?",
+        "verbExamples": [
+          {
+            "verb": "anmachen",
+            "meanings": [
+              {
+                "label": "Im Text",
+                "example": "Mach das Licht an. (einschalten)"
+              },
+              {
+                "label": "Weitere Bedeutung",
+                "example": "Mach mich nicht an! (provozieren, belästigen)"
+              }
+            ]
+          },
+          {
+            "verb": "ausmachen",
+            "meanings": [
+              {
+                "label": "Im Text",
+                "example": "Mach das Handy aus. (ausschalten)"
+              },
+              {
+                "label": "Weitere Bedeutung",
+                "example": "Das macht nichts aus. (nicht stören, egal sein)"
+              }
+            ]
+          },
+          {
+            "verb": "fertigmachen",
+            "meanings": [
+              {
+                "label": "Im Text",
+                "example": "Die Bestellungen fertigmachen. (abschließen)"
+              },
+              {
+                "label": "Weitere Bedeutung",
+                "example": "Der Tag hat mich fertiggemacht. (erschöpfen)"
+              }
+            ]
+          },
+          {
+            "verb": "aufmachen",
+            "meanings": [
+              {
+                "label": "Im Text",
+                "example": "Das Fenster aufmachen. (öffnen)"
+              },
+              {
+                "label": "Weitere Bedeutung",
+                "example": "Sie hat einen kleinen Laden aufgemacht. (eröffnen)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "m12-ex10",
+        "type": "multiple-choice",
+        "skill": "lesen",
+        "instruction": "Übung 10 – Welche Bedeutung? Wähle die richtige Bedeutung des Verbs im jeweiligen Satz.",
+        "questions": [
+          {
+            "question": "\"Mach mich nicht so an – ich bin nicht in Stimmung!\" – Was bedeutet anmachen hier?",
+            "options": [
+              "einschalten",
+              "provozieren",
+              "öffnen"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "question": "\"Das macht mir überhaupt nichts aus.\" – Was bedeutet ausmachen hier?",
+            "options": [
+              "ausschalten",
+              "vereinbaren",
+              "stören"
+            ],
+            "correctIndex": 2
+          },
+          {
+            "question": "\"Der ganze Stress hat ihn total fertiggemacht.\" – Was bedeutet fertigmachen hier?",
+            "options": [
+              "abschließen",
+              "erschöpfen",
+              "vorbereiten"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "question": "\"Sie hat letztes Jahr einen neuen Laden aufgemacht.\" – Was bedeutet aufmachen hier?",
+            "options": [
+              "öffnen",
+              "eröffnen",
+              "einschalten"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "question": "\"Wir müssen noch ausmachen, wann wir uns treffen.\" – Was bedeutet ausmachen hier?",
+            "options": [
+              "ausschalten",
+              "stören",
+              "vereinbaren"
+            ],
+            "correctIndex": 2
+          }
+        ]
+      }
   ],
   "reviewItems": []
 };
