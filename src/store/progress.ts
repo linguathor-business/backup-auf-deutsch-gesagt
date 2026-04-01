@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { ModuleProgress, SectionProgress, UserProgress } from "@/types";
+import allModules from "@/data/modules";
 
 function emptySections(): SectionProgress {
   return {
@@ -72,7 +73,11 @@ export const useProgressStore = create<ProgressStore>()(
       isModuleUnlocked: (moduleId: number): boolean => {
         if (get().adminMode) return true;
         if (moduleId === 1) return true;
-        const prev = get().progress.modules[moduleId - 1];
+        // Find this module's position in the ordered allModules array
+        const idx = allModules.findIndex((m) => m.id === moduleId);
+        if (idx <= 0) return true;
+        const prevModuleId = allModules[idx - 1].id;
+        const prev = get().progress.modules[prevModuleId];
         return prev?.completed ?? false;
       },
 
@@ -245,7 +250,7 @@ export const useProgressStore = create<ProgressStore>()(
 
       getCompletionPercent: (): number => {
         const modules = get().progress.modules;
-        const totalCheckpoints = 12 * 6; // 12 modules × 6 checkpoints each
+        const totalCheckpoints = allModules.length * 6; // modules × 6 checkpoints each
         let done = 0;
         for (const mod of Object.values(modules)) {
           if (mod.sections.story) done++;

@@ -108,6 +108,24 @@ export interface InfoBoxExercise extends ExerciseBase {
   }[];
 }
 
+export interface ClozeSelectExercise extends ExerciseBase {
+  type: "cloze-select";
+  sentences: {
+    text: string; // use ___ for the gap
+    options: string[];
+    correctIndex: number;
+  }[];
+}
+
+export interface ChatbotExercise extends ExerciseBase {
+  type: "chatbot";
+  scenario: string;
+  starterMessage: string;
+  targetVerbs: string[];
+  targetIdioms?: string[];
+  maxTurns: number;
+}
+
 export type Exercise =
   | GapFillExercise
   | MultipleChoiceExercise
@@ -118,7 +136,9 @@ export type Exercise =
   | VerbGroupingExercise
   | SentenceCompletionExercise
   | ErrorCorrectionExercise
-  | InfoBoxExercise;
+  | InfoBoxExercise
+  | ClozeSelectExercise
+  | ChatbotExercise;
 
 export interface ReviewItem {
   fromModule: number;

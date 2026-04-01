@@ -204,6 +204,10 @@ function ExerciseRenderer({
       return <ErrorCorrectionExercise exercise={exercise} onComplete={onComplete} />;
     case "info-box":
       return <InfoBoxExerciseComponent exercise={exercise} onComplete={onComplete} />;
+    case "cloze-select":
+      return <ClozeSelectExercise exercise={exercise} onComplete={onComplete} />;
+    case "chatbot":
+      return <ChatbotExercise exercise={exercise} onComplete={onComplete} />;
     default:
       return null;
   }
@@ -1612,6 +1616,319 @@ function InfoBoxExerciseComponent({
         </button>
       ) : (
         <SuccessCelebration message="Super! Jetzt kennst du die doppelten Bedeutungen. 🌟" />
+      )}
+    </div>
+  );
+}
+
+// --- Cloze Select (Lückentext mit Auswahlmöglichkeiten) ---
+function ClozeSelectExercise({
+  exercise,
+  onComplete,
+}: {
+  exercise: Extract<Exercise, { type: "cloze-select" }>;
+  onComplete?: () => void;
+}) {
+  const [answers, setAnswers] = useState<Record<number, number>>({});
+  const [checkedItems, setCheckedItems] = useState<Set<number>>(new Set());
+  const [successMsg, setSuccessMsg] = useState<string | null>(null);
+
+  const triggerCheck = (indices: number[], currentAnswers: Record<number, number>) => {
+    const next = new Set([...checkedItems, ...indices]);
+    setCheckedItems(next);
+    const allDone = exercise.sentences.every(
+      (s, i) => next.has(i) && currentAnswers[i] === s.correctIndex
+    );
+    if (allDone) {
+      setSuccessMsg(getRandomSuccess());
+      onComplete?.();
+    }
+  };
+
+  const handleReset = () => {
+    setAnswers({});
+    setCheckedItems(new Set());
+    setSuccessMsg(null);
+  };
+
+  const anyAnswered = Object.keys(answers).length > 0;
+
+  return (
+    <div className="space-y-4">
+      <p className="text-sm text-muted font-medium">{exercise.instruction}</p>
+      {exercise.sentences.map((sent, idx) => {
+        const isItemChecked = checkedItems.has(idx);
+        const selected = answers[idx];
+        const isCorrect = isItemChecked && selected === sent.correctIndex;
+        const isWrong = isItemChecked && selected !== sent.correctIndex;
+
+        const parts = sent.text.split("___");
+
+        return (
+          <div key={idx} className="space-y-1">
+            <p className="text-sm text-foreground flex items-center flex-wrap gap-1">
+              {parts.map((part, pIdx) => (
+                <span key={pIdx}>
+                  {part}
+                  {pIdx < parts.length - 1 && (
+                    <select
+                      value={selected ?? ""}
+                      onChange={(e) =>
+                        !isItemChecked &&
+                        setAnswers((prev) => ({ ...prev, [idx]: Number(e.target.value) }))
+                      }
+                      disabled={isItemChecked}
+                      className={`inline-block mx-1 px-2 py-1 rounded border text-sm bg-navy-800 outline-none transition-colors appearance-none cursor-pointer ${
+                        isCorrect
+                          ? "border-emerald-500 text-emerald-400"
+                          : isWrong
+                          ? "border-coral-500 text-coral-400"
+                          : "border-border text-foreground focus:border-gold-500"
+                      }`}
+                    >
+                      <option value="" disabled>
+                        – wählen –
+                      </option>
+                      {sent.options.map((opt, oIdx) => (
+                        <option key={oIdx} value={oIdx}>
+                          {opt}
+                        </option>
+                      ))}
+                    </select>
+                  )}
+                </span>
+              ))}
+            </p>
+            {isWrong && (
+              <p className="text-xs text-coral-400 ml-1">
+                ✗ Richtig wäre: {sent.options[sent.correctIndex]}
+              </p>
+            )}
+          </div>
+        );
+      })}
+      {successMsg && <SuccessCelebration message={successMsg} />}
+      <div className="flex gap-2">
+        <button
+          onClick={() =>
+            triggerCheck(
+              Object.keys(answers).map(Number),
+              answers
+            )
+          }
+          disabled={!anyAnswered}
+          className="bg-gold-500 text-navy-900 px-4 py-2 rounded-lg text-sm font-medium hover:bg-gold-400 flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          <Check className="w-4 h-4" /> Überprüfen
+        </button>
+        {anyAnswered && (
+          <button
+            onClick={handleReset}
+            className="bg-navy-700 text-muted px-4 py-2 rounded-lg text-sm hover:text-foreground transition-colors flex items-center gap-2"
+          >
+            <RotateCcw className="w-3.5 h-3.5" /> Zurücksetzen
+          </button>
+        )}
+      </div>
+    </div>
+  );
+}
+
+// --- Chatbot Dialog ---
+interface ChatMessage {
+  role: "assistant" | "user";
+  text: string;
+}
+
+function ChatbotExercise({
+  exercise,
+  onComplete,
+}: {
+  exercise: Extract<Exercise, { type: "chatbot" }>;
+  onComplete?: () => void;
+}) {
+  const [messages, setMessages] = useState<ChatMessage[]>([
+    { role: "assistant", text: exercise.starterMessage },
+  ]);
+  const [input, setInput] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [finished, setFinished] = useState(false);
+  const [turnCount, setTurnCount] = useState(0);
+  const bottomRef = useRef<HTMLDivElement>(null);
+  const { speak } = useTTS();
+
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
+
+  const usedVerbs = exercise.targetVerbs.filter((v) =>
+    messages.filter((m) => m.role === "user").some((m) => verbUsedInText(v, m.text))
+  );
+
+  const handleSend = useCallback(async () => {
+    const trimmed = input.trim();
+    if (!trimmed || loading || finished) return;
+
+    const newUserMsg: ChatMessage = { role: "user", text: trimmed };
+    const updatedMessages = [...messages, newUserMsg];
+    setMessages(updatedMessages);
+    setInput("");
+    setLoading(true);
+
+    const newTurn = turnCount + 1;
+    setTurnCount(newTurn);
+
+    try {
+      const res = await fetch("/api/chatbot", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          scenario: exercise.scenario,
+          targetVerbs: exercise.targetVerbs,
+          targetIdioms: exercise.targetIdioms,
+          messages: updatedMessages.map((m) => ({
+            role: m.role,
+            text: m.text,
+          })),
+          turnCount: newTurn,
+          maxTurns: exercise.maxTurns,
+        }),
+      });
+
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({}));
+        throw new Error(err.error ?? res.statusText);
+      }
+
+      const data = await res.json();
+      setMessages((prev) => [...prev, { role: "assistant", text: data.reply }]);
+
+      if (newTurn >= exercise.maxTurns) {
+        setFinished(true);
+        onComplete?.();
+      }
+    } catch {
+      setMessages((prev) => [
+        ...prev,
+        { role: "assistant", text: "Entschuldigung, da ist etwas schiefgelaufen. Versuche es nochmal." },
+      ]);
+    } finally {
+      setLoading(false);
+    }
+  }, [input, loading, finished, messages, turnCount, exercise, onComplete]);
+
+  const handleReset = () => {
+    setMessages([{ role: "assistant", text: exercise.starterMessage }]);
+    setInput("");
+    setFinished(false);
+    setTurnCount(0);
+    setLoading(false);
+  };
+
+  return (
+    <div className="space-y-4">
+      <p className="text-sm text-muted font-medium">{exercise.instruction}</p>
+
+      {/* Scenario box */}
+      <div className="bg-navy-800/30 rounded-lg p-4 border border-border/50">
+        <p className="text-xs text-muted mb-1">Szenario:</p>
+        <p className="text-sm text-foreground">{exercise.scenario}</p>
+      </div>
+
+      {/* Target verbs */}
+      <div className="flex flex-wrap gap-2">
+        <span className="text-xs text-muted">Verben zum Üben:</span>
+        {exercise.targetVerbs.map((v, i) => (
+          <span
+            key={i}
+            className={`text-xs px-2 py-0.5 rounded border ${
+              usedVerbs.includes(v)
+                ? "border-emerald-500/50 text-emerald-400 bg-emerald-500/10"
+                : "border-border text-muted"
+            }`}
+          >
+            {v}
+          </span>
+        ))}
+      </div>
+
+      {/* Chat messages */}
+      <div className="bg-navy-800/20 border border-border rounded-xl p-4 space-y-3 max-h-96 overflow-y-auto">
+        {messages.map((msg, i) => (
+          <div
+            key={i}
+            className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
+          >
+            <div
+              className={`max-w-[80%] rounded-xl px-4 py-2.5 text-sm ${
+                msg.role === "user"
+                  ? "bg-gold-500/20 text-foreground rounded-br-sm"
+                  : "bg-navy-700 text-foreground/90 rounded-bl-sm"
+              }`}
+            >
+              <p className="whitespace-pre-wrap">{msg.text}</p>
+              {msg.role === "assistant" && (
+                <button
+                  onClick={() => speak(msg.text)}
+                  className="mt-1 text-gold-500 hover:text-gold-400 transition-colors"
+                  title="Anhören"
+                >
+                  <Volume2 className="w-3.5 h-3.5" />
+                </button>
+              )}
+            </div>
+          </div>
+        ))}
+        {loading && (
+          <div className="flex justify-start">
+            <div className="bg-navy-700 rounded-xl px-4 py-2.5 flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full bg-gold-400 animate-bounce [animation-delay:0ms]" />
+              <div className="w-2 h-2 rounded-full bg-gold-400 animate-bounce [animation-delay:150ms]" />
+              <div className="w-2 h-2 rounded-full bg-gold-400 animate-bounce [animation-delay:300ms]" />
+            </div>
+          </div>
+        )}
+        <div ref={bottomRef} />
+      </div>
+
+      {/* Turn counter */}
+      <p className="text-xs text-muted">
+        Nachricht {Math.min(turnCount + 1, exercise.maxTurns)} von {exercise.maxTurns}
+        {finished && " — Dialog abgeschlossen ✓"}
+      </p>
+
+      {/* Input */}
+      {!finished ? (
+        <div className="flex gap-2">
+          <input
+            type="text"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            onKeyDown={(e) => e.key === "Enter" && handleSend()}
+            placeholder="Schreibe deine Antwort..."
+            disabled={loading}
+            className="flex-1 bg-navy-800 border border-border rounded-lg px-3 py-2 text-sm text-foreground placeholder-muted/50 outline-none focus:border-gold-500 transition-colors"
+          />
+          <button
+            onClick={handleSend}
+            disabled={!input.trim() || loading}
+            className="bg-gold-500 text-navy-900 px-4 py-2 rounded-lg text-sm font-medium hover:bg-gold-400 disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            Senden
+          </button>
+        </div>
+      ) : (
+        <div className="space-y-3">
+          <SuccessCelebration
+            message={`Dialog geschafft! Du hast ${usedVerbs.length} von ${exercise.targetVerbs.length} Verben verwendet. 💬`}
+          />
+          <button
+            onClick={handleReset}
+            className="bg-navy-700 text-muted px-4 py-2 rounded-lg text-sm hover:text-foreground transition-colors flex items-center gap-2"
+          >
+            <RotateCcw className="w-3.5 h-3.5" /> Nochmal starten
+          </button>
+        </div>
       )}
     </div>
   );

@@ -40,10 +40,12 @@ export default function ModulePage() {
     toggleExerciseSkillDone,
   } = useProgressStore();
 
-  const [activeSection, setActiveSection] = useState<SectionKey>("story");
-
   const slug = params.slug as string;
   const courseModule = getModuleBySlug(slug);
+
+  const [activeSection, setActiveSection] = useState<SectionKey>(
+    courseModule?.isReviewModule ? "exercises" : "story"
+  );
 
   useEffect(() => {
     if (!isAuthenticated) {
@@ -86,23 +88,27 @@ export default function ModulePage() {
     exerciseAnswers: {},
   };
   const exercisesAnyDone = Object.values(modProgress.sections.exercises).some(Boolean);
-  const completionDone = [
-    modProgress.sections.story,
-    modProgress.sections.vocabulary,
-    exercisesAnyDone,
-  ].filter(Boolean).length;
-  const completionPct = Math.round((completionDone / 3) * 100);
+  const completionItems = courseModule.isReviewModule
+    ? [exercisesAnyDone]
+    : [modProgress.sections.story, modProgress.sections.vocabulary, exercisesAnyDone];
+  const completionDone = completionItems.filter(Boolean).length;
+  const completionPct = Math.round((completionDone / completionItems.length) * 100);
 
-  const sections: { key: SectionKey; label: string; icon: typeof BookOpen; done: boolean }[] = [
-    { key: "story", label: "Geschichte", icon: BookOpen, done: modProgress.sections.story },
-    { key: "vocabulary", label: "Vokabeln", icon: Headphones, done: modProgress.sections.vocabulary },
-    { key: "exercises", label: "Übungen", icon: Target, done: Object.values(modProgress.sections.exercises).some(Boolean) },
-  ];
+  const sections: { key: SectionKey; label: string; icon: typeof BookOpen; done: boolean }[] = courseModule.isReviewModule
+    ? [
+        { key: "exercises", label: "Übungen", icon: Target, done: Object.values(modProgress.sections.exercises).some(Boolean) },
+      ]
+    : [
+        { key: "story", label: "Geschichte", icon: BookOpen, done: modProgress.sections.story },
+        { key: "vocabulary", label: "Vokabeln", icon: Headphones, done: modProgress.sections.vocabulary },
+        { key: "exercises", label: "Übungen", icon: Target, done: Object.values(modProgress.sections.exercises).some(Boolean) },
+      ];
 
-  const allDone =
-    modProgress.sections.story &&
-    modProgress.sections.vocabulary &&
-    exercisesAnyDone;
+  const allDone = courseModule.isReviewModule
+    ? exercisesAnyDone
+    : modProgress.sections.story &&
+      modProgress.sections.vocabulary &&
+      exercisesAnyDone;
 
   const handleCompleteModule = () => {
     markModuleComplete(courseModule.id);
@@ -126,7 +132,7 @@ export default function ModulePage() {
           <div className="flex items-start justify-between mb-2">
             <div>
               <span className="text-xs uppercase tracking-wider text-gold-400 mb-1 block">
-                Modul {courseModule.id}
+                {courseModule.isReviewModule ? "Wiederholung" : `Modul ${courseModule.id}`}
               </span>
               <h1 className="text-2xl md:text-3xl font-bold text-foreground">
                 {courseModule.title}
@@ -190,28 +196,32 @@ export default function ModulePage() {
         <div className="bg-card rounded-xl border border-border p-4 mb-6">
           <p className="text-xs text-muted mb-3 uppercase tracking-wider">Fortschritt manuell markieren</p>
           <div className="flex flex-wrap gap-3">
-            <button
-              onClick={() => toggleStoryDone(courseModule.id)}
-              className="flex items-center gap-2 text-sm text-foreground/80 hover:text-foreground transition-colors"
-            >
-              {modProgress.sections.story ? (
-                <CheckSquare className="w-4 h-4 text-emerald-400" />
-              ) : (
-                <Square className="w-4 h-4 text-muted" />
-              )}
-              Geschichte
-            </button>
-            <button
-              onClick={() => toggleVocabularyDone(courseModule.id)}
-              className="flex items-center gap-2 text-sm text-foreground/80 hover:text-foreground transition-colors"
-            >
-              {modProgress.sections.vocabulary ? (
-                <CheckSquare className="w-4 h-4 text-emerald-400" />
-              ) : (
-                <Square className="w-4 h-4 text-muted" />
-              )}
-              Vokabeln
-            </button>
+            {!courseModule.isReviewModule && (
+              <>
+                <button
+                  onClick={() => toggleStoryDone(courseModule.id)}
+                  className="flex items-center gap-2 text-sm text-foreground/80 hover:text-foreground transition-colors"
+                >
+                  {modProgress.sections.story ? (
+                    <CheckSquare className="w-4 h-4 text-emerald-400" />
+                  ) : (
+                    <Square className="w-4 h-4 text-muted" />
+                  )}
+                  Geschichte
+                </button>
+                <button
+                  onClick={() => toggleVocabularyDone(courseModule.id)}
+                  className="flex items-center gap-2 text-sm text-foreground/80 hover:text-foreground transition-colors"
+                >
+                  {modProgress.sections.vocabulary ? (
+                    <CheckSquare className="w-4 h-4 text-emerald-400" />
+                  ) : (
+                    <Square className="w-4 h-4 text-muted" />
+                  )}
+                  Vokabeln
+                </button>
+              </>
+            )}
             <button
               onClick={() => {
                 const skills = ["lesen", "hoeren", "sprechen", "schreiben"] as const;

@@ -1,4 +1,5 @@
 import { CourseModule } from "@/types";
+import { reviewModules } from "./review-modules";
 
 const module1: CourseModule = {
   "id": 1,
@@ -11498,14 +11499,17 @@ const allModules: CourseModule[] = [
   module2,
   module3,
   module4,
+  reviewModules[0], // Wiederholung 1 (M1–M4)
   module5,
   module6,
   module7,
   module8,
+  reviewModules[1], // Wiederholung 2 (M5–M8)
   module9,
   module10,
   module11,
   module12,
+  reviewModules[2], // Wiederholung 3 (M9–M12)
 ];
 
 export default allModules;

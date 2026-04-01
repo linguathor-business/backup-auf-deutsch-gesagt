@@ -79,7 +79,7 @@ export default function DashboardPage() {
             <span className="text-3xl font-bold text-foreground">
               {completedModules}
             </span>
-            <span className="text-muted text-sm ml-1">/ 12 Module</span>
+            <span className="text-muted text-sm ml-1">/ {allModules.length} Module</span>
           </div>
 
           <div className="bg-card rounded-xl border border-border p-5">
