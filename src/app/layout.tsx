@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Auf Deutsch gesagt! – Deutsch lernen mit Geschichten",
+  title: "Fixe Geschichten – Deutsch lernen mit Geschichten",
   description:
     "Lerne authentisches Deutsch durch fesselnde Geschichten, Redewendungen und praxisnahe Übungen. 12 Module. Ein Verb-Universum. Dein Fortschritt.",
   icons: {

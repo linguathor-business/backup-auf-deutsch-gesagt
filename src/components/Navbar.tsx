@@ -31,7 +31,7 @@ export default function Navbar() {
             className="group-hover:scale-105 transition-transform"
           />
           <span className="font-semibold text-lg text-foreground">
-            Auf Deutsch gesagt!
+            Fixe Geschichten
           </span>
         </Link>
 

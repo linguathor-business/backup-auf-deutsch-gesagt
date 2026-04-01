@@ -72,22 +72,32 @@ export default function LandingPage() {
         <div className="absolute inset-0 bg-gradient-to-b from-gold-500/5 via-transparent to-transparent" />
         <div className="max-w-5xl mx-auto px-4 pt-20 pb-16 text-center relative z-10">
           <Image
-            src="/ADG! Logo_transparent.png"
-            alt="Auf Deutsch gesagt!"
+            src="/Logo-ADG-weiss.png"
+            alt="Fixe Geschichten"
             width={320}
             height={96}
-            className="mx-auto mb-6"
+            className="mx-auto logo-dark-only"
             priority
           />
+          <Image
+            src="/ADG! Logo_transparent.png"
+            alt="Fixe Geschichten"
+            width={320}
+            height={96}
+            className="mx-auto logo-light-only"
+            priority
+          />
+          <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-3 mt-4">
+            Fixe Geschichten
+          </h1>
           <div className="inline-flex items-center gap-2 bg-gold-500/10 border border-gold-500/20 rounded-full px-4 py-1.5 text-sm text-gold-400 mb-6">
             <Sparkles className="w-4 h-4" />
             12 Module · Geschichten · Verben · Redewendungen
           </div>
-          <h1 className="text-4xl md:text-6xl font-bold text-foreground leading-tight mb-6">
-            Deutsch lernen,
-            <br />
+          <p className="text-xl md:text-2xl text-muted mb-6">
+            Deutsch lernen,{" "}
             <span className="text-gold-400">wie es wirklich klingt.</span>
-          </h1>
+          </p>
           <p className="text-lg md:text-xl text-muted max-w-2xl mx-auto mb-10 leading-relaxed">
             Tauche ein in 12 Geschichten, meistere die wichtigsten Verben und Redewendungen
             und trainiere alle vier Fertigkeiten – mit Audio, Übungen und intelligentem Feedback.
@@ -220,7 +230,7 @@ export default function LandingPage() {
         <div className="max-w-5xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2 text-muted text-sm">
             <Image src="/ADG!_Icon_transparent.png" alt="" width={20} height={20} />
-            <span>Auf Deutsch gesagt! · Robin Meinert</span>
+            <span>Fixe Geschichten · Robin Meinert</span>
           </div>
           <div className="flex items-center gap-6 text-sm text-muted">
             <a href="https://aufdeutschgesagt.de/" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">

@@ -25,6 +25,12 @@
   --font-mono: var(--font-geist-mono);
 }
 
+/* Theme-aware logo visibility */
+.logo-dark-only { display: block; }
+html.light .logo-dark-only { display: none; }
+.logo-light-only { display: none; }
+html.light .logo-light-only { display: block; }
+
 /* Light mode overrides */
 html.light {
   --color-background: #f5f5f0;

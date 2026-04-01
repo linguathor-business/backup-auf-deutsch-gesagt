@@ -51,7 +51,8 @@ export default function LoginPage() {
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <Link href="/" className="inline-flex items-center gap-2 mb-6">
-            <Image src="/ADG! Logo_transparent.png" alt="Auf Deutsch gesagt!" width={200} height={60} />
+            <Image src="/Logo-ADG-weiss.png" alt="Fixe Geschichten" width={200} height={60} className="logo-dark-only" />
+            <Image src="/ADG! Logo_transparent.png" alt="Fixe Geschichten" width={200} height={60} className="logo-light-only" />
           </Link>
           <h1 className="text-2xl font-bold text-foreground mb-2">
             Willkommen zurück
