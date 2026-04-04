@@ -61,12 +61,9 @@ export function FlashcardBack({
           >
             <Volume2 className="w-5 h-5 inline" />
           </button>
-          <p className="text-xl sm:text-2xl text-gold-400 font-medium">
-            {word.english}
+          <p className="text-base sm:text-lg text-gold-400 font-medium leading-relaxed">
+            {word.definition}
           </p>
-          {word.definition && (
-            <p className="text-sm text-muted italic">{word.definition}</p>
-          )}
         </div>
 
         {word.example && (

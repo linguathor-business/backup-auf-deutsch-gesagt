@@ -7,7 +7,6 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import type {
   FlashcardProgress,
-  FlashcardDirection,
   CardType,
   SessionStats,
   SRSCard,
@@ -16,7 +15,6 @@ import { reviewCard } from "@/lib/srs";
 
 interface FlashcardStore extends FlashcardProgress {
   // Setters
-  setDirection: (dir: FlashcardDirection) => void;
   setCardType: (ct: CardType) => void;
 
   // SRS operations
@@ -45,7 +43,6 @@ export const useFlashcardStore = create<FlashcardStore>()(
     (set, get) => ({
       // Initial state
       srsData: {},
-      direction: "de-en",
       cardType: "erkennen",
       removedCards: [],
       streakData: {
@@ -55,7 +52,6 @@ export const useFlashcardStore = create<FlashcardStore>()(
       },
       lastSession: undefined,
 
-      setDirection: (dir) => set({ direction: dir }),
       setCardType: (ct) => set({ cardType: ct }),
 
       processReview: (wordId, isCorrect) => {

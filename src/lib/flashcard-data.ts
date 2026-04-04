@@ -19,9 +19,8 @@ function moduleToCards(mod: CourseModule): FlashcardWord[] {
       id: `m${mod.id}-verb-${v.german.replace(/\s+/g, "-").toLowerCase()}`,
       moduleId: mod.id,
       german: v.german,
-      english: v.english,
       example: v.example ?? "",
-      definition: v.definition,
+      definition: v.definition ?? v.german,
       source: "verb",
     });
   });
@@ -31,9 +30,8 @@ function moduleToCards(mod: CourseModule): FlashcardWord[] {
       id: `m${mod.id}-idiom-${idx}`,
       moduleId: mod.id,
       german: idiom.german,
-      english: idiom.english,
       example: idiom.example ?? "",
-      definition: idiom.definition,
+      definition: idiom.definition ?? idiom.german,
       source: "idiom",
     });
   });

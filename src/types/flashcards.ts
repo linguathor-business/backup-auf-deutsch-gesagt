@@ -9,9 +9,8 @@ export interface FlashcardWord {
   id: string;             // e.g. "m1-verb-umziehen" or "m3-idiom-0"
   moduleId: number;
   german: string;
-  english: string;
   example: string;        // German example sentence
-  definition?: string;    // German-language definition
+  definition: string;     // German-language definition (simpler German)
   source: "verb" | "idiom";
 }
 
@@ -29,9 +28,6 @@ export interface SRSCard {
 }
 
 export type SRSData = Record<string, SRSCard>;
-
-/** Study direction */
-export type FlashcardDirection = "de-en" | "en-de";
 
 /** Card mode: recognition vs production */
 export type CardType = "erkennen" | "aktivieren";
@@ -56,7 +52,6 @@ export interface StreakData {
 /** Complete flashcard user state (persisted via Zustand, later Firebase) */
 export interface FlashcardProgress {
   srsData: SRSData;
-  direction: FlashcardDirection;
   cardType: CardType;
   removedCards: string[];
   streakData: StreakData;
