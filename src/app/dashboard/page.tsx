@@ -6,8 +6,12 @@ import Navbar from "@/components/Navbar";
 import ModuleCard from "@/components/ModuleCard";
 import { useAuthStore } from "@/store/auth";
 import { useProgressStore } from "@/store/progress";
+import { useFlashcardStore } from "@/store/flashcards";
+import { getSRSStats, getDueCards } from "@/lib/srs";
+import { allFlashcardWords } from "@/lib/flashcard-data";
+import { FlashcardModal } from "@/components/flashcards";
 import allModules from "@/data/modules";
-import { Sparkles, TrendingUp, Bell, Mail, Shield } from "lucide-react";
+import { Sparkles, TrendingUp, Bell, Mail, Shield, Layers, Flame } from "lucide-react";
 
 export default function DashboardPage() {
   const { user, isAuthenticated } = useAuthStore();
@@ -17,6 +21,12 @@ export default function DashboardPage() {
   const toggleAdminMode = useProgressStore((s) => s.toggleAdminMode);
   const router = useRouter();
   const [reminderEnabled, setReminderEnabled] = useState(false);
+  const [showFlashcards, setShowFlashcards] = useState(false);
+
+  const { srsData, removedCards, streakData } = useFlashcardStore();
+  const removedSet = new Set(removedCards);
+  const flashcardStats = getSRSStats(allFlashcardWords, srsData, removedSet);
+  const dueNow = getDueCards(allFlashcardWords, srsData, removedSet).length;
 
   useEffect(() => {
     if (!isAuthenticated) {
@@ -96,6 +106,43 @@ export default function DashboardPage() {
           </div>
         </div>
 
+        {/* Flashcard study card */}
+        <div
+          onClick={() => setShowFlashcards(true)}
+          className="bg-card rounded-xl border border-border p-5 mb-8 cursor-pointer hover:border-gold-500/40 transition-colors group"
+        >
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <div className="w-9 h-9 rounded-lg bg-gold-500/20 flex items-center justify-center">
+                <Layers className="w-4 h-4 text-gold-400" />
+              </div>
+              <div>
+                <h3 className="text-sm font-medium text-foreground group-hover:text-gold-400 transition-colors">
+                  Karteikarten üben
+                </h3>
+                <p className="text-xs text-muted">
+                  {dueNow > 0
+                    ? `${dueNow} Karten fällig · ${flashcardStats.masteredCount} gemeistert`
+                    : `${flashcardStats.masteredCount} / ${flashcardStats.total} gemeistert`}
+                </p>
+              </div>
+            </div>
+            <div className="flex items-center gap-3">
+              {streakData.currentStreak > 0 && (
+                <span className="flex items-center gap-1 text-xs text-gold-400 font-medium">
+                  <Flame className="w-3.5 h-3.5" />
+                  {streakData.currentStreak}
+                </span>
+              )}
+              {dueNow > 0 && (
+                <span className="bg-gold-500 text-navy-900 text-xs font-bold px-2.5 py-1 rounded-full">
+                  {dueNow}
+                </span>
+              )}
+            </div>
+          </div>
+        </div>
+
         {/* Email reminder card */}
         <div className="bg-card rounded-xl border border-border p-5 mb-8">
           <div className="flex items-center justify-between">
@@ -172,6 +219,11 @@ export default function DashboardPage() {
           ))}
         </div>
       </main>
+
+      {/* Flashcard modal */}
+      {showFlashcards && (
+        <FlashcardModal onClose={() => setShowFlashcards(false)} />
+      )}
     </div>
   );
 }
