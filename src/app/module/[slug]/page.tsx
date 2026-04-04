@@ -18,6 +18,7 @@ import Navbar from "@/components/Navbar";
 import StoryPlayer from "@/components/StoryPlayer";
 import VocabularyLab from "@/components/VocabularyLab";
 import ExerciseArea from "@/components/ExerciseArea";
+import { FlashcardModal } from "@/components/flashcards";
 import { useAuthStore } from "@/store/auth";
 import { useProgressStore } from "@/store/progress";
 import { getModuleBySlug } from "@/data/modules";
@@ -46,6 +47,8 @@ export default function ModulePage() {
   const [activeSection, setActiveSection] = useState<SectionKey>(
     courseModule?.isReviewModule ? "exercises" : "story"
   );
+  const [showFlashcardPrompt, setShowFlashcardPrompt] = useState(false);
+  const [showFlashcards, setShowFlashcards] = useState(false);
 
   useEffect(() => {
     if (!isAuthenticated) {
@@ -112,6 +115,10 @@ export default function ModulePage() {
 
   const handleCompleteModule = () => {
     markModuleComplete(courseModule.id);
+    // Show flashcard prompt for content modules (not review modules)
+    if (!courseModule.isReviewModule) {
+      setShowFlashcardPrompt(true);
+    }
   };
 
   return (
@@ -290,9 +297,55 @@ export default function ModulePage() {
               <Check className="w-5 h-5" />
               <span className="font-medium">Modul abgeschlossen!</span>
             </div>
+            {!courseModule.isReviewModule && (
+              <button
+                onClick={() => setShowFlashcards(true)}
+                className="block mx-auto mt-3 text-sm text-gold-400 hover:text-gold-300 transition-colors"
+              >
+                🃏 Vokabeln mit Karteikarten üben
+              </button>
+            )}
           </div>
         )}
       </main>
+
+      {/* Flashcard prompt after module completion */}
+      {showFlashcardPrompt && (
+        <div className="fixed inset-0 z-40 bg-background/80 backdrop-blur-sm flex items-center justify-center p-4">
+          <div className="bg-card rounded-2xl border border-border p-8 max-w-md w-full text-center animate-fade-in">
+            <div className="text-4xl mb-4">🃏</div>
+            <h2 className="text-xl font-bold text-foreground mb-2">
+              Modul abgeschlossen!
+            </h2>
+            <p className="text-muted text-sm mb-6">
+              Möchtest du die Vokabeln aus diesem Modul jetzt mit Karteikarten üben?
+              So bleiben sie besser im Gedächtnis!
+            </p>
+            <div className="flex gap-3">
+              <button
+                onClick={() => { setShowFlashcardPrompt(false); }}
+                className="flex-1 px-4 py-2.5 border border-border rounded-xl text-muted hover:text-foreground transition-colors text-sm"
+              >
+                Später
+              </button>
+              <button
+                onClick={() => { setShowFlashcardPrompt(false); setShowFlashcards(true); }}
+                className="flex-1 px-4 py-2.5 bg-gold-500 text-navy-900 rounded-xl font-semibold hover:bg-gold-400 transition-colors text-sm"
+              >
+                Jetzt üben
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Flashcard study modal */}
+      {showFlashcards && (
+        <FlashcardModal
+          moduleId={courseModule.id}
+          onClose={() => setShowFlashcards(false)}
+        />
+      )}
     </div>
   );
 }
