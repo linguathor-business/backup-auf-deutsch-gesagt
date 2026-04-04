@@ -58,6 +58,19 @@ export default function FlashcardModal({ moduleId, onClose }: FlashcardModalProp
     setShowLanding(false);
   }, [dueCards, moduleId, startSession, recordStudyDay]);
 
+  const module1Cards = useMemo(
+    () => getModuleCards(allFlashcardWords, 1, srsData, removedSet),
+    [srsData, removedSet]
+  );
+
+  const handleStartModule1 = useCallback(() => {
+    startSession(1);
+    recordStudyDay();
+    const shuffled = [...module1Cards].sort(() => Math.random() - 0.5);
+    setQueue(shuffled);
+    setShowLanding(false);
+  }, [module1Cards, startSession, recordStudyDay]);
+
   const handleFlip = useCallback(() => {
     if (showLanding) return;
     setIsFlipped((prev) => !prev);
@@ -142,6 +155,8 @@ export default function FlashcardModal({ moduleId, onClose }: FlashcardModalProp
         masteredCount={stats.masteredCount}
         streak={streakData.currentStreak}
         onStart={handleStartStudy}
+        onStartModule1={handleStartModule1}
+        module1Count={module1Cards.length}
         onClose={onClose}
       />
     );

@@ -12,6 +12,8 @@ interface FlashcardLandingProps {
   masteredCount: number;
   streak: number;
   onStart: () => void;
+  onStartModule1: () => void;
+  module1Count: number;
   onClose: () => void;
 }
 
@@ -23,6 +25,8 @@ export function FlashcardLanding({
   masteredCount,
   streak,
   onStart,
+  onStartModule1,
+  module1Count,
   onClose,
 }: FlashcardLandingProps) {
   return (
@@ -95,6 +99,14 @@ export function FlashcardLanding({
               "Keine fälligen Karten"
             )}
           </button>
+          {module1Count > 0 && (
+            <button
+              onClick={onStartModule1}
+              className="mt-3 text-sm text-gold-400 hover:text-gold-300 transition-colors"
+            >
+              Vokabeln aus Modul 1 testen ({module1Count} Karten)
+            </button>
+          )}
         </div>
 
         {/* Divider */}
