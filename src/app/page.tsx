@@ -135,19 +135,6 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* App preview */}
-      <section className="max-w-5xl mx-auto px-4 pb-16">
-        <div className="rounded-2xl overflow-hidden border border-border shadow-2xl">
-          <Image
-            src="/robin-inside-app.jpeg"
-            alt="So sieht der Kurs von innen aus"
-            width={1200}
-            height={750}
-            className="w-full h-auto"
-          />
-        </div>
-      </section>
-
       {/* How it works */}
       <section className="max-w-5xl mx-auto px-4 py-16">
         <h2 className="text-2xl md:text-3xl font-bold text-center text-foreground mb-3">

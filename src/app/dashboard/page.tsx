@@ -11,6 +11,7 @@ import { getSRSStats, getDueCards } from "@/lib/srs";
 import { allFlashcardWords } from "@/lib/flashcard-data";
 import { FlashcardModal } from "@/components/flashcards";
 import allModules from "@/data/modules";
+import Image from "next/image";
 import { Sparkles, TrendingUp, Bell, Mail, Shield, Layers, Flame } from "lucide-react";
 
 export default function DashboardPage() {
@@ -50,13 +51,22 @@ export default function DashboardPage() {
 
       <main className="max-w-6xl mx-auto px-4 py-8">
         {/* Welcome header */}
-        <div className="mb-8">
-          <h1 className="text-2xl md:text-3xl font-bold text-foreground mb-2">
-            Hallo, {user.name}! 👋
-          </h1>
-          <p className="text-muted">
-            Dein Kursfortschritt auf einen Blick.
-          </p>
+        <div className="mb-8 flex items-center gap-5">
+          <Image
+            src="/robin-inside-app.jpeg"
+            alt="Robin Meinert"
+            width={72}
+            height={72}
+            className="w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover object-top shrink-0 border-2 border-gold-500/40 shadow-lg"
+          />
+          <div>
+            <h1 className="text-2xl md:text-3xl font-bold text-foreground mb-1">
+              Hallo, {user.name}! 👋
+            </h1>
+            <p className="text-muted text-sm">
+              Dein Kursfortschritt auf einen Blick.
+            </p>
+          </div>
         </div>
 
         {/* Stats cards */}
