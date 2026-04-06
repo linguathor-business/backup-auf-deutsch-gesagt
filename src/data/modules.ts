@@ -551,10 +551,16 @@ const module1: CourseModule = {
       "example": "Wir müssen die Kartons ins dritte Stockwerk hochziehen."
     },
     {
-      "german": "aufziehen",
-      "english": "to tease / to pull open",
-      "definition": "1. Jemanden necken, sich lustig machen. 2. Etwas öffnen, indem man daran zieht.",
+      "german": "jemanden aufziehen",
+      "english": "to tease someone",
+      "definition": "Jemanden necken, sich lustig machen.",
       "example": "Du ziehst mich doch gerade bloß auf."
+    },
+    {
+      "german": "etwas aufziehen",
+      "english": "to pull something open",
+      "definition": "Etwas öffnen, indem man daran zieht.",
+      "example": "Er zog die schwere Schublade auf."
     },
     {
       "german": "wegziehen",
@@ -563,7 +569,7 @@ const module1: CourseModule = {
       "example": "Ich werde hier so schnell nicht wieder wegziehen."
     },
     {
-      "german": "durchziehen",
+      "german": "etwas durchziehen",
       "english": "to see something through",
       "definition": "Etwas konsequent bis zum Ende machen, trotz Schwierigkeiten.",
       "example": "Jetzt ziehen wir das hier durch."
@@ -577,22 +583,10 @@ const module1: CourseModule = {
   ],
   "idioms": [
     {
-      "german": "jemanden aufziehen",
-      "english": "to tease someone",
-      "definition": "Sich über jemanden auf humorvolle Weise lustig machen.",
-      "example": "Du ziehst mich doch gerade bloß auf."
-    },
-    {
       "german": "die Hütte brennt",
       "english": "there's chaos / an emergency",
       "definition": "Es gibt eine dringende oder chaotische Situation.",
       "example": "Sag bitte nicht, dass im Büro die Hütte brennt."
-    },
-    {
-      "german": "etwas durchziehen",
-      "english": "to follow through with something",
-      "definition": "Einen Plan oder eine Aufgabe konsequent zu Ende bringen.",
-      "example": "Jetzt ziehen wir das hier durch."
     },
     {
       "german": "alle Register ziehen",
@@ -690,7 +684,7 @@ const module1: CourseModule = {
         },
         {
           "name": "Übertragene Bedeutung",
-          "items": ["vorziehen", "aufziehen", "durchziehen", "sich unterziehen"]
+          "items": ["vorziehen", "jemanden aufziehen", "etwas durchziehen", "sich unterziehen"]
         }
       ]
     },
@@ -829,9 +823,9 @@ const module1: CourseModule = {
       "type": "open-writing",
       "skill": "schreiben",
       "instruction": "Übung 8 – Verben erklären: Erkläre die folgenden ziehen-Verben mit eigenen Worten auf Deutsch.",
-      "prompt": "Erkläre auf Deutsch, was diese ziehen-Verben bedeuten. Schreibe für jedes Verb mindestens einen Satz mit einem eigenen Beispiel:\n\n- umziehen\n- einziehen\n- ausziehen\n- vorziehen\n- durchziehen\n- aufziehen",
+      "prompt": "Erkläre auf Deutsch, was diese ziehen-Verben bedeuten. Schreibe für jedes Verb mindestens einen Satz mit einem eigenen Beispiel:\n\n- umziehen\n- einziehen\n- ausziehen\n- vorziehen\n- etwas durchziehen\n- jemanden aufziehen",
       "mustUseWords": ["umziehen", "einziehen", "ausziehen", "vorziehen", "durchziehen", "aufziehen"],
-      "modelAnswer": "Umziehen bedeutet, die Wohnung zu wechseln. Einziehen ist das Ankommen in der neuen Wohnung. Ausziehen ist das Gegenteil: Man verlässt die alte Wohnung. Vorziehen kann einen Termin früher stattfinden lassen oder etwas bevorzugen. Durchziehen heisst, etwas konsequent bis zum Ende zu machen. Aufziehen bedeutet jemanden necken oder sich über ihn lustig machen."
+      "modelAnswer": "Umziehen bedeutet, die Wohnung zu wechseln. Einziehen ist das Ankommen in der neuen Wohnung. Ausziehen ist das Gegenteil: Man verlässt die alte Wohnung. Vorziehen kann einen Termin früher stattfinden lassen oder etwas bevorzugen. Etwas durchziehen heisst, etwas konsequent bis zum Ende zu machen. Jemanden aufziehen bedeutet, jemanden zu necken oder sich über ihn lustig zu machen."
     },
     {
       "id": "m1-ex9",
