@@ -70,52 +70,81 @@ export default function LandingPage() {
       {/* Hero */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-gold-500/5 via-transparent to-transparent" />
-        <div className="max-w-5xl mx-auto px-4 pt-20 pb-16 text-center relative z-10">
-          <Image
-            src="/Logo-ADG-weiss.png"
-            alt="Fixe Geschichten"
-            width={320}
-            height={96}
-            className="mx-auto logo-dark-only"
-            priority
-          />
-          <Image
-            src="/ADG! Logo_transparent.png"
-            alt="Fixe Geschichten"
-            width={320}
-            height={96}
-            className="mx-auto logo-light-only"
-            priority
-          />
-          <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-3 mt-4">
-            Fixe Geschichten
-          </h1>
-          <div className="inline-flex items-center gap-2 bg-gold-500/10 border border-gold-500/20 rounded-full px-4 py-1.5 text-sm text-gold-400 mb-6">
-            <Sparkles className="w-4 h-4" />
-            12 Module · Geschichten · Verben · Redewendungen
+        <div className="max-w-5xl mx-auto px-4 pt-12 sm:pt-16 pb-12 relative z-10">
+          <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-14">
+            {/* Photo — top on mobile, right column on desktop */}
+            <div className="shrink-0 w-44 sm:w-56 lg:w-80 lg:order-2">
+              <Image
+                src="/robin-landing-page.jpeg"
+                alt="Robin Meinert"
+                width={400}
+                height={520}
+                className="w-full h-auto rounded-2xl shadow-2xl object-cover"
+                priority
+              />
+            </div>
+            {/* Text */}
+            <div className="flex-1 text-center lg:text-left lg:order-1">
+              <Image
+                src="/Logo-ADG-weiss.png"
+                alt="Fixe Geschichten"
+                width={260}
+                height={78}
+                className="mx-auto lg:mx-0 logo-dark-only mb-4"
+                priority
+              />
+              <Image
+                src="/ADG! Logo_transparent.png"
+                alt="Fixe Geschichten"
+                width={260}
+                height={78}
+                className="mx-auto lg:mx-0 logo-light-only mb-4"
+                priority
+              />
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-3">
+                Fixe Geschichten
+              </h1>
+              <div className="inline-flex items-center gap-2 bg-gold-500/10 border border-gold-500/20 rounded-full px-4 py-1.5 text-sm text-gold-400 mb-5">
+                <Sparkles className="w-4 h-4" />
+                12 Module · Geschichten · Verben · Redewendungen
+              </div>
+              <p className="text-lg sm:text-xl md:text-2xl text-muted mb-4">
+                Deutsch lernen,{" "}
+                <span className="text-gold-400">wie es wirklich klingt.</span>
+              </p>
+              <p className="text-base sm:text-lg text-muted max-w-xl mx-auto lg:mx-0 mb-8 leading-relaxed">
+                Tauche ein in 12 Geschichten, meistere die wichtigsten Verben und Redewendungen
+                und trainiere alle vier Fertigkeiten – mit Audio, Übungen und intelligentem Feedback.
+              </p>
+              <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                <Link
+                  href="/register"
+                  className="w-full sm:w-auto bg-gold-500 text-navy-900 px-8 py-3.5 rounded-xl text-lg font-semibold hover:bg-gold-400 transition-colors flex items-center justify-center gap-2 shadow-lg shadow-gold-500/20"
+                >
+                  Jetzt starten <ArrowRight className="w-5 h-5" />
+                </Link>
+                <Link
+                  href="/login"
+                  className="text-muted hover:text-foreground transition-colors px-6 py-3.5 text-lg"
+                >
+                  Anmelden →
+                </Link>
+              </div>
+            </div>
           </div>
-          <p className="text-xl md:text-2xl text-muted mb-6">
-            Deutsch lernen,{" "}
-            <span className="text-gold-400">wie es wirklich klingt.</span>
-          </p>
-          <p className="text-lg md:text-xl text-muted max-w-2xl mx-auto mb-10 leading-relaxed">
-            Tauche ein in 12 Geschichten, meistere die wichtigsten Verben und Redewendungen
-            und trainiere alle vier Fertigkeiten – mit Audio, Übungen und intelligentem Feedback.
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link
-              href="/register"
-              className="bg-gold-500 text-navy-900 px-8 py-3.5 rounded-xl text-lg font-semibold hover:bg-gold-400 transition-colors flex items-center gap-2 shadow-lg shadow-gold-500/20"
-            >
-              Jetzt starten <ArrowRight className="w-5 h-5" />
-            </Link>
-            <Link
-              href="/login"
-              className="text-muted hover:text-foreground transition-colors px-6 py-3.5 text-lg"
-            >
-              Anmelden →
-            </Link>
-          </div>
+        </div>
+      </section>
+
+      {/* App preview */}
+      <section className="max-w-5xl mx-auto px-4 pb-16">
+        <div className="rounded-2xl overflow-hidden border border-border shadow-2xl">
+          <Image
+            src="/robin-inside-app.jpeg"
+            alt="So sieht der Kurs von innen aus"
+            width={1200}
+            height={750}
+            className="w-full h-auto"
+          />
         </div>
       </section>
 
