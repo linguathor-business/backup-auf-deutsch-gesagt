@@ -439,19 +439,34 @@ function GapFillExercise({
   exercise: Extract<Exercise, { type: "gap-fill" }>;
   onComplete?: () => void;
 }) {
-  const [answers, setAnswers] = useState<Record<number, string>>({});
+  // Key format: "${sentenceIdx}-${blankIdx}" so each blank is independent
+  const [answers, setAnswers] = useState<Record<string, string>>({});
   const [checkedItems, setCheckedItems] = useState<Set<number>>(new Set());
   const [successMsg, setSuccessMsg] = useState<string | null>(null);
   const { speak } = useTTS();
 
-  const isAnswerCorrect = (idx: number, val: string) =>
-    val.trim().toLowerCase() === exercise.sentences[idx].answer.toLowerCase();
+  const isAnswerCorrect = (idx: number, currentAnswers: Record<string, string>) => {
+    const blankCount = (exercise.sentences[idx].text.match(/___/g) ?? []).length;
+    for (let b = 0; b < blankCount; b++) {
+      const val = currentAnswers[`${idx}-${b}`] ?? "";
+      if (val.trim().toLowerCase() !== exercise.sentences[idx].answer.toLowerCase()) return false;
+    }
+    return true;
+  };
 
-  const triggerCheck = (indices: number[], currentAnswers: Record<number, string>) => {
+  const sentenceHasValue = (idx: number) => {
+    const blankCount = (exercise.sentences[idx].text.match(/___/g) ?? []).length;
+    for (let b = 0; b < blankCount; b++) {
+      if ((answers[`${idx}-${b}`] ?? "").trim()) return true;
+    }
+    return false;
+  };
+
+  const triggerCheck = (indices: number[], currentAnswers: Record<string, string>) => {
     const next = new Set([...checkedItems, ...indices]);
     setCheckedItems(next);
     const allDone = exercise.sentences.every(
-      (_, i) => next.has(i) && isAnswerCorrect(i, currentAnswers[i] ?? "")
+      (_, i) => next.has(i) && isAnswerCorrect(i, currentAnswers)
     );
     if (allDone) {
       setSuccessMsg(getRandomSuccess());
@@ -492,8 +507,7 @@ function GapFillExercise({
       )}
       {exercise.sentences.map((sent, idx) => {
         const isItemChecked = checkedItems.has(idx);
-        const val = answers[idx] ?? "";
-        const isCorrect = isItemChecked && isAnswerCorrect(idx, val);
+        const isCorrect = isItemChecked && isAnswerCorrect(idx, answers);
         const isWrong = isItemChecked && !isCorrect;
         return (
           <div key={idx} className="flex items-center gap-2">
@@ -513,13 +527,13 @@ function GapFillExercise({
                   {pIdx < arr.length - 1 && (
                     <input
                       type="text"
-                      value={val}
+                      value={answers[`${idx}-${pIdx}`] ?? ""}
                       onChange={(e) =>
                         !isItemChecked &&
-                        setAnswers((prev) => ({ ...prev, [idx]: e.target.value }))
+                        setAnswers((prev) => ({ ...prev, [`${idx}-${pIdx}`]: e.target.value }))
                       }
                       onKeyDown={(e) => {
-                        if (e.key === "Enter" && val.trim() && !isItemChecked)
+                        if (e.key === "Enter" && (answers[`${idx}-${pIdx}`] ?? "").trim() && !isItemChecked)
                           triggerCheck([idx], answers);
                       }}
                       className={`inline-block w-28 mx-1 px-2 py-0.5 rounded border text-sm bg-navy-800 outline-none transition-colors ${
@@ -536,7 +550,7 @@ function GapFillExercise({
                 </span>
               ))}
             </p>
-            {!isItemChecked && val.trim() && (
+            {!isItemChecked && sentenceHasValue(idx) && (
               <button
                 onClick={() => triggerCheck([idx], answers)}
                 className="shrink-0 px-2 py-0.5 rounded text-xs bg-gold-500/10 border border-gold-500/30 text-gold-400 hover:bg-gold-500/20 transition-colors"
@@ -561,9 +575,11 @@ function GapFillExercise({
         <button
           onClick={() =>
             triggerCheck(
-              Object.entries(answers)
-                .filter(([, v]) => v.trim())
-                .map(([k]) => Number(k)),
+              [...new Set(
+                Object.entries(answers)
+                  .filter(([, v]) => v.trim())
+                  .map(([k]) => Number(k.split("-")[0]))
+              )],
               answers
             )
           }

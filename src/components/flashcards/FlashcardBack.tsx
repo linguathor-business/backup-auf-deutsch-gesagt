@@ -51,30 +51,47 @@ export function FlashcardBack({
       {/* Content */}
       <div className="flex-1 flex flex-col items-center justify-center space-y-4 px-2">
         <div className="text-center space-y-3 max-w-lg">
-          <h4 className="text-2xl sm:text-4xl font-bold text-foreground">
-            {word.german}
-          </h4>
-          <button
-            onClick={(e) => { e.stopPropagation(); speak(word.german); }}
-            className="text-gold-500 hover:text-gold-400 transition-colors"
-            title="Wort anhören"
-          >
-            <Volume2 className="w-5 h-5 inline" />
-          </button>
-          <p className="text-base sm:text-lg text-gold-400 font-medium leading-relaxed">
-            {word.definition}
-          </p>
+          <div className="flex items-center justify-center gap-2">
+            <h4 className="text-2xl sm:text-4xl font-bold text-foreground">
+              {word.german}
+            </h4>
+            <button
+              onClick={(e) => { e.stopPropagation(); speak(word.german); }}
+              className="text-gold-500 hover:text-gold-400 transition-colors"
+              title="Ausdruck anhören"
+            >
+              <Volume2 className="w-5 h-5" />
+            </button>
+          </div>
+          <div className="flex items-start justify-center gap-2">
+            <p className="text-base sm:text-lg text-gold-400 font-medium leading-relaxed">
+              {word.definition}
+            </p>
+            <button
+              onClick={(e) => { e.stopPropagation(); speak(word.definition); }}
+              className="text-gold-500 hover:text-gold-400 transition-colors mt-1 shrink-0"
+              title="Erklärung anhören"
+            >
+              <Volume2 className="w-4 h-4" />
+            </button>
+          </div>
         </div>
 
         {word.example && (
           <div className="pt-3 border-t border-border w-full max-w-lg text-center">
             <p className="text-sm text-muted mb-1">Beispiel:</p>
-            <p
-              className="text-sm text-foreground/80 cursor-pointer hover:text-gold-400 transition-colors"
-              onClick={(e) => { e.stopPropagation(); speak(word.example); }}
-            >
-              🔊 „{word.example}"
-            </p>
+            <div className="flex items-start justify-center gap-2">
+              <p className="text-sm text-foreground/80">
+                „{word.example}"
+              </p>
+              <button
+                onClick={(e) => { e.stopPropagation(); speak(word.example); }}
+                className="text-gold-500 hover:text-gold-400 transition-colors mt-0.5 shrink-0"
+                title="Beispiel anhören"
+              >
+                <Volume2 className="w-4 h-4" />
+              </button>
+            </div>
           </div>
         )}
       </div>
